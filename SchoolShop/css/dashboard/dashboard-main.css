@@ -1,0 +1,142 @@
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: #848bc82e;
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-sidebar-bg-active: #0d0f11;
+    --color-sidebar-bg: #1a1c1f;
+    --color-bg: #181a1e;
+    --color-panel-bg: #222428;
+}
+
+.main-content {
+    width: 100%;
+}
+
+.panel-card {
+    background: var(--color-panel-bg);
+    border-radius: 25px;
+}
+
+.panel-card p {
+    color: var(--color-white);
+}
+
+.panel-card hr {
+    background: var(--color-dark);
+}
+
+.panel-card table {
+    width: 100%;
+    text-align: center;
+}
+
+.panel-card table .payment-status-pending {
+    color: var(--color-primary);
+}
+
+.panel-card table .payment-status-delivered {
+    color: var(--color-success);
+}
+
+.panel-card table .payment-status-declined {
+    color: var(--color-danger);
+}
+
+.panel-card th {
+    color: var(--color-white);
+}
+
+.panel-card td {
+    color: var(--color-dark-variant);
+}
+
+.panel-card a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.animation-panel-wrapper {
+    transition: all 300ms ease;
+}
+
+.animation-panel-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.panel-1 i {
+    color: var(--color-success);
+}
+
+.panel-1 h3 {
+    color: var(--color-success);
+}
+
+.panel-1 a {
+    color: var(--color-success);
+    text-decoration: none;
+}
+
+.panel-1 span {
+    color: var(--color-success);
+}
+
+.panel-2 i {
+    color: var(--color-danger);
+}
+
+.panel-2 h3 {
+    color: var(--color-danger);
+}
+
+.panel-2 a {
+    color: var(--color-danger);
+    text-decoration: none;
+}
+
+.panel-2 span {
+    color: var(--color-danger);
+}
+
+.panel-3 i {
+    color: var(--color-warning);
+}
+
+.panel-3 h3 {
+    color: var(--color-warning);
+}
+
+.panel-3 a {
+    color: var(--color-warning);
+    text-decoration: none;
+}
+
+.panel-3 span {
+    color: var(--color-warning);
+}
+
+.text-color-success {
+    color: var(--color-success) !important;
+}
+
+.text-color-danger {
+    color: var(--color-danger) !important;
+}
+
+.text-color-warning {
+    color: var(--color-warning) !important;
+}
+
+.pagination {
+    background: var(--color-light);
+    color: var(--color-info-light);
+}
+
+
