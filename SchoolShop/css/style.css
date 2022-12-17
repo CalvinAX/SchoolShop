@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: grid;
+    /*grid-gap: 0.5em;*/
+    grid-template-columns: auto;
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+    font-size: 3vh; /*auf Handy so gut (2.5em / 40px)*/
+}
+
+header{
+    background-color: #BCA5AE;
+    padding: 0.3em;
+}
+
+#logo{
+    height: 70px;
+}
+
+nav{
+    background-color: #CC4B5A;
+    padding: 0.6em;
+}
+
+main{
+    /*display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-gap: 1em;
+    margin: 1em 1em 1em 1em; /*bei keiner font-family: 3vh - 1.5em 2em 1.5em 2em;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+article{
+    margin: 1em 1em 1em 1em;
+    padding: 1.3em 1.3em 1.3em 1.3em;
+    border-radius: 1em; /*vorher auf 18px*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: justify;
+    width: 20em; /*400px is ok*/
+    transition: all 300ms ease;
+    height: 16.5em;
+    background-color: #009FC7;
+}
+
+article:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 0px 16px -1px rgba(0,0,0,0.8);
+}
+
+section{
+    margin: 1em 0 0 0;
+}
+
+footer{
+    padding: 0.6em;
+    background-color: #3B4856;
+}
+
+
+@media (min-width: 40em) {
+
+    main{
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 0 1.5em 0;
+        justify-content: flex-start;
+    }
+
+    article{
+        /*min-width: 21em;*/
+        width: 20em;
+        height: 14em;
+        margin: 2em 2 0 0;
+    }
+    
+}
