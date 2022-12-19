@@ -90,7 +90,7 @@ article {
     transition: all 300ms ease;
 }
 
-.article2{
+.article2 {
     padding: 0 0.7em 2em 0.7em;
     max-width: 20em;
 }
@@ -146,7 +146,8 @@ footer {
 }
 */
 
-@media (min-width: 900px) { /*40em*/
+@media (min-width: 900px) {
+    /*40em*/
 
     main {
         /*margin: 1em auto 1em auto;
@@ -183,6 +184,9 @@ footer {
         align-items: center;
     }
 
+    #nav{
+        display: grid;
+    }
 
     .nav-link {
         padding: 0 4em 0 0;
