@@ -229,7 +229,7 @@
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Test</h1>
+                        <h1>amogus</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
