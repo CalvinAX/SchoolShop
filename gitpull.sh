@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/user/www/shop/SchoolShop/SchoolShop
+cd /home/user/www/shop/SchoolShop/
 while true ; do
       if [[ -f GITPULLMASTER ]] ; then
             git pull > gitpull.log 2>&1
