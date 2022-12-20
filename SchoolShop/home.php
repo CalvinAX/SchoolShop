@@ -17,12 +17,36 @@
         function toggle(id) {
             var e = document.getElementById(id);
 
-                if (e.style.display == "none") {
-                    e.style.display = "";
-                } else {
-                    e.style.display = "none";
-                }
+            if (e.style.display == "none") {
+                e.style.display = "";
+            } else {
+                e.style.display = "none";
+            }
         }
+
+        /*
+                        getStyleSheet("style");
+                        style.insertRule(`
+                            .`Element.id`) { 
+                                display: none; }
+                            `);
+        
+                    }
+        */
+       /*
+        sheets[0].insertRule(`
+@supports ( display: flex ) {
+	@media only screen and (max-width:1260px) { 
+		h2 { 
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: #EBF5FF;
+			height: ${foo}em;
+		 } 
+	}
+}*/
     </script>
 
 </head>
@@ -32,16 +56,16 @@
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="#"><img src="unicursal_hexagram.png" id="logo"></a>
+            <a href="#"><img src="logo3.png" id="logo"></a>
         </div>
-
-        <nav id="nav" style="display: none">
-            <a href="#" class = "nav-link">KATEGORIEN</a>
-            <a href="#" class = "nav-link">KATEGORIE 1</a>
-            <a href="#" class = "nav-link">KATEGORIE 2</a>
-            <a href="#" class = "nav-link">KATEGORIE 3</a>
-        </nav>
-
+        <div id="nav" style="display: none">
+            <nav>
+                <a href="#" class="nav-link">KATEGORIEN</a>
+                <a href="#" class="nav-link">KATEGORIE 1</a>
+                <a href="#" class="nav-link">KATEGORIE 2</a>
+                <a href="#" class="nav-link">KATEGORIE 3</a>
+            </nav>
+        </div>
 
         <div id="header-right">
             <a href="#">LOGIN</a>
@@ -76,12 +100,12 @@
         }
         */
         ?>
-                <!--
+        <!--
         <div class="article">
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -94,7 +118,7 @@
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -107,7 +131,7 @@
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -120,7 +144,7 @@
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -133,7 +157,7 @@
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -146,7 +170,7 @@
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -159,7 +183,7 @@
             <article>
                 <img class="prod-pic" src="placeholder.png" alt="">
                 <div class="prod-body">
-                    <h1>Gaming Mango</h1>
+                    <h1>Test</h1>
                     <div class="prod-bottom">
                         <div class="availability">In Stock • <span clas="quantity">3<span></div>
                         <div class="price">14,99 €</div>
@@ -170,12 +194,12 @@
         -->
 
 
-                <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>sus</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -185,12 +209,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -200,12 +224,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>amogus</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -215,12 +239,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -230,12 +254,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -245,12 +269,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -260,12 +284,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -275,12 +299,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
@@ -290,12 +314,12 @@
             </div>
         </div>
 
-                        <div class="article2">
+        <div class="article2">
             <div class="article">
                 <article>
                     <img class="prod-pic" src="placeholder.png" alt="">
                     <div class="prod-body">
-                        <h1>Gaming Mango</h1>
+                        <h1>Test</h1>
                         <div class="prod-bottom">
                             <div class="availability">In Stock • <span clas="quantity">3<span></div>
                             <div class="price">14,99 €</div>
