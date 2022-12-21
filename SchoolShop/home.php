@@ -20,7 +20,7 @@
         if (window.innerWidth > 900) {
             e.style.display = "";
         }
-        else{
+        else {
 
             function toggle(id) {
                 e.style.display = "none"
@@ -33,16 +33,15 @@
             }
         }
 
-
         function foggle(id) {
-                e.style.display = "none"
-                if (e.style.display == "none") {
-                    e.style.display = "";
-                } else {
+            var e = document.getElementById(id);
+            if (e.style.display == "none") {
+                e.style.display = "";
+            } else {
 
-                    e.style.display = "none";
-                }
+                e.style.display = "none";
             }
+        }
 
     </script>
 
