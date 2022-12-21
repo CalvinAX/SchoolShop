@@ -65,7 +65,7 @@
     <main>
 
         <?php
-        $con = mysqli_connect("", "root", "", "schoolshop");
+        $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
         $res = mysqli_query($con, "SELECT * FROM products");
         while ($dsatz = mysqli_fetch_array($res)) {
 
