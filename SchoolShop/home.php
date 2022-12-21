@@ -33,20 +33,20 @@
         
                     }
         */
-       /*
-        sheets[0].insertRule(`
-@supports ( display: flex ) {
-	@media only screen and (max-width:1260px) { 
-		h2 { 
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			background-color: #EBF5FF;
-			height: ${foo}em;
-		 } 
-	}
-}*/
+        /*
+         sheets[0].insertRule(`
+ @supports ( display: flex ) {
+     @media only screen and (max-width:1260px) { 
+         h2 { 
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             background-color: #EBF5FF;
+             height: ${foo}em;
+          } 
+     }
+ }*/
     </script>
 
 </head>
@@ -77,259 +77,62 @@
     </header>
 
     <main>
+
         <?php
-        /*
-        $con = mysqli_connect("", "root", "", "SchoolShop");
+        $con = mysqli_connect("", "root", "", "schoolshop");
         $res = mysqli_query($con, "SELECT * FROM products");
-        $i = 0;
-        while ($dsatz = mysqli_fetch_assoc($res)) {
-        if ($dsatz["prod_id"] <= 9) {
-        echo "<article>";
-        echo "<h1>" . $dsatz["prod_name"] . "</h1>";
-        echo "<section>";
-        if (strlen($dsatz["prod_description"]) > 200)
-        echo "<p>" . substr($dsatz["prod_description"], 0, 200) . " ...</p>";
-        else
-        echo "<p>" . $dsatz["prod_description"] . "</p>";
-        echo "</section>";
-        echo "</article>";
-        } 
-        else {
-        break;
+        while ($dsatz = mysqli_fetch_array($res)) {
+
+            if ($dsatz["prod_id"] <= 9) {
+                echo "<div class='article2'>";
+                echo "<div class='article'>";
+                echo "<article>";
+                echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "' alt=''>";
+                echo "<div class='prod-body'>";
+                echo "<h1>" . $dsatz["prod_name"] . "</h1>";
+                echo "<div class='prod-bottom'>";
+                echo "<div class='availability'>";
+
+                if ($dsatz["prod_stock"] > 0) {
+                    echo "<div class='in_stock_true'>In Stock</div>";
+                    echo "<div class = 'dot'>•</div>"
+                        . "<div class='quantity_true'>" . $dsatz["prod_stock"] . "</div>";
+                } else {
+
+                    echo "<div class='in_stock_false'>Sold Out</div>";
+                }
+
+                echo "</div>";
+                echo "<div class='price'>" . number_format($dsatz["prod_price"], 2, ",", ".") . " €</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</article>";
+                echo "</div>";
+                echo "</div>";
+            }
         }
-        }
-        */
         ?>
+
         <!--
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="article">
-            <article>
-                <img class="prod-pic" src="placeholder.png" alt="">
-                <div class="prod-body">
-                    <h1>Test</h1>
-                    <div class="prod-bottom">
-                        <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                        <div class="price">14,99 €</div>
-                    </div>
-                </div>
-            </article>
-        </div>
-        -->
-
-
         <div class="article2">
             <div class="article">
                 <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
+                    <img class="prod-pic" src="default.png" alt="">
                     <div class="prod-body">
                         <h1>sus</h1>
                         <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
+                            <div class="availability">
+                                <div class="in_stock_false">In Stock</div>
+                                <div class="dot">•</div>
+                                <div class="quantity_false">0</div>
+                            </div>
                             <div class="price">14,99 €</div>
                         </div>
                     </div>
                 </article>
             </div>
         </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>amogus</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="placeholder.png" alt="">
-                    <div class="prod-body">
-                        <h1>Test</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">In Stock • <span clas="quantity">3<span></div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-
+        -->
     </main>
     <footer>Footer</footer>
 </body>
