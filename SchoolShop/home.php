@@ -15,25 +15,7 @@
 
     <script type="text/javascript">
 
-        var e = document.getElementById(id);
-
-        if (window.innerWidth > 900) {
-            e.style.display = "";
-        }
-        else {
-
-            function toggle(id) {
-                e.style.display = "none"
-                if (e.style.display == "none") {
-                    e.style.display = "";
-                } else {
-
-                    e.style.display = "none";
-                }
-            }
-        }
-
-        function foggle(id) {
+        function toggle(id) {
             var e = document.getElementById(id);
             if (e.style.display == "none") {
                 e.style.display = "";
@@ -49,19 +31,21 @@
 
 <body>
 
+    <!-- Header -->
+
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
             <a href="#"><img src="logo3.png" id="logo"></a>
         </div>
-        <div id="nav" style="">
-            <nav>
-                <a href="#" class="nav-link">KATEGORIEN</a>
-                <a href="#" class="nav-link">KATEGORIE 1</a>
-                <a href="#" class="nav-link">KATEGORIE 2</a>
-                <a href="#" class="nav-link">KATEGORIE 3</a>
-            </nav>
-        </div>
+
+        <nav id="nav">
+            <a href="#" class="nav-link">KATEGORIEN</a>
+            <a href="#" class="nav-link">KATEGORIE 1</a>
+            <a href="#" class="nav-link">KATEGORIE 2</a>
+            <a href="#" class="nav-link">KATEGORIE 3</a>
+        </nav>
+
 
         <div id="header-right">
             <a href="login.php">LOGIN</a>
@@ -71,6 +55,19 @@
             </div>
         </div>
     </header>
+
+    <script>
+
+        if (window.innerWidth > 900) {
+            document.getElementById("nav").style.display = "";
+        } else {
+
+            document.getElementById("nav").style.display = "none"
+        }
+
+    </script>
+
+    <!-- Main Content -->
 
     <main>
 
