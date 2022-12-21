@@ -175,6 +175,7 @@ footer {
         grid-template-rows: repeat(3, auto);*/
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .article2 {
