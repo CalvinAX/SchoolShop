@@ -15,10 +15,6 @@
     --color-bg: #181a1e;
 }
 
-body {
-    background-color: var(--color-bg) !important;
-}
-
 .sidebar-container {
     min-width: 240px;
     z-index: 600;
@@ -40,7 +36,6 @@ aside .sidebar {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    position: relative;
 }
 
 aside a {
@@ -65,7 +60,7 @@ aside .sidebar a i {
 aside .sidebar a:last-child {
     position: absolute;
     bottom: 2rem;
-    width: 100%;
+    width: 218px;    
 }
 
 aside .sidebar a.active {
