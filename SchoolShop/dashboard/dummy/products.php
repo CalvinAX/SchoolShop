@@ -108,7 +108,7 @@
                                             <option value="category_jewelry">Jewelry</option>
                                         </select>
                                     </div>
-                                    <input type="submit" class="btn btn-primary btn-sm ml-3 search-submit" value="Search">
+                                    <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
                                 </form>
                             </div>
                             <h3 class="text-white">Vtl. noch eine Searchbar (?)</h3>

@@ -78,7 +78,7 @@
                 <div class="container-fluid">
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
-                            <h2 class="text-white ml-3 mt-4">Tickets</h2>
+                            <h2 class="text-white ml-3 mt-4">Ticket</h2>
                             <hr class="bg-secondary" />
                         </div>
                     </div>
@@ -87,35 +87,41 @@
                             <p class="text-white ml-3"><strong>Filters</strong></p>
                             <div class="filters d-flex justify-content-start">
                                 <form class="form" method="get">
-                                    <div class="form-group">
-                                        <label for="filter_date" class="text-white ml-3">Sort:</label>
-                                        <select class="form-select" name="filter_date">
-                                            <option selected disabled>Sort tickets by:</option>
-                                            <option value="duedate">Due Date</option>
-                                            <option value="id">ID</option>
-                                            <option value="lastupdate">Last Update</option>
-                                            <option value="assignedtoself">Assigned to me</option>
-                                            <option disabled>----------------</option>
-                                            <option value="3">Show all tickets</option>
-                                        </select>
-                                        <label for="filter_priority" class="text-white ml-3">Priority:</label>
-                                        <select class="form-select" name="filter_priority">
-                                            <option selected>Any Priority</option>
-                                            <option disabled>----------------</option>
-                                            <option value="low">Low</option>
-                                            <option value="high">High</option>
-                                            <option value="immediate">Immediate</option>
-                                        </select>
-                                        <label for="filter_created_by" class="text-white ml-3">Created By:</label>
-                                        <select class="form-select" name="filter_created_by">
-                                            <option selected>Anyone</option>
-                                            <option disabled>----------------</option>
-                                            <option value="petergrigga">Peter Grigga</option>
-                                            <option value="loisgrigga">Lois Grigga</option>
-                                            <option value="joewheelchair">Joe Wheelchair</option>
-                                        </select>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="filter_date" class="text-white ml-3">Sort:</label>
+                                            <select class="form-select" name="filter_date">
+                                                <option selected disabled>Sort tickets by:</option>
+                                                <option value="duedate">Due Date</option>
+                                                <option value="id">ID</option>
+                                                <option value="lastupdate">Last Update</option>
+                                                <option value="assignedtoself">Assigned to me</option>
+                                                <option disabled>----------------</option>
+                                                <option value="3">Show all tickets</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="filter_priority" class="text-white ml-3">Priority:</label>
+                                            <select class="form-select" name="filter_priority">
+                                                <option selected>Any Priority</option>
+                                                <option disabled>----------------</option>
+                                                <option value="low">Low</option>
+                                                <option value="high">High</option>
+                                                <option value="immediate">Immediate</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="filter_created_by" class="text-white ml-3">Created By:</label>
+                                            <select class="form-select" name="filter_created_by">
+                                                <option selected>Anyone</option>
+                                                <option disabled>----------------</option>
+                                                <option value="petergrigga">Peter Grigga</option>
+                                                <option value="loisgrigga">Lois Grigga</option>
+                                                <option value="joewheelchair">Joe Wheelchair</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <input type="submit" class="btn btn-primary btn-sm ml-3 search-submit" value="Search">
+                                    <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
                                 </form>
                             </div>
                         </div>
@@ -127,8 +133,8 @@
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
                             <div class="panel-card p-3 mb-2">
-                                <button class="btn search-submit text-white"><i
-                                        class="fa-solid fa-plus mr-1"></i>Create</button>
+                                <a href="create-ticket.php"><button class="btn button-submit text-white"><i
+                                            class="fa-solid fa-plus mr-1"></i>Create</button></a>
                                 <table>
                                     <thead>
                                         <tr>
@@ -192,9 +198,11 @@
         </div>
 
     </div>
-    
+
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

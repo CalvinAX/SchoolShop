@@ -22,6 +22,8 @@
     <!--Font Awesome -->
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
 
 <body>
@@ -73,10 +75,28 @@
                 <div class="container-fluid">
 
                     <!-- 1st Row Infos -->
-                    <div class="row ml-3 mr-3">        
-
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md">
+                            <h2 class="text-white ml-3 mt-4">Traffic</h2>
+                            <hr class="bg-secondary" />
+                        </div>
                     </div>
                     <!-- 1st Row Infos -->
+
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md">
+                            <div class="panel-card mb-3">
+                                <div class="d-flex justify-content-center">
+                                    <div id="chart_placeholder_4" class="chart mt-2">
+                                        <script src="js-charts/apexcharts/placeholder_chart_4.js"></script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
@@ -84,7 +104,9 @@
     </div>
 
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
