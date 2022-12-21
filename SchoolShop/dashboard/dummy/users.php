@@ -27,7 +27,7 @@
 <body>
     <div class="wrapper d-flex">
         <!-- Sidebar -->
-        <aside class="sidebar-container">
+        <aside class="sidebar-container sticky-top">
             <div class="sidebar m-0">
                 <a href="dummy.php" class="ml-4">
                     <i class="fa-solid fa-layer-group"></i>
@@ -49,17 +49,9 @@
                     <i class="fa-solid fa-arrow-right-arrow-left"></i>
                     Traffic
                 </a>
-                <a href="todo.php" class="ml-4">
-                    <i class="fa-solid fa-list"></i>
-                    To-Do
-                </a>
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
-                </a>
-                <a href="reports.php" class="ml-4">
-                    <i class="fa-solid fa-bug"></i>
-                    Reports
                 </a>
                 <a href="settings.php" class="ml-4">
                     <i class="fa-solid fa-gear"></i>
@@ -138,8 +130,8 @@
                                     <tbody>
                                         <tr class="border-bottom border-dark">
                                             <td>124</td>
-                                            <td>Peter Grigga</td>
-                                            <td>peter@grigga.com</td>
+                                            <td>Peter Griffin</td>
+                                            <td>peter@griffin.com</td>
                                             <td>Other</td>
                                             <td class="text-color-danger">Admin</td>
                                             <td>5748</td>
@@ -150,8 +142,8 @@
                                         </tr>
                                         <tr class="border-bottom border-dark">
                                             <td>457</td>
-                                            <td>Loise Grigga</td>
-                                            <td>loise@grigga.com</td>
+                                            <td>Loise Griffin</td>
+                                            <td>loise@griffin.com</td>
                                             <td>Female</td>
                                             <td class="text-color-warning">Support</td>
                                             <td>45</td>
@@ -162,7 +154,7 @@
                                         </tr>
                                         <tr class="border-bottom border-dark">
                                             <td>432</td>
-                                            <td>Joe Wheelchair</td>
+                                            <td>Joe Swanson</td>
                                             <td>joe@wheelchair.com</td>
                                             <td>Male</td>
                                             <td>Customer</td>
@@ -174,8 +166,8 @@
                                         </tr>
                                         <tr class="border-bottom border-dark">
                                             <td>124</td>
-                                            <td>Peter Grigga</td>
-                                            <td>peter@grigga.com</td>
+                                            <td>Peter Griffin</td>
+                                            <td>peter@griffin.com</td>
                                             <td>Other</td>
                                             <td class="text-color-danger">Admin</td>
                                             <td>5748</td>
@@ -186,8 +178,8 @@
                                         </tr>
                                         <tr class="border-bottom border-dark">
                                             <td>457</td>
-                                            <td>Loise Grigga</td>
-                                            <td>loise@grigga.com</td>
+                                            <td>Loise Griffin</td>
+                                            <td>loise@griffin.com</td>
                                             <td>Female</td>
                                             <td class="text-color-warning">Support</td>
                                             <td>45</td>
@@ -197,21 +189,21 @@
                                             <td class="text-color-success p-3">Yes</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>432</td>
-                                            <td>Joe Wheelchair</td>
-                                            <td>joe@wheelchair.com</td>
-                                            <td>Male</td>
-                                            <td>Customer</td>
-                                            <td>753</td>
-                                            <td>Canada</td>
-                                            <td>02452</td>
-                                            <td>Torronto</td>
+                                            <td>124</td>
+                                            <td>Peter Griffin</td>
+                                            <td>peter@griffin.com</td>
+                                            <td>Other</td>
+                                            <td class="text-color-danger">Admin</td>
+                                            <td>5748</td>
+                                            <td>USA</td>
+                                            <td>020555</td>
+                                            <td>Washington, DC</td>
                                             <td class="text-color-warning p-3">Suspended</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
                                             <td>124</td>
-                                            <td>Peter Grigga</td>
-                                            <td>peter@grigga.com</td>
+                                            <td>Peter Griffin</td>
+                                            <td>peter@griffin.com</td>
                                             <td>Other</td>
                                             <td class="text-color-danger">Admin</td>
                                             <td>5748</td>
@@ -221,37 +213,31 @@
                                             <td class="text-color-danger p-3">No</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>457</td>
-                                            <td>Loise Grigga</td>
-                                            <td>loise@grigga.com</td>
-                                            <td>Female</td>
-                                            <td class="text-color-warning">Support</td>
-                                            <td>45</td>
+                                            <td>124</td>
+                                            <td>Peter Griffin</td>
+                                            <td>peter@griffin.com</td>
+                                            <td>Other</td>
+                                            <td class="text-color-danger">Admin</td>
+                                            <td>5748</td>
                                             <td>USA</td>
                                             <td>020555</td>
                                             <td>Washington, DC</td>
                                             <td class="text-color-success p-3">Yes</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>432</td>
-                                            <td>Joe Wheelchair</td>
-                                            <td>joe@wheelchair.com</td>
-                                            <td>Male</td>
-                                            <td>Customer</td>
-                                            <td>753</td>
-                                            <td>Canada</td>
-                                            <td>02452</td>
-                                            <td>Torronto</td>
+                                            <td>124</td>
+                                            <td>Peter Griffin</td>
+                                            <td>peter@griffin.com</td>
+                                            <td>Other</td>
+                                            <td class="text-color-danger">Admin</td>
+                                            <td>5748</td>
+                                            <td>USA</td>
+                                            <td>020555</td>
+                                            <td>Washington, DC</td>
                                             <td class="text-color-warning p-3">Suspended</td>
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <div class="btn-group mt-3 d-flex justify-content-end" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn pagination p-2">Prev</button>
-                                    <button type="button" class="btn pagination p-2">1</button>
-                                    <button type="button" class="btn pagination p-2">Next</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -262,6 +248,10 @@
 
     </div>
 
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
