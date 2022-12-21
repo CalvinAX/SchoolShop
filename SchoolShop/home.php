@@ -54,7 +54,7 @@
         </div>
 
         <div id="header-right">
-            <a href="#">LOGIN</a>
+            <a href="login.php">LOGIN</a>
             <a href="javascript:toggle('settings')" id="gear"><i class="fa-solid fa-gear"></i></a>
             <div id="settings" style="display: none">
                 <p>test</p>
