@@ -33,6 +33,17 @@
             }
         }
 
+
+        function foggle(id) {
+                e.style.display = "none"
+                if (e.style.display == "none") {
+                    e.style.display = "";
+                } else {
+
+                    e.style.display = "none";
+                }
+            }
+
     </script>
 
 </head>
@@ -55,7 +66,7 @@
 
         <div id="header-right">
             <a href="login.php">LOGIN</a>
-            <a href="javascript:toggle('settings')" id="gear"><i class="fa-solid fa-gear"></i></a>
+            <a href="javascript:foggle('settings')" id="gear"><i class="fa-solid fa-gear"></i></a>
             <div id="settings" style="display: none">
                 <p>test</p>
             </div>
