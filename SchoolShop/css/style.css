@@ -125,11 +125,31 @@ article {
 .prod-bottom {
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
-section {
-    margin: 1em 0 0 0;
+.availability{
+    display: flex;
+    gap: 0.5em;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.in_stock_true{
+    color: #677483;
+}
+
+.in_stock_false{
+    color: #ff5757;
+}
+
+.dot{
+    color: #677483;
+}
+
+.quantity_true{
+    color: #7ed957;
 }
 
 footer {
