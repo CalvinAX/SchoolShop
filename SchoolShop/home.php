@@ -5,48 +5,34 @@
     <meta charset="utf-8">
     <title>Online Shop</title>
     <link rel="stylesheet" href="css/style.css">
-    amogus
+
     <!-- Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    sus
+
     <!--Font Awesome -->
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        function toggle(id) {
-            var e = document.getElementById(id);
 
-            if (e.style.display == "none") {
-                e.style.display = "";
-            } else {
-                e.style.display = "none";
+        var e = document.getElementById(id);
+
+        if (window.innerWidth > 900) {
+            e.style.display = "";
+        }
+        else{
+
+            function toggle(id) {
+                e.style.display = "none"
+                if (e.style.display == "none") {
+                    e.style.display = "";
+                } else {
+
+                    e.style.display = "none";
+                }
             }
         }
 
-        /*
-                        getStyleSheet("style");
-                        style.insertRule(`
-                            .`Element.id`) { 
-                                display: none; }
-                            `);
-        
-                    }
-        */
-        /*
-         sheets[0].insertRule(`
- @supports ( display: flex ) {
-     @media only screen and (max-width:1260px) { 
-         h2 { 
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-             justify-content: center;
-             background-color: #EBF5FF;
-             height: ${foo}em;
-          } 
-     }
- }*/
     </script>
 
 </head>
@@ -58,7 +44,7 @@
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
             <a href="#"><img src="logo3.png" id="logo"></a>
         </div>
-        <div id="nav" style="display: none">
+        <div id="nav" style="">
             <nav>
                 <a href="#" class="nav-link">KATEGORIEN</a>
                 <a href="#" class="nav-link">KATEGORIE 1</a>
