@@ -1,5 +1,6 @@
 :root {
     --color-primary: #7380ec;
+    --color-primary-2: #6c77d8;
     --color-danger: #ff7782;
     --color-success: #41f1b6;
     --color-warning: #ffbb55;
@@ -14,6 +15,11 @@
     --color-sidebar-bg: #1a1c1f;
     --color-bg: #181a1e;
     --color-panel-bg: #222428;
+}
+
+body {
+    background-color: var(--color-bg) !important;
+    overflow-x: hidden !important;
 }
 
 .main-content {
@@ -139,4 +145,18 @@
     color: var(--color-info-light);
 }
 
+.search-submit {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary-2) !important;
+}
+
+.search-submit:focus, .search-submit:active {
+    border-radius: 4px !important;
+    border-color: var(--color-primary-2) !important;
+}
+
+
+.search-submit:hover {
+    background-color: var(--color-primary-2) !important;
+}
 

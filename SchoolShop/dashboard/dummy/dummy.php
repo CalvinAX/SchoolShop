@@ -27,7 +27,7 @@
 <body>
     <div class="wrapper d-flex">
         <!-- Sidebar -->
-        <aside class="sidebar-container">
+        <aside class="sidebar-container sticky-top">
             <div class="sidebar m-0">
                 <a href="dummy.php" class="ml-4 active">
                     <i class="fa-solid fa-layer-group"></i>
@@ -49,17 +49,9 @@
                     <i class="fa-solid fa-arrow-right-arrow-left"></i>
                     Traffic
                 </a>
-                <a href="todo.php" class="ml-4">
-                    <i class="fa-solid fa-list"></i>
-                    To-Do
-                </a>
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
-                </a>
-                <a href="reports.php" class="ml-4">
-                    <i class="fa-solid fa-bug"></i>
-                    Reports
                 </a>
                 <a href="settings.php" class="ml-4">
                     <i class="fa-solid fa-gear"></i>
@@ -152,39 +144,39 @@
                                             <td class="payment-status-pending p-3">Pending</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>573</td>
-                                            <td>Blow up Gaming Desk with integrated Cupholder</td>
-                                            <td>255,00 €</td>
+                                            <td>124</td>
+                                            <td>Mango - Limited Gaming Edition</td>
+                                            <td>15,00 €</td>
                                             <td class="payment-status-delivered p-3">Delivered</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>15</td>
-                                            <td>1000 living Cockroaches</td>
-                                            <td>53,24 €</td>
+                                            <td>124</td>
+                                            <td>Mango - Limited Gaming Edition</td>
+                                            <td>15,00 €</td>
                                             <td class="payment-status-declined p-3">Declined</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>45</td>
-                                            <td>Desktop Monitor + Windows 11</td>
-                                            <td>157,00 €</td>
+                                            <td>124</td>
+                                            <td>Mango - Limited Gaming Edition</td>
+                                            <td>15,00 €</td>
                                             <td class="payment-status-pending p-3">Pending</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>7</td>
-                                            <td>Nintendo Switch</td>
-                                            <td>299,99 €</td>
+                                            <td>124</td>
+                                            <td>Mango - Limited Gaming Edition</td>
+                                            <td>15,00 €</td>
                                             <td class="payment-status-pending p-3">Pending</td>
                                         </tr>
                                         <tr class="border-bottom border-dark">
-                                            <td>793</td>
-                                            <td>Frog Terrarium</td>
-                                            <td>327,24 €</td>
+                                            <td>124</td>
+                                            <td>Mango - Limited Gaming Edition</td>
+                                            <td>15,00 €</td>
                                             <td class="payment-status-delivered p-3">Delivered</td>
                                         </tr>
                                         <tr>
-                                            <td>265</td>
-                                            <td>Binoculars, but they dont work</td>
-                                            <td>27,99 €</td>
+                                            <td>124</td>
+                                            <td>Mango - Limited Gaming Edition</td>
+                                            <td>15,00 €</td>
                                             <td class="payment-status-pending p-3">Pending</td>
                                         </tr>
                                     </tbody>
@@ -199,6 +191,10 @@
 
     </div>
 
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

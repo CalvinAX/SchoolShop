@@ -22,17 +22,14 @@
     <!--Font Awesome -->
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"
-        integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/charts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
 
 <body>
     <div class="wrapper d-flex">
         <!-- Sidebar -->
-        <aside class="sidebar-container">
+        <aside class="sidebar-container sticky-top">
             <div class="sidebar m-0">
                 <a href="dummy.php" class="ml-4">
                     <i class="fa-solid fa-layer-group"></i>
@@ -54,17 +51,9 @@
                     <i class="fa-solid fa-arrow-right-arrow-left"></i>
                     Traffic
                 </a>
-                <a href="todo.php" class="ml-4">
-                    <i class="fa-solid fa-list"></i>
-                    To-Do
-                </a>
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
-                </a>
-                <a href="reports.php" class="ml-4">
-                    <i class="fa-solid fa-bug"></i>
-                    Reports
                 </a>
                 <a href="settings.php" class="ml-4">
                     <i class="fa-solid fa-gear"></i>
@@ -85,26 +74,101 @@
 
                 <div class="container-fluid">
 
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md">
+                            <h2 class="text-white ml-3 mt-4">Sales</h2>
+                            <hr class="bg-secondary" />
+                        </div>
+                    </div>
                     <!-- 1st Row Infos -->
                     <div class="row ml-3 mr-3">
-
-                    <!-- WIP -->
                         <div class="col-md">
-                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                            <div class="panel-card mb-3">
+                                <div class="d-flex justify-content-center">
+                                    <div id="chart_placeholder_1" class="chart mt-2">
+                                        <script src="js-charts/apexcharts/placeholder_chart_1.js"></script>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-
+                        <div class="col-md">
+                            <div class="panel-card p-3 mb-3">
+                                <div class="d-flex justify-content-center">
+                                    <div id="chart_placeholder_2" class="chart mt-2">
+                                        <script src="js-charts/apexcharts/placeholder_chart_2.js"></script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- 1st Row Infos -->
 
-                    <!-- 2nd Row Infos -->
-                    <!-- 2nd Row Infos -->
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md">
+                            <div class="animation-panel-wrapper">
+                                <div class="panel-card p-3 mb-3">
+                                    <div class="panel-1">
+                                        <h3 class="m-3">Total Sales</h3>
+                                        <hr />
+                                        <p class="ml-3 mb-4">Currently sold: <span>7</span> products!
+                                        </p>
+                                        <p class="ml-3">With a total generated Revenue of: <span>7,99 €</span>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md">
+                            <div class="animation-panel-wrapper">
+                                <div class="panel-card p-3 mb-3">
+                                    <div class="panel-2">
+                                        <h3 class="m-3">Yearly Earnings</h3>
+                                        <hr />
+                                        <p class="ml-3 mb-4">In <span>2022</span> earned money: <span>500,00
+                                                €</span>!
+                                        </p>
+                                        <p class="ml-3">With a total of <span>500</span> sold products.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md">
+                            <div class="animation-panel-wrapper">
+                                <div class="panel-card p-3 mb-3">
+                                    <div class="panel-3">
+                                        <h3 class="m-3">Best Month</h3>
+                                        <hr />
+                                        <p class="ml-3 mb-4">In <span>December</span> earned: <span>500,00
+                                                €</span>!
+                                        </p>
+                                        <p class="ml-3">With a total of <span>230</span> sold products.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md">
+                            <div class="panel-card mb-3 p-3">
+                                <div id="chart_placeholder_3" class="chart mt-2">
+                                    <script src="js-charts/apexcharts/placeholder_chart_3.js"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </main>
         </div>
 
     </div>
 
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
