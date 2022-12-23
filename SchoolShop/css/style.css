@@ -44,7 +44,8 @@ header {
 
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: auto;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
 
 }
 
@@ -60,10 +61,25 @@ header {
 
 
 nav {
+    grid-area: 2 / 1 / 3 / 3;
+    gap: 1em;
+    padding: 1em 0 1em 0;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+
 }
+
+/*
+.nav1{
+    transition: all 2s ease;
+}
+
+.nav2{
+    height: 100%;
+}
+*/
 
 header a {
     text-decoration: none;
@@ -76,7 +92,7 @@ header a {
 }
 */
 #header-right {
-    /*margin: 0 4em 0 0;*/
+    grid-area: 1 / 2 / 2 / 3;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -158,26 +174,26 @@ article {
     justify-content: space-between;
 }
 
-.availability{
+.availability {
     display: flex;
     gap: 0.5em;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.in_stock_true{
+.in_stock_true {
     color: #677483;
 }
 
-.in_stock_false{
+.in_stock_false {
     color: #ff5757;
 }
 
-.dot{
+.dot {
     color: #677483;
 }
 
-.quantity_true{
+.quantity_true {
     color: #7ed957;
 }
 
@@ -209,7 +225,8 @@ footer {
 
     .article2 {
         width: 25%;
-        padding: 0 2em 2em 2em; /* padding: 0 0.7em 2em 0.7em; */
+        padding: 0 2em 2em 2em;
+        /* padding: 0 0.7em 2em 0.7em; */
     }
 
     /*
@@ -218,9 +235,58 @@ footer {
     }
     */
 
+
+    /* Header */
+
+
+    header {
+        grid-auto-flow: column;
+        grid-template-columns: 15% 60% 25%;
+        grid-template-rows: auto;
+    
+    }
+
+    #header-left {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
     #burger {
         display: none;
     }
 
+    #logo {
+        max-height: 70px;
+    }
+    
+    
+    nav {
+        padding: 0 0 0 0;
+        grid-area: 1 / 2 / 2 / 3;
+        display: flex;
+        gap: 0;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
 
+    header a {
+        text-decoration: none;
+        color: var(--color-white);
+    }
+    
+    /*
+    .nav-link {
+        padding: 0 4em 0 0;
+    }
+    */
+    #header-right {
+        grid-area: 1 / 3 / 2 / 4;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    
+    }
 }

@@ -18,13 +18,35 @@
         function toggle(id) {
             var e = document.getElementById(id);
             if (e.style.display == "none") {
+
                 e.style.display = "";
-            } else {
+                /*e.classList.toggle("nav2");*/
+            }
+            else {
 
                 e.style.display = "none";
+                /*e.classList.toggle("nav2");*/
             }
         }
 
+    </script>
+    <script>
+        /*
+        setTimeout(function () {
+
+            var e = document.getElementById(id);
+            if (e.style.display == "none") {
+                e.classList.toggle("nav2");
+            }
+            else {
+
+                e.classList.toggle("nav2");
+
+                alert('Hello World!');
+            }
+
+        }, 2000);
+*/
     </script>
 
 </head>
@@ -39,7 +61,7 @@
             <a href="#"><img src="logo3.png" id="logo"></a>
         </div>
 
-        <nav id="nav">
+        <nav id="nav" class="nav1">
             <a href="#" class="nav-link">KATEGORIEN</a>
             <a href="#" class="nav-link">KATEGORIE 1</a>
             <a href="#" class="nav-link">KATEGORIE 2</a>
@@ -49,7 +71,8 @@
 
         <div id="header-right">
             <a href="login.php">LOGIN</a>
-            <a href="javascript:foggle('settings')" id="gear"><i class="fa-solid fa-gear"></i></a>
+            <a href="javascript:toggle('settings')" id="gear"><img src="default_profile_picture.png"
+                    width="24px"></i></a> <!-- <i class="fa-solid fa-gear"> -->
             <div id="settings" style="display: none">
                 <p>test</p>
             </div>
