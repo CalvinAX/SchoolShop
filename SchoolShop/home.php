@@ -14,21 +14,46 @@
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+        /*
+                function toggle(id) {
+                    var e = document.getElementById(id);
+                    if (e.style.display == "none") {
+        
+                        e.style.display = "";
+                        /*e.classList.toggle("nav2");
+                    }
+                    else {
+        
+                        e.style.display = "none";
+                        /*e.classList.toggle("nav2");
+                    }
+                }
+        */
 
+            /* kann zu einer funktion angepasst werden */
+            
         function toggle(id) {
             var e = document.getElementById(id);
-            if (e.style.display == "none") {
+            e.classList.toggle("nav1");
 
-                e.style.display = "";
-                /*e.classList.toggle("nav2");*/
-            }
-            else {
-
-                e.style.display = "none";
-                /*e.classList.toggle("nav2");*/
-            }
         }
 
+        function foggle(id) {
+            var e = document.getElementById(id);
+            e.classList.toggle("popover-small1");
+
+        }
+
+
+
+        /*
+                var e = document.getElementById(nav);
+        
+                e.addEventListener("click", function () {
+                    var e2 = document.getElementById("nav");
+                    el2.classList.add('nav1');
+                })
+        */
     </script>
     <script>
         /*
@@ -61,33 +86,57 @@
             <a href="#"><img src="logo3.png" id="logo"></a>
         </div>
 
-        <nav id="nav" class="nav1">
-            <a href="#" class="nav-link">KATEGORIEN</a>
-            <a href="#" class="nav-link">KATEGORIE 1</a>
-            <a href="#" class="nav-link">KATEGORIE 2</a>
-            <a href="#" class="nav-link">KATEGORIE 3</a>
+
+        <nav id="nav">
+            <a href="#" class="nav-item">KATEGORIEN</a>
+            <a href="#" class="nav-item">KATEGORIE 1</a>
+            <a href="#" class="nav-item">KATEGORIE 2</a>
+            <a href="#" class="nav-item">KATEGORIE 3</a>
         </nav>
 
 
         <div id="header-right">
-            <a href="login.php">LOGIN</a>
-            <a href="javascript:toggle('settings')" id="gear"><img src="default_profile_picture.png"
-                    width="24px"></i></a> <!-- <i class="fa-solid fa-gear"> -->
-            <div id="settings" style="display: none">
-                <p>test</p>
+            <a href="#header-right" class="gear_enable"><i class="fa-regular fa-user"></i></a>
+            <a href="#" class="gear_disable"><i class="fa-solid fa-user"></i></a>
+            <a href="javascript:foggle('popover-small')" class="popover-small-toggle"><i
+                    class="fa-solid fa-user"></i></a>
+            <!-- <i class="fa-solid fa-gear"></i> -->
+            <div class="popover-large">
+                <a class="popover-item" hraf="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <a class="popover-item" hraf="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" hraf="#"><i class="fa-solid fa-3"></i>333333</a>
+                <a class="popover-item" hraf="#"><i class="fa-solid fa-4"></i>444444</a>
+                <a class="popover-item" hraf="#"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
+
+        <div id="popover-small" class="popover-small">
+            <a class="popover-item" hraf="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <a class="popover-item" hraf="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" hraf="#"><i class="fa-solid fa-3"></i>333333</a>
+            <a class="popover-item" hraf="#"><i class="fa-solid fa-4"></i>444444</a>
+            <a class="popover-item" hraf="#"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+        </div>
+
     </header>
+    <!--
+    <div id="nav1" class="nav2">
+        <a href="#" class="nav-link">KATEGORIEN</a>
+        <a href="#" class="nav-link">KATEGORIE 1</a>
+        <a href="#" class="nav-link">KATEGORIE 2</a>
+        <a href="#" class="nav-link">KATEGORIE 3</a>
+    </div>
+    -->
 
     <script>
-
-        if (window.innerWidth > 900) {
-            document.getElementById("nav").style.display = "";
-        } else {
-
-            document.getElementById("nav").style.display = "none"
-        }
-
+        /*
+                if (window.innerWidth > 900) {
+                    document.getElementById("nav").style.display = "";
+                } else {
+        
+                    document.getElementById("nav").style.display = "none"
+                }
+        */
     </script>
 
     <!-- Main Content -->
@@ -100,7 +149,7 @@
         while ($dsatz = mysqli_fetch_array($res)) {
 
             if ($dsatz["prod_id"] <= 9) {
-                echo "<div class='article2'>";
+                echo "<a class='article2' href='/products/product.php'>";
                 echo "<div class='article'>";
                 echo "<article>";
                 echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "' alt=''>";
@@ -125,6 +174,7 @@
                 echo "</article>";
                 echo "</div>";
                 echo "</div>";
+                echo "</a>";
             }
         }
         ?>
@@ -150,7 +200,9 @@
         </div>
         -->
     </main>
+
     <footer>Footer</footer>
+
 </body>
 
 </html>
