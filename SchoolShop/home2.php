@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Online Shop</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Google Fonts-->
@@ -83,7 +86,7 @@
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="#"><img src="logo3.png" id="logo"></a>
+            <a href="home.php"><img src="logo3.png" id="logo"></a>
         </div>
 
 
@@ -102,20 +105,22 @@
                     class="fa-solid fa-user"></i></a>
             <!-- <i class="fa-solid fa-gear"></i> -->
             <div class="popover-large">
-                <a class="popover-item" hraf="#"><i class="fa-solid fa-user"></i>PROFILE</a>
-                <a class="popover-item" hraf="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" hraf="#"><i class="fa-solid fa-3"></i>333333</a>
-                <a class="popover-item" hraf="#"><i class="fa-solid fa-4"></i>444444</a>
-                <a class="popover-item" hraf="#"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+                <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
+                <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+                <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
         <div id="popover-small" class="popover-small">
-            <a class="popover-item" hraf="#"><i class="fa-solid fa-user"></i>PROFILE</a>
-            <a class="popover-item" hraf="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" hraf="#"><i class="fa-solid fa-3"></i>333333</a>
-            <a class="popover-item" hraf="#"><i class="fa-solid fa-4"></i>444444</a>
-            <a class="popover-item" hraf="#"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+            <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
+            <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+            <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
