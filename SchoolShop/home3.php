@@ -148,7 +148,7 @@
         $res = mysqli_query($con, "SELECT * FROM products");
         while ($dsatz = mysqli_fetch_array($res)) {
 
-            if ($dsatz["prod_id"] <= 9) {
+            if ($dsatz["prod_id"] > 18 && $dsatz["prod_id"] <= 27) {
                 echo "<div class='article2'>";
                 echo "<a href='/products/product.php'>";
                 echo "<div class='article'>";
@@ -203,9 +203,9 @@
         -->
     </main>
     <div class="pagination">
-        <a href="" class="pagination-start"><i class="fa-solid fa-angles-left"></i></a>
-        <div class="pagination-number"><i class="fa-solid fa-i"></i></div>
-        <a href="home2.php"><i class="fa-solid fa-angles-right"></i></a>
+        <a href="home2.php"><i class="fa-solid fa-angles-left"></i></a>
+        <div class="pagination-number"><i class="fa-solid fa-i"></i><i class="fa-solid fa-i"></i><i class="fa-solid fa-i"></i></div>
+        <a href="" class="pagination-end"><i class="fa-solid fa-angles-right"></i></a>
     </div>
 
 
