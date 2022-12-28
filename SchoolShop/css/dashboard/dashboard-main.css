@@ -161,3 +161,9 @@ body {
     background-color: var(--color-primary-2) !important;
 }
 
+.login-panel {
+    background: var(--color-panel-bg);
+    border-radius: 15px;
+    width: 500px;
+}
+
