@@ -153,9 +153,9 @@
         $res = mysqli_query($con, "SELECT * FROM products");
         while ($dsatz = mysqli_fetch_array($res)) {
 
-            if ($dsatz["prod_id"] > 9 && $dsatz["prod_id"] <= 18) {
+            if ($dsatz["prod_id"] > 12 && $dsatz["prod_id"] <= 24) {
                 echo "<div class='article2'>";
-                echo "<a href='/products/product.php'>";
+                echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
                 echo "<article>";
                 echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "' alt=''>";

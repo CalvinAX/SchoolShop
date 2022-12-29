@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+print_r($_SESSION);
+/*session_destroy();
+$_SESSION = array();*/
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -7,7 +16,8 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/settings2.css">
+    <link rel="stylesheet" href="css/warenkorb.css">
+
 
     <!-- Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
@@ -41,7 +51,7 @@
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="home.php"><img src="logo3.png" id="logo"></a>
+            <a href="../home.php"><img src="logo3.png" id="logo"></a>
         </div>
 
 
@@ -82,48 +92,37 @@
 
     </header>
 
-    <!-- Main Content -->
-    <!-- 
-    <div class="hidden">
+    <main>
+        <?php
+        $con = mysqli_connect("", "root", "", "schoolshop");
 
-    </div>
-    -->
 
-    <div class="sidebar">
-        <span><i class="fa-solid fa-brush"></i> Themes</span>
-        <span><i class="fa-solid fa-brush"></i> Themes</span>
-        <span><i class="fa-solid fa-brush"></i> Themes</span>
-        <span><i class="fa-solid fa-brush"></i> Themes</span>
-    </div>
+        foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
 
-    <div class="content">
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-        <p>Hallo</p>
-    </div>
+            $res = mysqli_query($con, "SELECT * FROM products");
+            while ($dsatz = mysqli_fetch_array($res)) {
+
+                if ($dsatz["prod_id"] == $prod_id) {
+
+                    echo "<div class='slider content'>";
+                    echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "'>";
+                    echo "</div>";
+
+                    echo "<div class='title content'>";
+                    echo $dsatz["prod_name"];
+                    echo "</div>";
+
+                    echo "<div class='price content'>";
+                    echo $dsatz["prod_price"];
+                    echo "</div>";
+                    echo "<hr>";
+                }
+            }
+        }
+
+        ?>
+
+    </main>
 
     <footer>
         Footer
