@@ -79,31 +79,49 @@ if (!isset($_SESSION['id'])) {
             <main>
 
                 <div class="container-fluid">
-
                     <!-- 1st Row Infos -->
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
-                            <h2 class="text-white ml-3 mt-4">Traffic</h2>
+                            <h2 class="text-white ml-3 mt-4">API Endpoints</h2>
                             <hr class="bg-secondary" />
                         </div>
                     </div>
                     <!-- 1st Row Infos -->
+                </div>
 
-                    <div class="row ml-3 mr-3">
+                <div class="container-fluid">
+                    <div class="row ml-3 mr-3 mb-2">
                         <div class="col-md">
-                            <div class="panel-card mb-3">
-                                <div class="d-flex justify-content-center">
-                                    <div id="chart_placeholder_4" class="chart mt-2">
-                                        <script src="js-charts/apexcharts/placeholder_chart_4.js"></script>
-                                    </div>
-                                </div>
+                            <div class="panel-card p-2">
+                                <a href="#" target="_blank" class="ml-2 api-link">
+                                    <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                                    Endpoint 1
+                                </a>
                             </div>
                         </div>
+                    </div>
+                    <div class="row ml-3 mr-3 mb-2">
                         <div class="col-md">
-
+                            <div class="panel-card p-2">
+                                <a href="#" target="_blank" class="ml-2 api-link">
+                                    <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                                    Endpoint 2
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ml-3 mr-3 mb-2">
+                        <div class="col-md">
+                            <div class="panel-card p-2">
+                                <a href="#" target="_blank" class="ml-2 api-link">
+                                    <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                                    Endpoint 3
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </main>
         </div>
 

@@ -58,19 +58,35 @@ include '../connections/root_connection.php';
                     $sql = mysqli_query($conn, "SELECT * FROM accounts WHERE email = '$email'");
                     $row = mysqli_fetch_array($sql);
 
-                    if (is_array($row)) {
+                    if ($row['role'] == 2) {
 
-                        if (password_verify($password, $row['password'])) {
-                            //If credentials right -> create session variables
-                            $_SESSION['name'] = $row['name'];
-                            $_SESSION['lastname'] = $row['lastname'];
-                            $_SESSION['id'] = $row['id'];
-                            $_SESSION['email'] = $row['email'];
-                            $_SESSION['role'] = $row['role'];
-                            $_SESSION['gender'] = $row['gender'];
+                        echo "<p class='text-danger'>No Permission!</p>";
+                        session_destroy();
 
-                            $id_login = $row['id'];
-                            $sql_logged_in = mysqli_query($conn, "UPDATE accounts SET logged_in='1' WHERE id=$id_login");
+                    } else {
+
+                        if (is_array($row)) {
+
+                            if (password_verify($password, $row['password'])) {
+                                //If credentials right -> create session variables
+                                $_SESSION['name'] = $row['name'];
+                                $_SESSION['lastname'] = $row['lastname'];
+                                $_SESSION['id'] = $row['id'];
+                                $_SESSION['email'] = $row['email'];
+                                $_SESSION['role'] = $row['role'];
+                                $_SESSION['gender'] = $row['gender'];
+
+                                $id_login = $row['id'];
+                                $sql_logged_in = mysqli_query($conn, "UPDATE accounts SET logged_in='1' WHERE id=$id_login");
+
+
+
+                            } else {
+
+                                //Wrong User, Password or no Account -> Error
+                                echo "<p class='text-danger'>Wrong Username or Password!</p>";
+                                session_destroy();
+                            }
 
                         } else {
 
@@ -78,12 +94,6 @@ include '../connections/root_connection.php';
                             echo "<p class='text-danger'>Wrong Username or Password!</p>";
                             session_destroy();
                         }
-
-                    } else {
-
-                        //Wrong User, Password or no Account -> Error
-                        echo "<p class='text-danger'>Wrong Username or Password!</p>";
-                        session_destroy();
                     }
                 }
                 //If logged in -> send to index.php
