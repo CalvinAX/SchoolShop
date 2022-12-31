@@ -7,6 +7,8 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 
+include '../connections/root_connection.php';
+
 ?>
 
 <html>
@@ -51,9 +53,9 @@ if (!isset($_SESSION['id'])) {
                     <i class="fa-solid fa-chart-simple"></i>
                     Sales
                 </a>
-                <a href="traffic.php" class="ml-4">
-                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                    Traffic
+                <a href="api.php" class="ml-4">
+                    <i class="fa-solid fa-code"></i>
+                    API
                 </a>
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>
@@ -87,7 +89,15 @@ if (!isset($_SESSION['id'])) {
                                     <div class="panel-1">
                                         <h3 class="m-3"><i class="fa-solid fa-user-plus mr-2"></i>Online</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">There are currently <span>7</span> Users logged in!</p>
+                                        <p class="ml-3 mb-4">There are currently <span>
+                                                <?php $sql_currently_on = "SELECT * FROM accounts WHERE logged_in='1'";
+
+                                                $result_currently_on = $conn->query($sql_currently_on);
+
+                                                echo mysqli_num_rows($result_currently_on);
+
+                                                ?>
+                                            </span> Users logged in!</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +109,15 @@ if (!isset($_SESSION['id'])) {
                                     <div class="panel-2">
                                         <h3 class="m-3"><i class="fa-solid fa-user-minus mr-2"></i>Offline</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">Currently <span>7</span> Users are logged out!</p>
+                                        <p class="ml-3 mb-4">Currently <span>
+                                                <?php $sql_currently_on = "SELECT * FROM accounts WHERE logged_in='0'";
+
+                                                $result_currently_on = $conn->query($sql_currently_on);
+
+                                                echo mysqli_num_rows($result_currently_on);
+
+                                                ?>
+                                            </span> Users are logged out!</p>
                                     </div>
                                 </div>
                             </div>
@@ -130,114 +148,40 @@ if (!isset($_SESSION['id'])) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Peter Griffin</td>
-                                            <td>peter@griffin.com</td>
-                                            <td>Other</td>
-                                            <td class="text-color-danger">Admin</td>
-                                            <td>5748</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-danger p-3">No</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>457</td>
-                                            <td>Loise Griffin</td>
-                                            <td>loise@griffin.com</td>
-                                            <td>Female</td>
-                                            <td class="text-color-warning">Support</td>
-                                            <td>45</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-success p-3">Yes</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>432</td>
-                                            <td>Joe Swanson</td>
-                                            <td>joe@wheelchair.com</td>
-                                            <td>Male</td>
-                                            <td>Customer</td>
-                                            <td>753</td>
-                                            <td>Canada</td>
-                                            <td>02452</td>
-                                            <td>Torronto</td>
-                                            <td class="text-color-warning p-3">Suspended</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Peter Griffin</td>
-                                            <td>peter@griffin.com</td>
-                                            <td>Other</td>
-                                            <td class="text-color-danger">Admin</td>
-                                            <td>5748</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-danger p-3">No</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>457</td>
-                                            <td>Loise Griffin</td>
-                                            <td>loise@griffin.com</td>
-                                            <td>Female</td>
-                                            <td class="text-color-warning">Support</td>
-                                            <td>45</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-success p-3">Yes</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Peter Griffin</td>
-                                            <td>peter@griffin.com</td>
-                                            <td>Other</td>
-                                            <td class="text-color-danger">Admin</td>
-                                            <td>5748</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-warning p-3">Suspended</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Peter Griffin</td>
-                                            <td>peter@griffin.com</td>
-                                            <td>Other</td>
-                                            <td class="text-color-danger">Admin</td>
-                                            <td>5748</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-danger p-3">No</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Peter Griffin</td>
-                                            <td>peter@griffin.com</td>
-                                            <td>Other</td>
-                                            <td class="text-color-danger">Admin</td>
-                                            <td>5748</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-success p-3">Yes</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Peter Griffin</td>
-                                            <td>peter@griffin.com</td>
-                                            <td>Other</td>
-                                            <td class="text-color-danger">Admin</td>
-                                            <td>5748</td>
-                                            <td>USA</td>
-                                            <td>020555</td>
-                                            <td>Washington, DC</td>
-                                            <td class="text-color-warning p-3">Suspended</td>
-                                        </tr>
+                                        <?php
+
+                                        $sql = "SELECT * FROM accounts";
+                                        $results = $conn->query($sql);
+
+                                        if ($results->num_rows > 0) {
+                                            while ($row = $results->fetch_assoc()) {
+                                                echo "<tr class='border-bottom border-dark'>
+                                                <td>" . $row['id'] . "</td>
+                                                <td>" . $row['name'] . " " . $row['lastname'] . "</td>
+                                                <td>" . $row['email'] . "</td>
+                                                <td>" . $row['gender'] . "</td>";
+
+                                                if ($row['role'] == 0) {
+                                                    echo "<td class='text-color-danger p-3'>Admin</td>";
+                                                } elseif ($row['role'] == 1) {
+                                                    echo "<td class='text-color-warning p-3'>Support</td>";
+                                                } else {
+                                                    echo "<td class='p-3'>Customer</td>";
+                                                }
+
+                                                echo "<td>" . $row['orders'] . "</td>
+                                                <td>" . $row['country'] . "</td>
+                                                <td>" . $row['zip_code'] . "</td>
+                                                <td>" . $row['address'] . "</td>";
+
+                                                if ($row['logged_in'] == 1) {
+                                                    echo "<td class='text-color-success'>Yes</td></tr>";
+                                                } else {
+                                                    echo "<td class='text-color-danger'>No</td></tr>";
+                                                }
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

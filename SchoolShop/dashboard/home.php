@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id'])) {
     session_destroy();
     header("location: login.php");
 }
@@ -51,9 +51,9 @@ if(!isset($_SESSION['id'])) {
                     <i class="fa-solid fa-chart-simple"></i>
                     Sales
                 </a>
-                <a href="traffic.php" class="ml-4">
-                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                    Traffic
+                <a href="api.php" class="ml-4">
+                    <i class="fa-solid fa-code"></i>
+                    API
                 </a>
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>

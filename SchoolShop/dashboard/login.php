@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$conn = mysqli_connect('localhost', 'root', '', 'schoolshop') or die('Unable to connect to Database!');
+include '../connections/root_connection.php';
 
 
 ?>
@@ -58,7 +58,6 @@ $conn = mysqli_connect('localhost', 'root', '', 'schoolshop') or die('Unable to 
                     $sql = mysqli_query($conn, "SELECT * FROM accounts WHERE email = '$email'");
                     $row = mysqli_fetch_array($sql);
 
-
                     if (is_array($row)) {
 
                         if (password_verify($password, $row['password'])) {
@@ -69,8 +68,12 @@ $conn = mysqli_connect('localhost', 'root', '', 'schoolshop') or die('Unable to 
                             $_SESSION['email'] = $row['email'];
                             $_SESSION['role'] = $row['role'];
                             $_SESSION['gender'] = $row['gender'];
+
+                            $id_login = $row['id'];
+                            $sql_logged_in = mysqli_query($conn, "UPDATE accounts SET logged_in='1' WHERE id=$id_login");
+
                         } else {
-                            
+
                             //Wrong User, Password or no Account -> Error
                             echo "<p class='text-danger'>Wrong Username or Password!</p>";
                             session_destroy();
