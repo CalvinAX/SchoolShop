@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-print_r($_SESSION);
+
 /*session_destroy();
 $_SESSION = array();*/
 
@@ -25,6 +25,9 @@ $_SESSION = array();*/
 
     <!--Font Awesome -->
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
+
+    <!-- Ajax Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script type="text/javascript">
 
@@ -51,7 +54,7 @@ $_SESSION = array();*/
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="../home.php"><img src="logo3.png" id="logo"></a>
+            <a href="home.php"><img src="logo3.png" id="logo"></a>
         </div>
 
 
@@ -93,36 +96,133 @@ $_SESSION = array();*/
     </header>
 
     <main>
-        <?php
-        $con = mysqli_connect("", "root", "", "schoolshop");
+        <div class="main-content">
+            <div class="products">
+                <div id="products-inner" class="products-inner">
+                    <?php
+                    /*print_r($_SESSION);
+                    echo "<br>";*/
+
+                    
+                    if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
+
+                        $con = mysqli_connect("", "root", "", "schoolshop");
+                        $i = 0;
+
+                        foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
+
+                            $res = mysqli_query($con, "SELECT * FROM products");
+                            while ($dsatz = mysqli_fetch_array($res)) {
+
+                                if ($dsatz["prod_id"] == $prod_id) {
+
+                                    echo "<div class='product'>";
+
+                                    echo "<a class='prod-pic-anchor' href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
+                                    echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "'>";
+                                    echo "</a>";
+
+                                    echo "<div class='title_price'>";
+                                    echo "<div class='prod-title'>";
+                                    echo $dsatz["prod_name"];
+
+                                    echo "<form id='trash-can-". $dsatz["prod_id"] ."'>";
+                                    echo "<input type='hidden' name='remove' value='" . $dsatz["prod_id"] . "'>";
+                                    echo "<button class='button-trash-can'>";
+                                    echo "<i class='fa-regular fa-trash-can'></i>";
+                                    echo "</button>";
+                                    echo "</form>";
+
+                                    echo "</div>";
+
+                                    echo "<div class='prod-price'>";
+                           /*hier*/ echo "<div class='form-quantity'><form><input class='form-quantity-input' placeholder='5'></form></div>";
+                                    echo number_format($dsatz["prod_price"], 2, ",", ".") . " &euro;";
+                                    echo "</div>";
+                                    echo "</div>";
+
+                                    echo "</div>";
+
+                                    $i++;
+                                    if ($i < count($_SESSION["warenkorb"])){
+
+                                        echo "<hr class='horizontal-line-1'>";
+                                    }
+
+                                    
 
 
-        foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
+                                    /*JavaScript in PHP*/
 
-            $res = mysqli_query($con, "SELECT * FROM products");
-            while ($dsatz = mysqli_fetch_array($res)) {
+                                    echo "<script>";
+                                    echo "$('#trash-can-" . $dsatz["prod_id"] . "').submit(function (event) {";
+                                    echo "event.preventDefault();";
+                                    echo "$.ajax({";
+                                    echo "type: 'GET',";
+                                    echo "url: 'warenkorb_remove.php',";
+                                    echo "data: $(this).serialize(),";
+                                    echo "success: function (data) {";
+                                    echo "$('#products-inner').html(data);";
+                                    echo "}";
+                                    echo "});";
+                                    echo "});";
+                                    echo "</script>";
 
-                if ($dsatz["prod_id"] == $prod_id) {
-
-                    echo "<div class='slider content'>";
-                    echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "'>";
-                    echo "</div>";
-
-                    echo "<div class='title content'>";
-                    echo $dsatz["prod_name"];
-                    echo "</div>";
-
-                    echo "<div class='price content'>";
-                    echo $dsatz["prod_price"];
-                    echo "</div>";
-                    echo "<hr>";
-                }
-            }
-        }
-
-        ?>
-
+                                }
+                            }
+                        }
+                    } else {
+                        echo "<div class='empty-cart'>Your Cart is empty :(</div>";
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="total">
+                <div class="total-inner">
+                    <div class="original-price">
+                        <div>Original Price</div>
+                        <div>15 €</div>
+                    </div>
+                    <div class="discount">
+                        <div>Discount</div>
+                        <div>- 2 €</div>
+                    </div>
+                    <div class="total-price">
+                        <div>Total</div>
+                        <div class="total-price-price">13 €</div>
+                    </div>
+                    <button class="button-buy">
+                        <div class="button-text">BUY</div>
+                    </button>
+                    <hr class="horizontal-line-2">
+                    <a class="continue-shopping" href="home.php"><i class="fa-solid fa-backward"></i>Continue
+                        Shopping</a>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <!--
+    <script> /*remove Pordukt von Warenkorb (in PHP)*/
+
+        $('#trash-can').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: 'warenkorb_remove.php',
+                data: $(this).serialize(),
+                success: function (data) {
+                    $("#result").html(data);
+                }
+            });
+        });
+
+
+    </script>
+    -->
+
+
+
 
     <footer>
         Footer

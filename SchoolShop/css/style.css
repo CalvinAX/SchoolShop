@@ -28,6 +28,7 @@
 /*Body*/
 
 body {
+    background-image: linear-gradient(to bottom, #181a1e, #2b3a4c, #365f7f);/*linear-gradient(to bottom, #222428, #344355, #3d6585);  /*#398bb8, #12b4eb*/
     display: grid;
     /*grid-gap: 0.5em;*/
     grid-template-columns: auto;

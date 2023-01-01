@@ -1,30 +1,25 @@
 <?php
 session_start();
 
+/*
 if (isset($_GET["add"])) {
-    $add = $_GET["add"];
-
-    if (!isset($_SESSION["warenkorb"])) {
-
-        $_SESSION = array("warenkorb" => array($add => 0));
-    }
-
-    if (!isset($_SESSION["warenkorb"][$add])) {
-
-        $_SESSION["warenkorb"][$add] = 0;
-    }
-
-        $quantity = $_SESSION["warenkorb"][$add];
-        $quantity += 1;
-        $_SESSION["warenkorb"][$add] = $quantity;
+$add = $_GET["add"];
+if (!isset($_SESSION["warenkorb"])) {
+$_SESSION = array("warenkorb" => array($add => 0));
 }
-
-/*session_destroy();
-$_SESSION = array();*/
-
+if (!isset($_SESSION["warenkorb"][$add])) {
+$_SESSION["warenkorb"][$add] = 0;
+}
+$quantity = $_SESSION["warenkorb"][$add];
+$quantity += 1;
+$_SESSION["warenkorb"][$add] = $quantity;
+}
+session_destroy();
+$_SESSION = array();
 print_r($_SESSION);
-?>
+*/
 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +39,9 @@ print_r($_SESSION);
 
     <!--Font Awesome -->
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
+
+    <!-- Ajax Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script type="text/javascript">
 
@@ -85,6 +83,38 @@ print_r($_SESSION);
 
 
         <div id="header-right">
+            <a href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>
+                <div id="result">
+
+
+                <?php
+                    /*Gesamtmenge an Produkten im Warenkorb*/
+                    if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
+
+                        $gesamtmenge = 0;
+
+                        foreach ($_SESSION["warenkorb"] as $key => $value) {
+
+                            $products[] = $key;
+                            $menge[] = $value;
+                        }
+
+                        for ($i = 0; $i < count($products); $i++) {
+
+                            $gesamtmenge = $gesamtmenge + $menge[$i];
+                        }
+
+                        echo $gesamtmenge;
+                    }
+                    else {
+                        echo 0;
+                    }
+                    ?>
+
+
+                </div>
+            </a>
+
             <a href="#header-right" class="gear_enable"><i class="fa-regular fa-user"></i></a>
             <a href="#" class="gear_disable"><i class="fa-solid fa-user"></i></a>
             <a href="javascript:foggle('popover-small')" class="popover-small-toggle"><i
@@ -95,7 +125,7 @@ print_r($_SESSION);
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
                 <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
@@ -105,13 +135,14 @@ print_r($_SESSION);
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
             <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
 
     <main>
+        <div class="content">
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
         $res = mysqli_query($con, "SELECT * FROM products");
@@ -120,30 +151,133 @@ print_r($_SESSION);
 
                 $prod_id = $dsatz["prod_id"];
 
-                echo "<div class='slider content'>";
-                echo "<img class='prod-pic' src='../" . $dsatz["prod_picture"] . "'>";
-                echo "</div>";
+                echo "<div class='upper-content'>";
 
-                echo "<div class='title content'>";
+                echo "<img class='prod-pic' src='../" . $dsatz["prod_picture"] . "'>";
+
+                echo "<div class='upper-right-content'>";
+                echo "<div class='title'>";
                 echo $dsatz["prod_name"];
                 echo "</div>";
 
-                echo "<div class='description content'>";
+                echo "<div class='stock'>";
+                if ($dsatz["prod_stock"] > 0) {
+                    echo "<div class='in-stock'>In Stock</div>" . "<div class='quantity'>" . $dsatz["prod_stock"] . "</div>";
+                }
+                else{
+                    echo "<div class='in-stock in_stock_false'>Sold Out</div>";
+                }
+                echo "</div>";
+                echo "<div class='price-buy'>";
+                
+                echo "<div class='price'>";
+
+                echo "<div class='original-price'>";
+                echo "50 €";
+                echo "</div>";
+
+                echo "<div class='discount'>";
+                echo "-50%";
+                echo "</div>";
+
+                echo "<div class='prod-price'>";
+                echo number_format($dsatz["prod_price"], 2, ".", ",") . " &euro;";
+                echo "</div>";
+                echo "</div>";
+
+                echo "<div class='buy'>";
+                echo "<form id='shopping_cart' class='shopping_cart'>";
+                echo "<input type='hidden' name='add' value='" . $_GET["prod_id"] . "'>";
+                echo "<button class='shopping_cart-button'>";
+                echo "<i class='fa-solid fa-cart-shopping'></i>";
+                echo "</button>";
+                echo "</form>";
+
+                echo "<form id='button-buy' class='button-buy-form'>";
+                echo "<input type='hidden' name='add' value='" . $_GET["prod_id"] . "'>";
+                echo "<input type='hidden' name='buy' value='1'>";
+                echo "<button class='button-buy'>";
+                echo "<div class='button-text'>BUY</div>";
+                echo "</button>";
+                echo "</form'>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+
+                echo "</div>";
+
+                echo "<div class='middle-content'>";
+
+                echo "<div class='middle-content-left'>";
+
+                echo "<div class='heading'>";
+                echo "About the Product";
+                echo "</div>";
+
+                echo "<div class='description'>";
                 echo $dsatz["prod_description"];
                 echo "</div>";
 
-                echo "<div class='price content'>";
-                echo $dsatz["prod_price"];
                 echo "</div>";
 
-                echo "<div class='stock content'>";
-                echo $dsatz["prod_stock"];
+                echo "<div class='middle-content-right'>";
+                echo "bewertung und andere wichtige infos";
                 echo "</div>";
 
-                echo "<div class='category content'>";
+                echo "</div>";
+
+                echo "<div class='category'>";
+                echo "Categorys";
+                echo "<div class='category-item'>";
                 echo $dsatz["prod_category"];
                 echo "</div>";
+                echo "</div>";
+                
+                echo "<div class='media'>";
+                echo "<div class='heading'>Media</div>";
+                echo "<img class='slider' src='../" . $dsatz["prod_picture"] . "'>";
+                echo "</div>";
 
+                echo "<div class='detailed-description section'>";
+                echo "<div class='heading'>Description</div>";
+                echo "<div class='description'>";
+                echo $dsatz["prod_description"];
+                echo "</div>";
+                echo "</div>";
+
+                echo "<div class='rating section'>";
+                echo "<div class='heading'>Rating</div>";
+                echo "<div class='rating-box'>";
+                echo "10/10";
+                echo "</div>";
+                echo "</div>";
+
+
+                echo "<div class='reviews section'>";
+                echo "<div class='heading'>Recent Reviews</div>";
+                echo "<div class='reviews-box'>";
+
+                echo "<div class='reviews-box-items'>";
+                echo "<div class='customer'>";
+                echo "Peter";
+                echo "</div>";
+                echo "<div class='review'>";
+                echo "this product felt nice in my ass";
+                echo "</div>";
+                echo "</div>";
+
+                echo "<div class='reviews-box-items'>";
+                echo "<div class='customer'>";
+                echo "juicer";
+                echo "</div>";
+                echo "<div class='review'>";
+                echo "is the dick cream included?";
+                echo "</div>";
+                echo "</div>";
+
+                echo "</div>";
+                echo "</div>";
+                
                 /*echo "<form action='product.php?prod_id=" . $dsatz["prod_id"] . "' method='post'>";
                 <!--<a class="shopping_cart">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -153,43 +287,67 @@ print_r($_SESSION);
             }
 
         }
-
-
         ?>
 
-        <a class="shopping_cart" href="product.php?prod_id=<?php echo $prod_id; ?>&add=<?php echo $prod_id; ?>">
-            <i class="fa-solid fa-cart-shopping"></i>
-        </a>
+        <div>
+            <p>Warenkorb-Menge des Produkts:
+                <?php
+                /* Menge eines einzelnen Produktes im Warenkorb */
 
-        </form>
-        <a class="">
+                /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden*/
+                if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
+                $products = array();
 
 
-            <!--
-        <div class="slider content">
-            slider
+                foreach ($_SESSION["warenkorb"] as $key => $value) {
+
+                    $products[] = $key;
+                }
+
+                for ($i = 0; $i < count($products); $i++) {
+
+                    if ($products[$i] == $_GET["prod_id"]) {
+
+                        echo $_SESSION["warenkorb"][$_GET["prod_id"]];
+                    }
+                }
+            }
+                ?>
+            </p>
         </div>
 
-        <div class="title content">
-            title
+        <script>
+
+            $('#shopping_cart').submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: 'warenkorb_add.php',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $("#result").html(data);
+                    }
+                });
+
+            });
+
+
+            $('#button-buy').submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: 'warenkorb_add.php',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $("#result").html(data);
+                    }
+                });
+
+            });
+        </script>
+
         </div>
 
-        <div class="description content">
-            description
-        </div>
-
-        <div class="price content">
-            price
-        </div>
-
-        <div class="stock content">
-            stock
-        </div>
-
-        <div class="category content">
-            category
-        </div>
-    -->
     </main>
 
     <footer>

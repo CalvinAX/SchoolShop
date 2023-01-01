@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -100,6 +105,37 @@
 
 
         <div id="header-right">
+            <a href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>
+                <div id="result">
+
+
+                    <?php
+                    /*Gesamtmenge an Produkten im Warenkorb*/
+                    if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
+
+                        $gesamtmenge = 0;
+
+                        foreach ($_SESSION["warenkorb"] as $key => $value) {
+
+                            $products[] = $key;
+                            $menge[] = $value;
+                        }
+
+                        for ($i = 0; $i < count($products); $i++) {
+
+                            $gesamtmenge = $gesamtmenge + $menge[$i];
+                        }
+
+                        echo $gesamtmenge;
+                    }
+                    else {
+                        echo 0;
+                    }
+                    ?>
+
+
+                </div>
+            </a>
             <a href="#header-right" class="gear_enable"><i class="fa-regular fa-user"></i></a>
             <a href="#" class="gear_disable"><i class="fa-solid fa-user"></i></a>
             <a href="javascript:foggle('popover-small')" class="popover-small-toggle"><i
@@ -110,7 +146,7 @@
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
                 <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
@@ -120,7 +156,7 @@
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
             <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
@@ -175,7 +211,7 @@
                 }
 
                 echo "</div>";
-                echo "<div class='price'>" . number_format($dsatz["prod_price"], 2, ",", ".") . " €</div>";
+                echo "<div class='price'>" . number_format($dsatz["prod_price"], 2, ".", ",") . " &euro;</div>";
                 echo "</div>";
                 echo "</div>";
                 echo "</article>";
