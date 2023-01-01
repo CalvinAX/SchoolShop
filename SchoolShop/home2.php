@@ -14,7 +14,6 @@ session_start();
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
 
-
     <!-- Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +108,7 @@ session_start();
                 <div id="result">
 
 
-                    <?php
+                <?php
                     /*Gesamtmenge an Produkten im Warenkorb*/
                     if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
 
@@ -190,7 +189,7 @@ session_start();
         $res = mysqli_query($con, "SELECT * FROM products");
         while ($dsatz = mysqli_fetch_array($res)) {
 
-            if ($dsatz["prod_id"] <= 12) {
+            if ($dsatz["prod_id"] > 12 && $dsatz["prod_id"] <= 24) {
                 echo "<div class='article2'>";
                 echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
@@ -245,9 +244,9 @@ session_start();
         -->
     </main>
     <div class="pagination">
-        <a href="" class="pagination-start"><i class="fa-solid fa-angles-left"></i></a>
-        <div class="pagination-number"><i class="fa-solid fa-i"></i></div>
-        <a href="home2.php"><i class="fa-solid fa-angles-right"></i></a>
+        <a href="home.php"><i class="fa-solid fa-angles-left"></i></a>
+        <div class="pagination-number"><i class="fa-solid fa-i"></i><i class="fa-solid fa-i"></i></div>
+        <a href="home3.php"><i class="fa-solid fa-angles-right"></i></a>
     </div>
 
 
@@ -267,9 +266,3 @@ session_start();
 </body>
 
 </html>
-
-
-
-
-
-<!-- <i class="fa-solid fa-backward"></i> -->
