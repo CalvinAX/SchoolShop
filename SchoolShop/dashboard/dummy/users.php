@@ -81,9 +81,7 @@
                                     <div class="panel-1">
                                         <h3 class="m-3"><i class="fa-solid fa-user-plus mr-2"></i>Online</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">There are currently <span>7</span> Users logged in!
-                                        </p>
-                                        <p class="ml-3"><a href="#">Click here</a> to see all</p>
+                                        <p class="ml-3 mb-4">There are currently <span>7</span> Users logged in!</p>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +93,7 @@
                                     <div class="panel-2">
                                         <h3 class="m-3"><i class="fa-solid fa-user-minus mr-2"></i>Offline</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">Currently <span>7</span> Users are logged out!
-                                        </p>
-                                        <p class="ml-3"><a href="#">Click here</a> to see all</p>
+                                        <p class="ml-3 mb-4">Currently <span>7</span> Users are logged out!</p>
                                     </div>
                                 </div>
                             </div>
