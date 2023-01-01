@@ -119,7 +119,7 @@ if (!isset($_SESSION['id'])) {
                                         <hr />
                                         <p class="ml-3 mb-4">There is a total of <span>13</span> tickets open!
                                         </p>
-                                        <p class="ml-3"><a href="#">Click here</a> to see all</p>
+                                        <p class="ml-3"><a href="tickets.php">Click here</a> to see all</p>
                                     </div>
                                 </div>
                             </div>

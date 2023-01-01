@@ -124,9 +124,9 @@ include '../connections/root_connection.php';
                                             <select class="form-select" name="filter_created_by">
                                                 <option selected>Anyone</option>
                                                 <option disabled>----------------</option>
-                                                <option value="petergrigga">Peter Grigga</option>
-                                                <option value="loisgrigga">Lois Grigga</option>
-                                                <option value="joewheelchair">Joe Wheelchair</option>
+                                                <option value="peter">Peter</option>
+                                                <option value="lois">Lois</option>
+                                                <option value="joe">Joe</option>
                                             </select>
                                         </div>
                                     </div>
