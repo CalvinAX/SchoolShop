@@ -262,7 +262,7 @@ print_r($_SESSION);
                 echo "Peter";
                 echo "</div>";
                 echo "<div class='review'>";
-                echo "this product felt nice in my ass";
+                echo "Lorem ipsum dolor sit amet";
                 echo "</div>";
                 echo "</div>";
 
@@ -271,7 +271,7 @@ print_r($_SESSION);
                 echo "juicer";
                 echo "</div>";
                 echo "<div class='review'>";
-                echo "is the dick cream included?";
+                echo "Lorem ipsum dolor sit amet";
                 echo "</div>";
                 echo "</div>";
 
