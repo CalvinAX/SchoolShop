@@ -83,7 +83,7 @@ print_r($_SESSION);
 
 
         <div id="header-right">
-            <a href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>
+            <a class="warenkorb-icon" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>
                 <div id="result">
 
 

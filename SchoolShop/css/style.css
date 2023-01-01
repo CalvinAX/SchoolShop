@@ -169,6 +169,11 @@ article {
     gap: 2px;
 }
 
+.warenkorb-icon{
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
 
 @media (min-width: 375px) {
 
