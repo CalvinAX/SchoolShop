@@ -15,7 +15,7 @@ include '../connections/root_connection.php';
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Tickets - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -98,15 +98,11 @@ include '../connections/root_connection.php';
                                 <form class="form" method="get">
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label for="filter_date" class="text-white ml-3">Sort:</label>
-                                            <select class="form-select" name="filter_date">
-                                                <option selected disabled>Sort tickets by:</option>
-                                                <option value="duedate">Due Date</option>
-                                                <option value="id">ID</option>
-                                                <option value="lastupdate">Last Update</option>
-                                                <option value="assignedtoself">Assigned to me</option>
-                                                <option disabled>----------------</option>
-                                                <option value="3">Show all tickets</option>
+                                            <label for="filter_show" class="text-white ml-3">Show:</label>
+                                            <select class="form-select" name="filter_show">
+                                                <option selected disabled>----</option>
+                                                <option value="all">All tickets</option>
+                                                <option value="assigned_me">Assigned to me</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -123,10 +119,7 @@ include '../connections/root_connection.php';
                                             <label for="filter_created_by" class="text-white ml-3">Created By:</label>
                                             <select class="form-select" name="filter_created_by">
                                                 <option selected>Anyone</option>
-                                                <option disabled>----------------</option>
-                                                <option value="petergrigga">Peter Grigga</option>
-                                                <option value="loisgrigga">Lois Grigga</option>
-                                                <option value="joewheelchair">Joe Wheelchair</option>
+                                                <option>1</option>
                                             </select>
                                         </div>
                                     </div>
@@ -156,6 +149,7 @@ include '../connections/root_connection.php';
                                             <th>Assigned To</th>
                                             <th>Due Date</th>
                                             <th>Last Updated</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,40 +158,85 @@ include '../connections/root_connection.php';
 
                                         $ses_fullname = $_SESSION['name'] . " " . $_SESSION['lastname'];
 
-                                        $sql = "SELECT * FROM tickets WHERE assigned_to='$ses_fullname'";
+                                        //FILTERS
+                                        
+                                        $filterShow = $_GET['filter_show'];
+
+                                        $show_query = "";
+
+                                        if($filterShow == "all") {
+                                            $show_query = ""; 
+                                        } elseif ($filterShow == "assigned_me") {
+                                            $show_query = "WHERE assigned_to='$ses_fullname'";
+                                        } else {
+                                            $show_query = "WHERE assigned_to='$ses_fullname'";
+                                        }
+
+                                        $sql = "SELECT * FROM tickets $show_query";
                                         $results = $conn->query($sql);
 
                                         if ($results->num_rows > 0) {
                                             while ($row = $results->fetch_assoc()) {
 
 
+                                                if ($row['creator'] == $ses_fullname) {
 
-
-                                                echo "<tr class='border-bottom border-dark'>
+                                                    echo "<tr class='border-bottom border-dark'>
                                                         <td>" . $row['id'] . "</td>
                                                         <td>" . $row['type'] . "</td>
                                                         <td>" . $row['title'] . "</td>";
 
-                                                if ($row['priority'] == 'HIGH') {
-                                                    echo "<td class='text-color-warning p-2'>" . $row['priority'] . "</td>";
-                                                } elseif ($row['priority'] == 'IMMEDIATE') {
-                                                    echo "<td class='text-color-danger p-2'>" . $row['priority'] . "</td>";
-                                                } else {
-                                                    echo "<td class='text-color-success p-2'>" . $row['priority'] . "</td>";
-                                                }
+                                                    if ($row['priority'] == 'HIGH') {
+                                                        echo "<td class='text-color-warning p-2'>" . $row['priority'] . "</td>";
+                                                    } elseif ($row['priority'] == 'IMMEDIATE') {
+                                                        echo "<td class='text-color-danger p-2'>" . $row['priority'] . "</td>";
+                                                    } else {
+                                                        echo "<td class='text-color-success p-2'>" . $row['priority'] . "</td>";
+                                                    }
 
-                                                if (strlen($row['description']) > 50) {
-                                                    echo "<td>" . substr($row['description'], 0, 50) . "...</td>";
-                                                } else {
-                                                    echo "<td>" . $row['description'] . "</td>";
-                                                }
+                                                    if (strlen($row['description']) > 50) {
+                                                        echo "<td>" . substr($row['description'], 0, 50) . "...</td>";
+                                                    } else {
+                                                        echo "<td>" . $row['description'] . "</td>";
+                                                    }
 
 
 
-                                                echo "<td>" . $row['assigned_to'] . "</td>
+                                                    echo "<td>" . $row['assigned_to'] . "</td>
                                                         <td><strong>" . $row['due_date'] . "</strong></td>
                                                         <td>" . $row['last_edited'] . "</td>
+                                                        <td><a href='view-ticket.php?id=". $row['id'] ."'>Edit Ticket</a></td>
                                                     </tr>";
+
+                                                } else {
+
+                                                    echo "<tr class='border-bottom border-dark'>
+                                                        <td>" . $row['id'] . "</td>
+                                                        <td>" . $row['type'] . "</td>
+                                                        <td>" . $row['title'] . "</td>";
+
+                                                    if ($row['priority'] == 'HIGH') {
+                                                        echo "<td class='text-color-warning p-2'>" . $row['priority'] . "</td>";
+                                                    } elseif ($row['priority'] == 'IMMEDIATE') {
+                                                        echo "<td class='text-color-danger p-2'>" . $row['priority'] . "</td>";
+                                                    } else {
+                                                        echo "<td class='text-color-success p-2'>" . $row['priority'] . "</td>";
+                                                    }
+
+                                                    if (strlen($row['description']) > 50) {
+                                                        echo "<td>" . substr($row['description'], 0, 50) . "...</td>";
+                                                    } else {
+                                                        echo "<td>" . $row['description'] . "</td>";
+                                                    }
+
+
+
+                                                    echo "<td>" . $row['assigned_to'] . "</td>
+                                                        <td><strong>" . $row['due_date'] . "</strong></td>
+                                                        <td>" . $row['last_edited'] . "</td>
+                                                        <td></td>
+                                                    </tr>";
+                                                }
                                             }
                                         }
 

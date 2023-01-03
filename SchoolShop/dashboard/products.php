@@ -14,7 +14,7 @@ if (!isset($_SESSION['id'])) {
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Products - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

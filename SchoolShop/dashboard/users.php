@@ -15,7 +15,7 @@ include '../connections/root_connection.php';
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Users - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

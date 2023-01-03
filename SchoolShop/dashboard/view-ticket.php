@@ -43,7 +43,7 @@ if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_
 
 <head>
 
-    <title>Create Ticket - Dashboard</title>
+    <title>Ticket View - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
