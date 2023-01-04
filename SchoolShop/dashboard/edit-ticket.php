@@ -9,32 +9,21 @@ if (!isset($_SESSION['id'])) {
 
 include '../connections/root_connection.php';
 
-if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_REQUEST['inputTicketTitle']) && !empty($_REQUEST['inputTicketDescription']) && isset($_REQUEST['inputTicketPriority']) && isset($_REQUEST['inputTicketAssigned'])) {
+$ticket_id = $_GET['id'];
 
-    $ticketType = $_REQUEST['inputTicketType'];
-    $ticketTitle = $_REQUEST['inputTicketTitle'];
-    $ticketPriority = $_REQUEST['inputTicketPriority'];
-    $ticketAssignedTo = $_REQUEST['inputTicketAssigned'];
-    $ticketDescription = $_REQUEST['inputTicketDescription'];
-    $ticketDueDate = $_REQUEST['inputTicketDue'];
-    $ticketCreator = $_SESSION['name'] . ' ' . $_SESSION['lastname'];
-    $ticketCreatedOn = date('Y-m-d');
+$sql = "SELECT * FROM tickets WHERE id='$ticket_id'";
 
-    $sql = "INSERT INTO tickets (type, title, priority, assigned_to, description, due_date, creator, created_on, done) VALUE ('$ticketType', '$ticketTitle', '$ticketPriority', '$ticketAssignedTo', '$ticketDescription', '$ticketDueDate', '$ticketCreator', '$ticketCreatedOn', '0')";
+$results = $conn->query($sql);
 
-    if ($conn->query($sql) === TRUE) {
-
-        header("location: tickets.php");
-
-    } else {
-
-        echo "<script>console.log(" . $conn->error . ")</script>";
-
+if ($results->num_rows > 0) {
+    while ($row = $results->fetch_assoc()) {
+        $title = $row['title'];
+        $type = $row['type'];
+        $priority = $row['priority'];
+        $assigned = $row['assigned_to'];
+        $due = $row['due_date'];
+        $description = $row['description'];
     }
-
-} else {
-
-
 }
 
 ?>
@@ -122,41 +111,45 @@ if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
                             <div class="panel-card p-4 mb-2">
+                                <h3 class="text-white">Placeholder</h3>
+                                <hr class="bg-secondary" />
 
-                                <!-- Tickets: Type, Title, Priority, Description, Assigned to, Due Date, Last Updated, Created By-->
-                                <form method="post" action="create-ticket.php">
+                                <form method="post" action="validate-edit-ticket.php">
                                     <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="inputTicketType" class="text-white">Ticket Type</label>
-                                            <input type="text" class="form-control" id="inputTicketType"
-                                                name="inputTicketType" placeholder="e.g. Bugfix, Addon...">
-                                        </div>
-                                        <div class="form-group col-md-9">
-                                            <label for="inputTicketTitle" class="text-white">Ticket Title</label>
+                                        <div class="form-group col-md">
+                                            <label for="inputTicketTitle" class="text-white">Title</label>
                                             <input type="text" class="form-control" id="inputTicketTitle"
-                                                name="inputTicketTitle" placeholder="e.g. Storefront not working...">
+                                                name="inputTicketTitle" value="<?php echo $title; ?>">
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md">
+                                            <label for="inputTicketType" class="text-white">Type</label>
+                                            <input type="text" class="form-control" id="inputTicketType"
+                                                name="inputTicketType" value="<?php echo $type; ?>">
+                                        </div>
+                                        <div class="form-group col-md">
                                             <label for="inputTicketPriority" class="text-white">Priority</label>
                                             <select id="inputTicketPriority" class="form-control"
                                                 name="inputTicketPriority">
-                                                <option selected disabled>Choose...</option>
+                                                <option selected><?php echo $priority; ?></option>
+                                                <option disabled>------------</option>
                                                 <option>LOW</option>
                                                 <option>HIGH</option>
                                                 <option>IMMEDIATE</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md">
                                             <label for="inputTicketAssigned" class="text-white">Assigned to</label>
                                             <select id="inputTicketAssigned" class="form-control"
                                                 name="inputTicketAssigned">
-                                                <option selected disabled>Choose...</option>
                                                 <?php
+                                                echo "<option selected>". $assigned ."</option>
+                                                        <option disabled>------------</option>";
 
-                                                $sql_assigned = "SELECT name, lastname FROM accounts";
-
+                                                $sql_assigned = "SELECT name, lastname FROM accounts WHERE role='0' OR role='1'";
                                                 $results_assigned = $conn->query($sql_assigned);
 
                                                 if ($results_assigned->num_rows > 0) {
@@ -164,42 +157,28 @@ if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_
                                                         echo "<option>" . $row_assigned['name'] . " " . $row_assigned['lastname'] . "</option>";
                                                     }
                                                 }
-
                                                 ?>
                                             </select>
                                         </div>
+                                        <div class="form-group col-md">
+                                            <label for="inputTicketDueDate" class="text-white">Due Date</label>
+                                            <input type="date" class="form-control" id="inputTicketDueDate"
+                                                name="inputTicketDueDate" value="<?php echo $due; ?>">
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputTicketDescription" class="text-white">Ticket
-                                            Description</label>
+                                        <label for="inputTicketDescription" class="text-white">Description <small>max.
+                                                length: 4800</small></label>
                                         <textarea class="form-control" id="inputTicketDescription"
                                             name="inputTicketDescription" style="white-space: pre-wrap;" rows="5"
-                                            maxlength="4800"></textarea>
+                                            maxlength="4800"><?php echo $description; ?></textarea>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputTicketDue" class="text-white">Due Date</label>
-                                            <input type="date" class="form-control" id="inputTicketDue"
-                                                name="inputTicketDue" value="<?php echo date('Y-m-d'); ?>"
-                                                min="<?php echo date('Y-m-d'); ?>">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="inputTicketCreatedBy" class="text-white">Created by</label>
-                                            <input type="text" class="form-control" id="inputTicketCreatedBy"
-                                                name="inputTicketCreatedBy"
-                                                value="<?php echo $_SESSION['name'] . " " . $_SESSION['lastname']; ?>"
-                                                disabled>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="inputTicketCreatedOn" class="text-white">Created on</label>
-                                            <input type="text" class="form-control" id="inputTicketCreatedOn"
-                                                name="inputTicketCreatedOn" value="<?php echo date('d-m-Y'); ?>"
-                                                disabled>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn button-submit" name="submit"><i
-                                            class="fa-solid fa-plus mr-1"></i>Create</button>
+                                    <input type="hidden" name="id" id="id" value="<?php echo $ticket_id; ?>">
+                                    <button type="submit" class="btn button-submit" name="submit">Edit</button>
+                                    <button onclick="location.href='tickets.php'" type="button"
+                                        class="btn btn-danger">Cancel</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>

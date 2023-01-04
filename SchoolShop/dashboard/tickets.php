@@ -165,11 +165,11 @@ include '../connections/root_connection.php';
                                         $show_query = "";
 
                                         if($filterShow == "all") {
-                                            $show_query = ""; 
+                                            $show_query = "WHERE done='0'"; 
                                         } elseif ($filterShow == "assigned_me") {
-                                            $show_query = "WHERE assigned_to='$ses_fullname'";
+                                            $show_query = "WHERE assigned_to='$ses_fullname' AND done='0'";
                                         } else {
-                                            $show_query = "WHERE assigned_to='$ses_fullname'";
+                                            $show_query = "WHERE assigned_to='$ses_fullname' AND done='0'";
                                         }
 
                                         $sql = "SELECT * FROM tickets $show_query";
@@ -205,7 +205,7 @@ include '../connections/root_connection.php';
                                                     echo "<td>" . $row['assigned_to'] . "</td>
                                                         <td><strong>" . $row['due_date'] . "</strong></td>
                                                         <td>" . $row['last_edited'] . "</td>
-                                                        <td><a href='view-ticket.php?id=". $row['id'] ."'>Edit Ticket</a></td>
+                                                        <td><a href='edit-ticket.php?id=". $row['id'] ."'>Edit Ticket</a></td>
                                                     </tr>";
 
                                                 } else {

@@ -155,7 +155,7 @@ if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_
                                                 <option selected disabled>Choose...</option>
                                                 <?php
 
-                                                $sql_assigned = "SELECT name, lastname FROM accounts";
+                                                $sql_assigned = "SELECT name, lastname FROM accounts WHERE role='0' OR role='1'";
 
                                                 $results_assigned = $conn->query($sql_assigned);
 
