@@ -126,7 +126,7 @@ print_r($_SESSION);
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
                 <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
                 <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+                <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
@@ -136,7 +136,7 @@ print_r($_SESSION);
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
             <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
             <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+            <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
@@ -145,11 +145,14 @@ print_r($_SESSION);
         <div class="content">
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $res = mysqli_query($con, "SELECT * FROM products");
+        $sql = "SELECT products.*, discount.value 
+                    FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
+        $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
             if ($dsatz["prod_id"] == $_GET["prod_id"]) {
 
                 $prod_id = $dsatz["prod_id"];
+                $prod_stock = $dsatz["prod_stock"];
 
                 echo "<div class='upper-content'>";
 
@@ -167,116 +170,169 @@ print_r($_SESSION);
                 else{
                     echo "<div class='in-stock in_stock_false'>Sold Out</div>";
                 }
-                echo "</div>";
-                echo "<div class='price-buy'>";
+
+                $total = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100);
+
+                echo 
+                "</div>
+                <div class='price-buy'>
                 
-                echo "<div class='price'>";
+                <div class='price'>";
+                if ($dsatz["prod_stock"] > 0) {
 
-                echo "<div class='original-price'>";
-                echo "50 €";
-                echo "</div>";
+                    if ($dsatz["value"] > 0) {
 
-                echo "<div class='discount'>";
-                echo "-50%";
-                echo "</div>";
+                    echo "<div class='original-price'>"
+                    . number_format($dsatz["prod_price"], 2, ".", ",") . " &#36;
+                    </div>
 
-                echo "<div class='prod-price'>";
-                echo number_format($dsatz["prod_price"], 2, ".", ",") . " &euro;";
-                echo "</div>";
-                echo "</div>";
+                    <div class='discount'>
+                    -" . $dsatz["value"] . "%
+                    </div>";
+                    }
 
-                echo "<div class='buy'>";
-                echo "<form id='shopping_cart' class='shopping_cart'>";
-                echo "<input type='hidden' name='add' value='" . $_GET["prod_id"] . "'>";
-                echo "<button class='shopping_cart-button'>";
-                echo "<i class='fa-solid fa-cart-shopping'></i>";
-                echo "</button>";
-                echo "</form>";
+                    echo
+                    "<div class='prod-price'>"
+                    . number_format($total, 2, ".", ",") . " &#36;
+                </div>";
+                }
 
-                echo "<form id='button-buy' class='button-buy-form'>";
-                echo "<input type='hidden' name='add' value='" . $_GET["prod_id"] . "'>";
-                echo "<input type='hidden' name='buy' value='1'>";
-                echo "<button class='button-buy'>";
-                echo "<div class='button-text'>BUY</div>";
-                echo "</button>";
-                echo "</form'>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
+                echo
+                "</div>
+                <div class='buy'>
+                <div class='shopping_cart'>
+                <form id='shopping_cart'>
+                <input type='hidden' name='add' value='" . $_GET["prod_id"] . "'>
+                <input type='hidden' name='stock' value='" . $dsatz["prod_stock"] . "'>
+                <button class='shopping_cart-button'>
+                <i class='fa-solid fa-cart-shopping'></i>
+                </button>
+                </form>
+
+                <div id='prod_quantity-outer'>";
+
+                if (isset($_SESSION["warenkorb"][$dsatz["prod_id"]])){
+
+                echo "<div class='prod_quantity'>";
+
+                 /* Menge eines einzelnen Produktes im Warenkorb */
+                /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden*/
+                if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
+                    $products = array();
+
+
+                    foreach ($_SESSION["warenkorb"] as $key => $value) {
+
+                        $products[] = $key;
+                    }
+
+                    for ($i = 0; $i < count($products); $i++) {
+
+                        if ($products[$i] == $_GET["prod_id"]) {
+
+                            echo $_SESSION["warenkorb"][$_GET["prod_id"]];
+                        }
+                    }
+                }
 
                 echo "</div>";
+            }
 
-                echo "<div class='middle-content'>";
+                echo 
+                "</div>
+                </div>
+                <form id='button-buy' class='button-buy-form'>
+                <input type='hidden' name='add' value='" . $_GET["prod_id"] . "'>
+                <input type='hidden' name='stock' value='" . $dsatz["prod_stock"] . "'>
+                <input type='hidden' name='buy' value='1'>
+                <button class='";
 
-                echo "<div class='middle-content-left'>";
-
-                echo "<div class='heading'>";
-                echo "About the Product";
-                echo "</div>";
-
-                echo "<div class='description'>";
-                echo $dsatz["prod_description"];
-                echo "</div>";
-
-                echo "</div>";
-
-                echo "<div class='middle-content-right'>";
-                echo "bewertung und andere wichtige infos";
-                echo "</div>";
-
-                echo "</div>";
-
-                echo "<div class='category'>";
-                echo "Categorys";
-                echo "<div class='category-item'>";
-                echo $dsatz["prod_category"];
-                echo "</div>";
-                echo "</div>";
+                if ($dsatz["prod_stock"] > 0)
+                    echo "button-buy";
+                else
+                    echo "button-buy-soldout";
                 
-                echo "<div class='media'>";
-                echo "<div class='heading'>Media</div>";
-                echo "<img class='slider' src='../" . $dsatz["prod_picture"] . "'>";
-                echo "</div>";
+                echo "'>
+                <div class='button-text'>BUY</div>
+                </button>
+                </form'>
+                </div>
+                </div>
+                </div>
 
-                echo "<div class='detailed-description section'>";
-                echo "<div class='heading'>Description</div>";
-                echo "<div class='description'>";
-                echo $dsatz["prod_description"];
-                echo "</div>";
-                echo "</div>";
+                </div>
 
-                echo "<div class='rating section'>";
-                echo "<div class='heading'>Rating</div>";
-                echo "<div class='rating-box'>";
-                echo "10/10";
-                echo "</div>";
-                echo "</div>";
+                <div class='middle-content'>
+
+                <div class='middle-content-left'>
+
+                <div class='heading'>
+                About the Product
+                </div>
+
+                <div class='description'>"
+                . $dsatz["prod_description"] .
+                "</div>
+
+                </div>
+
+                <div class='middle-content-right'>
+                bewertung und andere wichtige infos
+                </div>
+
+                </div>
+
+                <div class='category'>
+                Categorys
+                <div class='category-item'>"
+                . $dsatz["prod_category"]
+                . "</div>
+                </div>
+                
+                <div class='media'>
+                <div class='heading'>Media</div>
+                <img class='slider' src='../" . $dsatz["prod_picture"] . "'>
+                </div>
+
+                <div class='detailed-description section'>
+                <div class='heading'>Description</div>
+                <div class='description'>"
+                . $dsatz["prod_description"]
+                . "</div>
+                </div>
+
+                <div class='rating section'>
+                <div class='heading'>Rating</div>
+                <div class='rating-box'>
+                10/10
+                </div>
+                </div>
 
 
-                echo "<div class='reviews section'>";
-                echo "<div class='heading'>Recent Reviews</div>";
-                echo "<div class='reviews-box'>";
+                <div class='reviews section'>
+                <div class='heading'>Recent Reviews</div>
+                <div class='reviews-box'>
 
-                echo "<div class='reviews-box-items'>";
-                echo "<div class='customer'>";
-                echo "Peter";
-                echo "</div>";
-                echo "<div class='review'>";
-                echo "Lorem ipsum dolor sit amet";
-                echo "</div>";
-                echo "</div>";
+                <div class='reviews-box-items'>
+                <div class='customer'>
+                Peter
+                </div>
+                <div class='review'>
+                Lorem ipsum dolor sit amet
+                </div>
+                </div>
 
-                echo "<div class='reviews-box-items'>";
-                echo "<div class='customer'>";
-                echo "juicer";
-                echo "</div>";
-                echo "<div class='review'>";
-                echo "Lorem ipsum dolor sit amet";
-                echo "</div>";
-                echo "</div>";
+                <div class='reviews-box-items'>
+                <div class='customer'>
+                Anton
+                </div>
+                <div class='review'>
+                Lorem ipsum dolor sit amet
+                </div>
+                </div>
 
-                echo "</div>";
-                echo "</div>";
+                </div>
+                </div>";
                 
                 /*echo "<form action='product.php?prod_id=" . $dsatz["prod_id"] . "' method='post'>";
                 <!--<a class="shopping_cart">
@@ -289,37 +345,38 @@ print_r($_SESSION);
         }
         ?>
 
-        <div>
-            <p>Warenkorb-Menge des Produkts:
-                <?php
+
+        <div id="prod_quantity">
+        Warenkorb-Menge des Produkts:
+            <?php
                 /* Menge eines einzelnen Produktes im Warenkorb */
-
-                /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden*/
+                /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden
                 if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
-                $products = array();
+                    $products = array();
 
 
-                foreach ($_SESSION["warenkorb"] as $key => $value) {
+                    foreach ($_SESSION["warenkorb"] as $key => $value) {
 
-                    $products[] = $key;
-                }
-
-                for ($i = 0; $i < count($products); $i++) {
-
-                    if ($products[$i] == $_GET["prod_id"]) {
-
-                        echo $_SESSION["warenkorb"][$_GET["prod_id"]];
+                        $products[] = $key;
                     }
-                }
-            }
-                ?>
-            </p>
-        </div>
+
+                    for ($i = 0; $i < count($products); $i++) {
+
+                        if ($products[$i] == $_GET["prod_id"]) {
+
+                            echo $_SESSION["warenkorb"][$_GET["prod_id"]];
+                        }
+                    }
+                }*/
+            ?>
+
+            </div>
+        
 
         <script>
 
-            $('#shopping_cart').submit(function (event) {
-                event.preventDefault();
+            $('#shopping_cart').submit(function (add) {
+                add.preventDefault();
                 $.ajax({
                     type: 'GET',
                     url: 'warenkorb_add.php',
@@ -332,14 +389,28 @@ print_r($_SESSION);
             });
 
 
-            $('#button-buy').submit(function (event) {
-                event.preventDefault();
+            $('#button-buy').submit(function (add) {
+                add.preventDefault();
                 $.ajax({
                     type: 'GET',
                     url: 'warenkorb_add.php',
                     data: $(this).serialize(),
                     success: function (data) {
                         $("#result").html(data);
+                    }
+                });
+
+            });
+
+
+            $('#shopping_cart').submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: '../prod_quantity.php',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $("#prod_quantity-outer").html(data);
                     }
                 });
 

@@ -217,6 +217,15 @@ footer {
         align-items: center;
     }
 
+    .warenkorb-icon{
+        background: #3d6e94;
+        padding: 0.3em 0.5em;
+        border-radius: 10px;
+        display: flex;
+        gap: 0.5em;
+        align-items: center;
+    }
+
     /* popover */
 
     /* toggle visibility*/
