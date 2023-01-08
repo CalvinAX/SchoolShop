@@ -93,49 +93,44 @@ include '../connections/root_connection.php';
                     <!--Filter-->
                     <div class="row ml-3">
                         <div class="col-md">
-                            <p class="text-white ml-3"><strong>Filter</strong></p>
-                            <div class="filters d-flex justify-content-start">
-                                <form class="form" method="get">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="filter_show" class="text-white ml-3">Show:</label>
-                                            <select class="form-select" name="filter_show">
-                                                <option selected disabled>----</option>
-                                                <option value="all">All tickets</option>
-                                                <option value="assigned_me">Assigned to me</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="filter_priority" class="text-white ml-3">Priority:</label>
-                                            <select class="form-select" name="filter_priority">
-                                                <option selected>Any Priority</option>
-                                                <option disabled>----------------</option>
-                                                <option value="low">Low</option>
-                                                <option value="high">High</option>
-                                                <option value="immediate">Immediate</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="filter_created_by" class="text-white ml-3">Created By:</label>
-                                            <select class="form-select" name="filter_created_by">
-                                                <option selected>Anyone</option>
-                                                <option>1</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Tickets-->
-                <div class="container-fluid">
-
-                    <div class="row ml-3 mr-3">
-                        <div class="col-md">
                             <div class="panel-card p-3 mb-2">
+                                <p class="text-white ml-3"><strong>Filter</strong></p>
+                                <div class="filters d-flex justify-content-start">
+                                    <form class="form" method="get">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="filter_show" class="text-white ml-3">Show:</label>
+                                                <select class="form-select" name="filter_show">
+                                                    <option selected disabled>----</option>
+                                                    <option value="all">All tickets</option>
+                                                    <option value="assigned_me">Assigned to me</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="filter_priority" class="text-white ml-3">Priority:</label>
+                                                <select class="form-select" name="filter_priority">
+                                                    <option selected>Any Priority</option>
+                                                    <option disabled>----------------</option>
+                                                    <option value="low">Low</option>
+                                                    <option value="high">High</option>
+                                                    <option value="immediate">Immediate</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="filter_created_by" class="text-white ml-3">Created
+                                                    By:</label>
+                                                <select class="form-select" name="filter_created_by">
+                                                    <option selected>Anyone</option>
+                                                    <option>1</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
+                                    </form>
+
+                                </div>
+                                <hr class="bg-secondary" />
+
                                 <a href="create-ticket.php"><button class="btn button-submit text-white"><i
                                             class="fa-solid fa-plus mr-1"></i>Create</button></a>
                                 <table>
@@ -160,12 +155,16 @@ include '../connections/root_connection.php';
 
                                         //FILTERS
                                         
-                                        $filterShow = $_GET['filter_show'];
+                                        if (empty($_GET['filter_show'])) {
+                                            $filterShow = "";
+                                        } else {
+                                            $filterShow = $_GET['filter_show'];
+                                        }
 
                                         $show_query = "";
 
-                                        if($filterShow == "all") {
-                                            $show_query = "WHERE done='0'"; 
+                                        if ($filterShow == "all") {
+                                            $show_query = "WHERE done='0'";
                                         } elseif ($filterShow == "assigned_me") {
                                             $show_query = "WHERE assigned_to='$ses_fullname' AND done='0'";
                                         } else {
@@ -205,7 +204,7 @@ include '../connections/root_connection.php';
                                                     echo "<td>" . $row['assigned_to'] . "</td>
                                                         <td><strong>" . $row['due_date'] . "</strong></td>
                                                         <td>" . $row['last_edited'] . "</td>
-                                                        <td><a href='edit-ticket.php?id=". $row['id'] ."'>Edit Ticket</a></td>
+                                                        <td><a href='edit-ticket.php?id=" . $row['id'] . "'>Edit Ticket</a></td>
                                                     </tr>";
 
                                                 } else {
@@ -255,6 +254,8 @@ include '../connections/root_connection.php';
 
                                 ?>
                             </div>
+                        </div>
+                    </div>
             </main>
         </div>
 

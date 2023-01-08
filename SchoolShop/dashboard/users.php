@@ -127,10 +127,16 @@ include '../connections/root_connection.php';
                     <!-- 1st Row Infos -->
 
                     <!-- 2nd Row Infos -->
-                    <h3 class="text-white ml-5 mt-3">Users</h3>
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
-                            <div class="panel-card p-3 mb-2">
+                            <div class="panel-card p-3 mb-2 mt-2">
+                                <h3 class="text-white">Users</h3>
+                                <form class="form-inline mt-3" action="users.php" method="get">
+                                    <input class="form-control" type="search" placeholder="Search" name="search"
+                                        id="search">
+                                    <button class="btn button-submit" type="submit">Search</button>
+                                </form>
+                                <hr class="bg-secondary" />
                                 <table>
                                     <thead>
                                         <tr>
@@ -142,6 +148,7 @@ include '../connections/root_connection.php';
                                             <th>Role</th>
                                             <th>Orders</th>
                                             <th>Country</th>
+                                            <th>City</th>
                                             <th>Zip Code</th>
                                             <th>Address</th>
                                             <th>Logged In</th>
@@ -151,7 +158,14 @@ include '../connections/root_connection.php';
                                     <tbody>
                                         <?php
 
-                                        $sql = "SELECT * FROM accounts";
+                                        $searchstring = $_GET['search'];
+
+                                        if (!empty($searchstring)) {
+                                            $sql = "SELECT * FROM accounts WHERE name LIKE '%$searchstring%' OR lastname LIKE '%$searchstring%' OR username LIKE '%$searchstring%'";
+                                        } else {
+                                            $sql = "SELECT * FROM accounts";
+                                        }
+
                                         $results = $conn->query($sql);
 
                                         if ($results->num_rows > 0) {
@@ -172,6 +186,7 @@ include '../connections/root_connection.php';
 
                                                 echo "<td>" . $row['orders'] . "</td>
                                                 <td>" . $row['country'] . "</td>
+                                                <td>" . $row['city'] . "</td>
                                                 <td>" . $row['zip_code'] . "</td>
                                                 <td>" . $row['address'] . "</td>";
 
