@@ -145,6 +145,7 @@ include '../connections/root_connection.php';
                                             <th>Zip Code</th>
                                             <th>Address</th>
                                             <th>Logged In</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -175,10 +176,12 @@ include '../connections/root_connection.php';
                                                 <td>" . $row['address'] . "</td>";
 
                                                 if ($row['logged_in'] == 1) {
-                                                    echo "<td class='text-color-success'>Yes</td></tr>";
+                                                    echo "<td class='text-color-success'>Yes</td>";
                                                 } else {
-                                                    echo "<td class='text-color-danger'>No</td></tr>";
+                                                    echo "<td class='text-color-danger'>No</td>";
                                                 }
+
+                                                echo "<td><a href='edit-user.php?id=" . $row['id'] . "'>Edit User</a></td></tr>";
                                             }
                                         }
                                         ?>

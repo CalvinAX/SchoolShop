@@ -111,9 +111,6 @@ if ($results->num_rows > 0) {
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
                             <div class="panel-card p-4 mb-2">
-                                <h3 class="text-white">Placeholder</h3>
-                                <hr class="bg-secondary" />
-
                                 <form method="post" action="validate-edit-ticket.php">
                                     <div class="form-row">
                                         <div class="form-group col-md">
