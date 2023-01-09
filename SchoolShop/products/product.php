@@ -298,7 +298,24 @@ print_r($_SESSION);
                 
                 <div class='media'>
                 <div class='heading'>Media</div>
-                <img class='slider' src='../" . $dsatz["prod_picture"] . "'>
+                <div class='slider-outer'>
+                        <div class='slider'>
+                            <input type='radio' name='slider' id='slide1' checked=''checked>
+                            <input type='radio' name='slider' id='slide2'>
+                            <input type='radio' name='slider' id='slide3'>
+                            <div class='slider_inner'>
+                                <img class='slider-content' src='../" . $dsatz["prod_picture"] . "'>
+                                <!--<img class='slider-content' src='../image.png'>-->
+                                <img class='slider-content' src='../" . $dsatz["prod_picture"] . "'>
+                                <img class='slider-content' src='../" . $dsatz["prod_picture"] . "'>
+                            </div>
+                            <div class='labels'>
+                                <label for='slide1'></label>
+                                <label for='slide2'></label>
+                                <label for='slide3'></label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='detailed-description section'>
