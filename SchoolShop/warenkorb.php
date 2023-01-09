@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-
-/*session_destroy();
-$_SESSION = array();*/
-
+if (!isset($_SESSION['login']['id'])) {
+    $_SESSION['login'] = array();
+    //session_destroy();
+    //header("location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,8 +77,8 @@ $_SESSION = array();*/
                 <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
@@ -86,8 +87,8 @@ $_SESSION = array();*/
             <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
@@ -364,7 +365,7 @@ $_SESSION = array();*/
                     
                     echo "</div>";
                     echo "</div>";
-/*hier*/
+
                     echo "
                     <div class='total'>
                         <div id='total' class='total-inner'>
@@ -381,7 +382,7 @@ $_SESSION = array();*/
                                 <div>Total</div>
                                 <div class='total-price-price'>" . number_format($after_discount_total, 2, ".", ",") . " &#36;</div>
                             </div>
-                            <form action='checkout.php' method='post' class='button-buy-anchor'>
+                            <form id='checkout' action='checkout.php' method='post' class='button-buy-anchor'>
                             <input type='hidden' name='original_price_total' value='$original_price_total'>
                             <input type='hidden' name='discount_total' value='$discount_total'>
                             <input type='hidden' name='after_discount_total' value='$after_discount_total'>
@@ -403,6 +404,51 @@ $_SESSION = array();*/
 
                 } else {
                     echo "<div class='empty-cart'>Your Cart is empty :(</div>";
+
+                    echo "
+                    <div class='total'>
+                        <div id='total' class='total-inner'>
+                            <div class='original-price'>
+                                <div>Original Price</div>
+                                <div>" . number_format($original_price_total, 2, ".", ",") . " &#36;</div>
+                                
+                                </div>
+                            <div class='discount'>
+                                <div>Discount</div>
+                                <div>&#45; " . number_format($discount_total, 2, ".", ",") . " &#36;</div>
+                            </div>
+                            <div class='total-price'>
+                                <div>Total</div>
+                                <div class='total-price-price'>" . number_format($after_discount_total, 2, ".", ",") . " &#36;</div>
+                            </div>
+                            <form id='checkout' action='checkout.php' method='post' class='button-buy-anchor'>
+                            <input type='hidden' name='original_price_total' value='$original_price_total'>
+                            <input type='hidden' name='discount_total' value='$discount_total'>
+                            <input type='hidden' name='after_discount_total' value='$after_discount_total'>
+                            <input type='hidden' name='prod_id' value='"; if(isset($prod_id)) echo $prod_id; echo "'>
+
+
+                            <button class='button-buy'>
+                                <div class='button-text'>BUY</div>
+                            </button>
+                            </form>
+                            <hr class='horizontal-line-2'>
+                            <a class='continue-shopping' href='home.php'><i class='fa-solid fa-backward'></i>Continue
+                                Shopping</a>";
+
+                            if (empty($_SESSION["warenkorb"])) {
+                                echo "
+                                <script>
+                                $('#checkout').submit(function (checkout) {
+                                checkout.preventDefault();
+                                });
+                                </script>";
+                            }
+
+                    echo "
+                        </div>
+                    </div>
+                    ";
                 }
 
                     /*$original_price_total

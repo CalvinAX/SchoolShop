@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['login']['id'])) {
+    $_SESSION['login'] = array();
+    //session_destroy();
+    //header("location: login.php");
+}
 ?>
 
 
@@ -55,9 +61,9 @@ session_start();
 
 
         <nav id="nav">
-            <a href="#" class="nav-item">FRUITS</a>
+            <a href="category_3.php" class="nav-item">SALE</a>
+            <a href="#" class="nav-item active">FRUITS</a>
             <a href="category_2.php" class="nav-item">VEGETABLES</a>
-            <a href="#" class="nav-item">KATEGORIE 2</a>
             <a href="#" class="nav-item">KATEGORIE 3</a>
         </nav>
 

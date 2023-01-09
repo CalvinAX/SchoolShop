@@ -61,9 +61,9 @@ if (!isset($_SESSION['login']['id'])) {
 
 
         <nav id="nav">
-            <a href="category_3.php" class="nav-item">SALE</a>
+            <a href="#" class="nav-item active">SALE</a>
             <a href="category_1.php" class="nav-item">FRUITS</a>
-            <a href="#" class="nav-item active">VEGETABLES</a>
+            <a href="category_2.php" class="nav-item">VEGETABLES</a>
             <a href="#" class="nav-item">KATEGORIE 3</a>
         </nav>
 
@@ -134,8 +134,8 @@ if (!isset($_SESSION['login']['id'])) {
 
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $sql = "SELECT products.*, category.category_name FROM products 
-        LEFT JOIN category ON products.c_id = category.c_id WHERE category.category_name = 'vegetable' ORDER BY prod_stock DESC";
+        $sql = "SELECT products.*, discount.value FROM products 
+        INNER JOIN discount ON products.d_id = discount.d_id WHERE discount.value > 0 ORDER BY prod_stock DESC";
         $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
 

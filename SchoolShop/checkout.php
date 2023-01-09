@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-
-/*session_destroy();
-$_SESSION = array();*/
-
+if (!isset($_SESSION['login']['id'])) {
+    $_SESSION['login'] = array();
+    //session_destroy();
+    //header("location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,28 +45,36 @@ $_SESSION = array();*/
                         <div class="form-section">
                             <div class="form-content form-content-width-50">
                                 <lable for="first-name">First name</lable>
-                                <input id="first-name" class="input" name="first-name" placeholder="Peter">
+                                <input required id="first-name" class="input" name="first-name" placeholder="Peter" 
+                                       value="<?php if (isset($_SESSION["login"]["name"]))
+                                           echo $_SESSION["login"]["name"]; ?>">
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="last-name">Last name</lable>
-                                <input id="last-name" class="input" name="last-name" placeholder="Griffin">
+                                <input required id="last-name" class="input" name="last-name" placeholder="Griffin"
+                                       value="<?php if (isset($_SESSION["login"]["lastname"]))
+                                           echo $_SESSION["login"]["lastname"]; ?>">
                             </div>
                         </div>
                         <div class="form-section">
                             <div class="form-content form-content-width-50">
                                 <lable for="street">Street</lable>
-                                <input id="street" class="input" name="street" placeholder="examplestreet">
+                                <input required id="street" class="input" name="street" placeholder="examplestreet"
+                                       value="<?php if (isset($_SESSION["login"]["lastname"]))
+                                           echo $_SESSION["login"]["lastname"]; ?>">
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="number">House number</lable>
-                                <input id="number" class="input" name="number" placeholder="3">
+                                <input required id="number" class="input" name="number" placeholder="3"
+                                       value="<?php if (isset($_SESSION['login']['house_nr']))
+                                           echo $_SESSION['login']['house_nr']; ?>">
                             </div>
                         </div>
                         <div class="form-section ">
                             <div class="form-content form-content-width-50">
                                 <lable for="country">Country</lable>
                                 <!--<input id="country" class="input-1" name="country" placeholder="">-->
-                                <select id="country" class="input country" name="country">
+                                <select required id="country" class="input country" name="country">
                                     <option class="country-option">
                                         Australia
                                     </option>
@@ -172,16 +181,22 @@ $_SESSION = array();*/
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="postal-code">Postal Code</lable>
-                                <input id="popstal-code" class="input" name="postal-code" placeholder="01234">
+                                <input required id="popstal-code" class="input" name="postal-code" placeholder="01234"
+                                       value="<?php if (isset($_SESSION['login']['zip_code']))
+                                           echo $_SESSION['login']['zip_code']; ?>">
                             </div>
                         </div>
                         <div class="form-content form-content-width-100">
                             <lable for="email">E-Mail</lable>
-                            <input id="email" class="input" name="email" placeholder="example@example.com">
+                            <input required id="email" class="input" name="email" placeholder="example@example.com"
+                                       value="<?php if (isset($_SESSION['login']['email']))
+                                           echo $_SESSION['login']['email']; ?>">
                         </div>
                         <div class="form-content form-content-width-100">
                             <lable for="phone-number">Phone Number</lable>
-                            <input id="phone-number" class="input" name="phone-number" placeholder="+00 123 44556677">
+                            <input required id="phone-number" class="input" name="phone-number" placeholder="+00 123 44556677"
+                                       value="<?php if (isset($_SESSION['login']['phone_nr']))
+                                           echo $_SESSION['login']['phone_nr']; ?>">
                         </div>
                     </div>
 
@@ -192,16 +207,16 @@ $_SESSION = array();*/
                     <div class="form">
                         <div class="form-content form-content-width-100">
                             <lable for="card-number">Credit Card Number</lable>
-                            <input id="card-number" class="input" name="card-number" placeholder="0000 - 0000 - 0000 - 0000">
+                            <input required id="card-number" class="input" name="card-number" placeholder="0000 - 0000 - 0000 - 0000">
                         </div>
                         <div class="form-section">
                             <div class="form-content form-content-width-50">
                                 <lable for="security-code">Security Code</lable>
-                                <input type="password" id="security-code" class="input" name="security-code" placeholder="***">
+                                <input required type="password" id="security-code" class="input" name="security-code" placeholder="***">
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="expiration">Expiration Date</lable>
-                                <input id="expiration" class="input" name="expiration" placeholder="MM / YY">
+                                <input required id="expiration" class="input" name="expiration" placeholder="MM / YY">
                             </div>
                         </div>
                     </div>

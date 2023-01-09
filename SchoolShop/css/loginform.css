@@ -1,3 +1,18 @@
 .signup-form {
 	width: 600px;
 }
+
+.continue-shopping {
+    margin: 0.3em 0.5em 0.5em 0.5em;
+    color: #ffffff99;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.continue-shopping:hover {
+    color: #ffffff66;
+	text-decoration: none;
+}

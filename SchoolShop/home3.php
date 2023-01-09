@@ -1,6 +1,14 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['login']['id'])) {
+    $_SESSION['login'] = array();
+
+    //session_destroy();
+    //header("location: login.php");
+} 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -96,9 +104,10 @@ session_start();
 
 
         <nav id="nav">
-            <a href="#" class="nav-item">KATEGORIEN</a>
-            <a href="#" class="nav-item">KATEGORIE 1</a>
-            <a href="#" class="nav-item">KATEGORIE 2</a>
+            <a href="category_3.php" class="nav-item">SALE</a>
+            <a href="category_1.php" class="nav-item">FRUITS</a>
+            <a href="category_2.php" class="nav-item">VEGETABLES</a>
+            <a href="category_3.php" class="nav-item">SALE</a>
             <a href="#" class="nav-item">KATEGORIE 3</a>
         </nav>
 
@@ -144,7 +153,7 @@ session_start();
                 <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
@@ -154,7 +163,7 @@ session_start();
             <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>

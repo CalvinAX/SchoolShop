@@ -1,32 +1,35 @@
 <?php
-
 session_start();
 
-$con = mysqli_connect("", "root", "", "schoolshop");
-$sql = "SELECT products.*, discount.value 
-            FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
-
 $original_price_total = 0;
+$discount_total = 0;
 $after_discount_total = 0;
 
-foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
+if (!empty($_SESSION["warenkorb"])) {
 
-    $res = mysqli_query($con, $sql);
-    while ($dsatz = mysqli_fetch_array($res)) {
+    $con = mysqli_connect("", "root", "", "schoolshop");
+    $sql = "SELECT products.*, discount.value 
+            FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
 
-        if ($dsatz["prod_id"] == $prod_id) {
+    foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
 
-            $original_price_total += $dsatz["prod_price"] * $quantity;
-            $after_discount = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100) * $quantity;
-            $after_discount_total += $after_discount;
-            $discount_total = $original_price_total - $after_discount_total;
+        $res = mysqli_query($con, $sql);
+        while ($dsatz = mysqli_fetch_array($res)) {
+
+            if ($dsatz["prod_id"] == $prod_id) {
+
+                $original_price_total += $dsatz["prod_price"] * $quantity;
+                $after_discount = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100) * $quantity;
+                $after_discount_total += $after_discount;
+                $discount_total = $original_price_total - $after_discount_total;
 
 
+            }
         }
     }
+    mysqli_close($con);
 }
 
-mysqli_close($con);
 
 echo "
 <div class='original-price'>
@@ -42,7 +45,7 @@ echo "
     <div>Total</div>
     <div class='total-price-price'>" . number_format($after_discount_total, 2, ".", ",") . " &#36;</div>
 </div>
-<form action='checkout.php' method='post' class='button-buy-anchor'>
+<form id='checkout' action='checkout.php' method='post' class='button-buy-anchor'>
 <input type='hidden' name='original_price_total' value='$original_price_total'>
 <input type='hidden' name='discount_total' value='$discount_total'>
 <input type='hidden' name='after_discount_total' value='$after_discount_total'>
@@ -55,6 +58,14 @@ echo "
     Shopping</a>
 ";
 
+if (empty($_SESSION["warenkorb"])) {
+    echo "
+    <script>
+    $('#checkout').submit(function (checkout) {
+    checkout.preventDefault();
+    });
+    </script>";
+}
 
 
 ?>

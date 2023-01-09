@@ -86,13 +86,24 @@ nav {
 }
 
 .nav-item {
-    padding: 0 0 8px 0;
+    padding: 0 0 0.3em 0; /*0.5em*/
+    /*border-style: none none solid none;
+    border-width: 1px;*/
+    transition: all 100ms ease-in-out;
+}
+
+.nav-item:hover {
+    color: var(--color-info-light);
+    /*padding: 0 0 0.3em 0;*/
     border-style: none none solid none;
     border-width: 1px;
 }
 
-.nav-item:hover {
-    color: var(--color-info-light)
+.active {
+    color: var(--color-info-light);
+    padding: 0 0 0.3em 0;
+    border-style: none none solid none;
+    border-width: 1px;
 }
 
 header a {

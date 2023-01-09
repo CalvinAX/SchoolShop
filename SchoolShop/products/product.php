@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['login']['id'])) {
+    $_SESSION['login'] = array();
+    //session_destroy();
+    //header("location: login.php");
+}
+
 /*
 if (isset($_GET["add"])) {
 $add = $_GET["add"];
@@ -124,9 +130,9 @@ print_r($_SESSION);
                 <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-                <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+                <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
@@ -134,9 +140,9 @@ print_r($_SESSION);
             <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-            <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+            <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
