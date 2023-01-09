@@ -232,7 +232,9 @@ $_SESSION = array();*/
                             else
                                 echo number_format(0, 2, ".", ",") . " &#36;"; ?></div>
                         </div>
-                        <a href='checkout.php' class='button-buy-anchor'>
+
+                        <input type='hidden' name='prod_id' value='<?php echo $_POST["prod_id"] ?>'>
+                        <a href='' class='button-buy-anchor'>
                             <button class='button-buy'>
                                 <div class='button-text'>PAY</div>
                             </button>

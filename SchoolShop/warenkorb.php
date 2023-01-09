@@ -324,7 +324,19 @@ $_SESSION = array();*/
                                     echo "});";
                                     echo "</script>";
 
-
+                                    echo "<script>";
+                                    echo "$('#trash-can-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                                    echo "minus.preventDefault();";
+                                    echo "$.ajax({";
+                                    echo "type: 'GET',";
+                                    echo "url: 'total_ajax.php',";
+                                    echo "data: $(this).serialize(),";
+                                    echo "success: function (data) {";
+                                    echo "$('#total').html(data);";
+                                    echo "}";
+                                    echo "});";
+                                    echo "});";
+                                    echo "</script>";
 
 /*
 
@@ -373,6 +385,9 @@ $_SESSION = array();*/
                             <input type='hidden' name='original_price_total' value='$original_price_total'>
                             <input type='hidden' name='discount_total' value='$discount_total'>
                             <input type='hidden' name='after_discount_total' value='$after_discount_total'>
+                            <input type='hidden' name='prod_id' value='"; if(isset($prod_id)) echo $prod_id; echo "'>
+
+
                             <button class='button-buy'>
                                 <div class='button-text'>BUY</div>
                             </button>
@@ -384,10 +399,11 @@ $_SESSION = array();*/
                     </div>
                     ";
 
+                    mysqli_close($con);
+
                 } else {
                     echo "<div class='empty-cart'>Your Cart is empty :(</div>";
                 }
-
 
                     /*$original_price_total
                     $discount_total

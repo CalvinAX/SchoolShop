@@ -50,6 +50,8 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "<form id='quantity-plus-". $dsatz["prod_id"] ."'>";
                 echo "<input type='hidden' name='add' value='" . $dsatz["prod_id"] . "'>";
                 echo "<input type='hidden' name='stock' value='" . $dsatz["prod_stock"] . "'>";
+                echo "<input type='hidden' name='price' value='" . $dsatz["prod_price"] . "'>";
+                echo "<input type='hidden' name='discount_value' value='" . $dsatz["value"] . "'>";
                 echo "<button class='button-trash-can'>";
                 echo "<i class='fa-solid fa-plus'></i>";
                 echo "</button>";
@@ -84,6 +86,8 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "<form id='quantity-minus-". $dsatz["prod_id"] ."'>";
                 echo "<input type='hidden' name='add' value='" . $dsatz["prod_id"] . "'>";
                 echo "<input type='hidden' name='stock' value='" . $dsatz["prod_stock"] . "'>";
+                echo "<input type='hidden' name='price' value='" . $dsatz["prod_price"] . "'>";
+                echo "<input type='hidden' name='discount_value' value='" . $dsatz["value"] . "'>";
 
                 echo "<button class='button-trash-can'>";
                 echo "<i class='fa-solid fa-minus'></i>";
@@ -96,11 +100,12 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "</div>";
                 echo "</div>";
 
-                echo "<div class='prod-price'>";
+                echo "<div id='prod-price-". $dsatz["prod_id"] ."' class='prod-price'>";
 
-                $after_discount = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100) * $quantity;
                 $original_price_total += $dsatz["prod_price"] * $quantity;
-                $after_discount_total += $after_discount * $quantity;
+                $after_discount = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100) * $quantity;
+                $after_discount_total += $after_discount;
+                $discount_total = $original_price_total - $after_discount_total;
 
                 echo number_format($after_discount, 2, ".", ",") . " &#36;";
                 echo "</div>";
@@ -162,25 +167,85 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "});";
                 echo "</script>";
 
-/*
 
-                $('#shopping_cart').submit(function (event) {
-                    event.preventDefault();
-                    $.ajax({
-                        type: 'GET',
-                        url: 'warenkorb_add.php',
-                        data: $(this).serialize(),
-                        success: function (data) {
-                            $("#result").html(data);
-                        }
-                    });
-    
-                });
-                */
+                /*Gesamtpreis des Produktes aktualiesieren*/
+                echo "<script>";
+                echo "$('#quantity-plus-" . $dsatz["prod_id"] . "').submit(function (add) {";
+                echo "add.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'gesamtpreis_produkt_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#prod-price-" . $dsatz["prod_id"] . "').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
 
+                echo "<script>";
+                echo "$('#quantity-minus-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'gesamtpreis_produkt_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#prod-price-" . $dsatz["prod_id"] . "').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+
+                /*Gesamtpreis & Rabatt aktualiesieren*/
+                echo "<script>";
+                echo "$('#quantity-plus-" . $dsatz["prod_id"] . "').submit(function (add) {";
+                echo "add.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'total_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#total').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+                echo "<script>";
+                echo "$('#quantity-minus-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'total_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#total').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+                echo "<script>";
+                echo "$('#trash-can-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'total_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#total').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
             }
         }
     }
+
+    mysqli_close($con);
+
 } else {
     echo "<div class='empty-cart'>Your Cart is empty :(</div>";
 }

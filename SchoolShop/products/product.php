@@ -145,8 +145,9 @@ print_r($_SESSION);
         <div class="content">
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $sql = "SELECT products.*, discount.value 
-                    FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
+        $sql = "SELECT products.*, discount.value, category.category_name FROM products 
+                    LEFT JOIN discount ON products.d_id = discount.d_id 
+                    LEFT JOIN category ON products.c_id = category.c_id";
         $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
             if ($dsatz["prod_id"] == $_GET["prod_id"]) {
@@ -285,7 +286,7 @@ print_r($_SESSION);
                 <div class='category'>
                 Categorys
                 <div class='category-item'>"
-                . $dsatz["prod_category"]
+                . $dsatz["category_name"]
                 . "</div>
                 </div>
                 
@@ -343,6 +344,8 @@ print_r($_SESSION);
             }
 
         }
+
+        mysqli_close($con);
         ?>
 
 

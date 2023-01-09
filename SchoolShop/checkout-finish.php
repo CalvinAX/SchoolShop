@@ -1,8 +1,43 @@
 <?php
 session_start();
 
-$_SESSION["warenkorb"] = array();
+$con = mysqli_connect("", "root", "", "schoolshop");
 
+if (isset($_SESSION["warenkorb"][$_POST["prod_id"]])) {
+
+    foreach ($_SESSION["warenkorb"] as $key => $value) {
+
+        $products[] = $key;
+        $menge[] = $value;
+    }
+
+    for ($i = 0; $i < count($products); $i++) {
+
+        $sql = "SELECT products.prod_stock, products.prod_amount_sold, products.c_id, category.amount_sold FROM products LEFT JOIN category ON products.c_id = category.c_id WHERE prod_id = " . $products[$i];
+        $res = mysqli_query($con, $sql);
+
+        while ($dsatz = mysqli_fetch_array($res)) {
+
+            $prod_stock_new = $dsatz["prod_stock"] - $menge[$i];
+            $prod_amount_sold_new = $dsatz["prod_amount_sold"] + $menge[$i];
+            $category_amount_sold_new = $dsatz["amount_sold"] + $menge[$i];
+            /*$prod_c_id = $dsatz["c_id"];
+            echo $prod_c_id;*/
+            //für Referat
+            #echo "prod_id: " . $products[$i] . "<br>";
+            #echo "prod_stock: " . $dsatz["prod_stock"] . "<br>";
+            #echo "prod_stock_new: " . $prod_stock_new . "<br><br>";
+        }
+
+        $sql_2 = "UPDATE products p, category c  
+                    SET p.prod_stock = " . $prod_stock_new . ", p.prod_amount_sold = " . $prod_amount_sold_new . ", 
+                    c.amount_sold = " . $category_amount_sold_new . " WHERE p.prod_id = " . $products[$i] . " AND c.c_id = p.c_id";
+        $res_2 = mysqli_query($con, $sql_2);
+    }
+
+    mysqli_close($con);
+    $_SESSION["warenkorb"] = array();
+}
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +110,7 @@ $_SESSION["warenkorb"] = array();
     <main>
         <div class="main-content">
             <div class='main-content-inner'>
-                <div class="message">Thank's for your purchase, <?php echo $_POST["first-name"] ?> :)</div>
+                <div class="message">Thanks for your purchase, <?php echo $_POST["first-name"] ?> :)</div>
                 <hr class='horizontal-line'>
                 <a class='continue-shopping' href='home.php'><i class='fa-solid fa-backward'></i>Continue
                     Shopping</a>

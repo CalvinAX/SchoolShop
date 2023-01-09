@@ -23,21 +23,6 @@ session_start();
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        /*
-                function toggle(id) {
-                    var e = document.getElementById(id);
-                    if (e.style.display == "none") {
-        
-                        e.style.display = "";
-                        /*e.classList.toggle("nav2");
-                    }
-                    else {
-        
-                        e.style.display = "none";
-                        /*e.classList.toggle("nav2");
-                    }
-                }
-        */
 
         /* kann zu einer funktion angepasst werden */
 
@@ -53,39 +38,12 @@ session_start();
 
         }
 
-
-
-        /*
-                var e = document.getElementById(nav);
-        
-                e.addEventListener("click", function () {
-                    var e2 = document.getElementById("nav");
-                    el2.classList.add('nav1');
-                })
-        */
-    </script>
-    <script>
-        /*
-        setTimeout(function () {
-
-            var e = document.getElementById(id);
-            if (e.style.display == "none") {
-                e.classList.toggle("nav2");
-            }
-            else {
-
-                e.classList.toggle("nav2");
-
-                alert('Hello World!');
-            }
-
-        }, 2000);
-*/
     </script>
 
 </head>
 
 <body>
+
 
     <!-- Header -->
 
@@ -97,8 +55,8 @@ session_start();
 
 
         <nav id="nav">
-            <a href="category_1.php" class="nav-item">FRUITS</a>
-            <a href="#" class="nav-item">KATEGORIE 1</a>
+            <a href="#" class="nav-item">FRUITS</a>
+            <a href="category_2.php" class="nav-item">VEGETABLES</a>
             <a href="#" class="nav-item">KATEGORIE 2</a>
             <a href="#" class="nav-item">KATEGORIE 3</a>
         </nav>
@@ -111,6 +69,7 @@ session_start();
 
                     <?php
                     /*Gesamtmenge an Produkten im Warenkorb*/
+                    
                     if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
 
                         $gesamtmenge = 0;
@@ -161,25 +120,7 @@ session_start();
         </div>
 
     </header>
-    <!--
-    <div id="nav1" class="nav2">
-        <a href="#" class="nav-link">KATEGORIEN</a>
-        <a href="#" class="nav-link">KATEGORIE 1</a>
-        <a href="#" class="nav-link">KATEGORIE 2</a>
-        <a href="#" class="nav-link">KATEGORIE 3</a>
-    </div>
-    -->
 
-    <script>
-        /*
-                if (window.innerWidth > 900) {
-                    document.getElementById("nav").style.display = "";
-                } else {
-        
-                    document.getElementById("nav").style.display = "none"
-                }
-        */
-    </script>
 
     <!-- Main Content -->
 
@@ -187,10 +128,11 @@ session_start();
 
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $res = mysqli_query($con, "SELECT * FROM products ORDER BY prod_stock DESC LIMIT 12");
+        $sql = "SELECT products.*, category.category_name FROM products 
+        LEFT JOIN category ON products.c_id = category.c_id WHERE category.category_name = 'fruit' ORDER BY prod_stock DESC";
+        $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
 
-            #if ($dsatz["prod_id"] <= 12) {
                 echo "<div class='article2'>";
                 echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
@@ -219,49 +161,19 @@ session_start();
                 echo "</div>";
                 echo "</a>";
                 echo "</div>";
-            #}
         }
         
         mysqli_close($con);
         ?>
 
-        <!--
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="default.png" alt="">
-                    <div class="prod-body">
-                        <h1>sus</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">
-                                <div class="in_stock_false">In Stock</div>
-                                <div class="dot">•</div>
-                                <div class="quantity_false">0</div>
-                            </div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-        -->
     </main>
+    <!--
     <div class="pagination">
         <a href="" class="pagination-start"><i class="fa-solid fa-angles-left"></i></a>
         <div class="pagination-number"><i class="fa-solid fa-i"></i></div>
         <a href="home2.php"><i class="fa-solid fa-angles-right"></i></a>
     </div>
-
-
-    <!--
-    <form name="pagination" class="pagination" action="home.php" method="post">
-
-        <a href="javascript:document.pagination.submit()"><i class="fa-solid fa-angles-left"></i></a>
-        <i class="fa-solid fa-i"></i>
-        <i class="fa-solid fa-angles-right"></i>
-    </form>
     -->
-
     <footer>
         Footer
     </footer>
@@ -269,9 +181,3 @@ session_start();
 </body>
 
 </html>
-
-
-
-
-
-<!-- <i class="fa-solid fa-backward"></i> -->

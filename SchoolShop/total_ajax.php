@@ -26,6 +26,8 @@ foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
     }
 }
 
+mysqli_close($con);
+
 echo "
 <div class='original-price'>
     <div>Original Price</div>

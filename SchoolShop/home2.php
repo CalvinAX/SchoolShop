@@ -186,10 +186,10 @@ session_start();
 
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $res = mysqli_query($con, "SELECT * FROM products");
+        $res = mysqli_query($con, "SELECT * FROM products ORDER BY prod_stock DESC LIMIT 12, 12");
         while ($dsatz = mysqli_fetch_array($res)) {
 
-            if ($dsatz["prod_id"] > 12 && $dsatz["prod_id"] <= 24) {
+            #if ($dsatz["prod_id"] > 12 && $dsatz["prod_id"] <= 24) {
                 echo "<div class='article2'>";
                 echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
@@ -218,8 +218,10 @@ session_start();
                 echo "</div>";
                 echo "</a>";
                 echo "</div>";
-            }
+            #}
         }
+
+        mysqli_close($con);
         ?>
 
         <!--

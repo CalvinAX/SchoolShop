@@ -5,6 +5,14 @@ body {
     min-height: 100vh;
 }
 
+header{
+    visibility: hidden;
+}
+
+footer{
+    visibility: hidden;
+}
+
 main {
     margin: 1em 0 2em 0;
     display: flex;
