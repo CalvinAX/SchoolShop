@@ -3,12 +3,12 @@ session_start();
 
 $add = $_GET["add"];
 
+
 if ($_GET["stock"] > 0 && isset($_GET["add"])) {
 
 
-
     if (!isset($_SESSION["warenkorb"])) {
-        $_SESSION[] = array("warenkorb" => array($add => 0));
+        $_SESSION = array("warenkorb" => array($add => 0));
     }
     if (!isset($_SESSION["warenkorb"][$add])) {
         $_SESSION["warenkorb"][$add] = 0;

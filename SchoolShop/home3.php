@@ -203,7 +203,9 @@ if (!isset($_SESSION['login']['id'])) {
                 echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
                 echo "<article>";
-                echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "' alt=''>";
+                echo "<div class='prod-pic-outer'>";
+                echo "<img class='prod-pic' src='products/pictures/" . $dsatz["prod_picture"] . "' alt=''>";
+                echo "</div>";
                 echo "<div class='prod-body'>";
                 echo "<h1>" . $dsatz["prod_name"] . "</h1>";
                 echo "<div class='prod-bottom'>";

@@ -59,13 +59,13 @@ if (!isset($_SESSION['login']['id'])) {
                         <div class="form-section">
                             <div class="form-content form-content-width-50">
                                 <lable for="street">Street</lable>
-                                <input required id="street" class="input" name="street" placeholder="examplestreet"
-                                       value="<?php if (isset($_SESSION["login"]["lastname"]))
-                                           echo $_SESSION["login"]["lastname"]; ?>">
+                                <input required id="street" class="input" name="street" placeholder="Spooner Street"
+                                       value="<?php if (isset($_SESSION["login"]["address"]))
+                                           echo $_SESSION["login"]["address"]; ?>">
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="number">House number</lable>
-                                <input required id="number" class="input" name="number" placeholder="3"
+                                <input required id="number" class="input" name="number" placeholder="31"
                                        value="<?php if (isset($_SESSION['login']['house_nr']))
                                            echo $_SESSION['login']['house_nr']; ?>">
                             </div>
@@ -181,7 +181,7 @@ if (!isset($_SESSION['login']['id'])) {
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="postal-code">Postal Code</lable>
-                                <input required id="popstal-code" class="input" name="postal-code" placeholder="01234"
+                                <input required id="popstal-code" class="input" name="postal-code" placeholder="02949"
                                        value="<?php if (isset($_SESSION['login']['zip_code']))
                                            echo $_SESSION['login']['zip_code']; ?>">
                             </div>
@@ -194,9 +194,9 @@ if (!isset($_SESSION['login']['id'])) {
                         </div>
                         <div class="form-content form-content-width-100">
                             <lable for="phone-number">Phone Number</lable>
-                            <input required id="phone-number" class="input" name="phone-number" placeholder="+00 123 44556677"
+                            <input required id="phone-number" class="input" name="phone-number" placeholder="+00 123 44556677"  
                                        value="<?php if (isset($_SESSION['login']['phone_nr']))
-                                           echo $_SESSION['login']['phone_nr']; ?>">
+                                           echo $_SESSION['login']['phone_nr']; ?>">    <!--901-922-5231-->
                         </div>
                     </div>
 

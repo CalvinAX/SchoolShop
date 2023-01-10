@@ -105,6 +105,9 @@ if (!isset($_SESSION['login']['id'])) {
                     /*print_r($_SESSION);
                     echo "<br>";*/
 
+                    $original_price_total = 0;
+                    $discount_total = 0;
+                    $after_discount_total = 0;
                     
                     if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
 
@@ -112,9 +115,6 @@ if (!isset($_SESSION['login']['id'])) {
                         $sql = "SELECT products.*, discount.value 
                                     FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
                         $j = 0;
-
-                        $original_price_total = 0;
-                        $after_discount_total = 0;
                         
                         foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
 
@@ -126,7 +126,7 @@ if (!isset($_SESSION['login']['id'])) {
                                     echo "<div class='product'>";
 
                                     echo "<a class='prod-pic-anchor' href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
-                                    echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "'>";
+                                    echo "<img class='prod-pic' src='pictures/" . $dsatz["prod_picture"] . "'>";
                                     echo "</a>";
 
                                     echo "<div class='title_price'>";
@@ -403,7 +403,7 @@ if (!isset($_SESSION['login']['id'])) {
                     mysqli_close($con);
 
                 } else {
-                    echo "<div class='empty-cart'>Your Cart is empty :(</div>";
+                    echo "<div class='empty-cart'>Your Cart is empty :(</div></div></div>";
 
                     echo "
                     <div class='total'>
@@ -444,11 +444,6 @@ if (!isset($_SESSION['login']['id'])) {
                                 });
                                 </script>";
                             }
-
-                    echo "
-                        </div>
-                    </div>
-                    ";
                 }
 
                     /*$original_price_total

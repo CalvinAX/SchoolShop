@@ -163,7 +163,7 @@ print_r($_SESSION);
 
                 echo "<div class='upper-content'>";
 
-                echo "<img class='prod-pic' src='../" . $dsatz["prod_picture"] . "'>";
+                echo "<img class='prod-pic' src='pictures/" . $dsatz["prod_picture"] . "'>";
 
                 echo "<div class='upper-right-content'>";
                 echo "<div class='title'>";
@@ -290,7 +290,7 @@ print_r($_SESSION);
                 </div>
 
                 <div class='category'>
-                Categorys
+                Category
                 <div class='category-item'>"
                 . $dsatz["category_name"]
                 . "</div>
@@ -304,10 +304,10 @@ print_r($_SESSION);
                             <input type='radio' name='slider' id='slide2'>
                             <input type='radio' name='slider' id='slide3'>
                             <div class='slider_inner'>
-                                <img class='slider-content' src='../" . $dsatz["prod_picture"] . "'>
-                                <!--<img class='slider-content' src='../image.png'>-->
-                                <img class='slider-content' src='../" . $dsatz["prod_picture"] . "'>
-                                <img class='slider-content' src='../" . $dsatz["prod_picture"] . "'>
+                                <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>
+                                <!--<img class='slider-content' src='pictures/image.png'>-->
+                                <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>
+                                <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>
                             </div>
                             <div class='labels'>
                                 <label for='slide1'></label>

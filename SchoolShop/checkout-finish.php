@@ -13,13 +13,13 @@ if (isset($_SESSION["warenkorb"][$_POST["prod_id"]])) {
 
     for ($i = 0; $i < count($products); $i++) {
 
-        $sql = "SELECT products.prod_stock, products.prod_amount_sold, products.c_id, category.amount_sold FROM products LEFT JOIN category ON products.c_id = category.c_id WHERE prod_id = " . $products[$i];
+        $sql = "SELECT products.prod_stock, products.prod_sold, products.c_id, category.amount_sold FROM products LEFT JOIN category ON products.c_id = category.c_id WHERE prod_id = " . $products[$i];
         $res = mysqli_query($con, $sql);
 
         while ($dsatz = mysqli_fetch_array($res)) {
 
             $prod_stock_new = $dsatz["prod_stock"] - $menge[$i];
-            $prod_amount_sold_new = $dsatz["prod_amount_sold"] + $menge[$i];
+            $prod_sold_new = $dsatz["prod_sold"] + $menge[$i];
             $category_amount_sold_new = $dsatz["amount_sold"] + $menge[$i];
             /*$prod_c_id = $dsatz["c_id"];
             echo $prod_c_id;*/
@@ -30,7 +30,7 @@ if (isset($_SESSION["warenkorb"][$_POST["prod_id"]])) {
         }
 
         $sql_2 = "UPDATE products p, category c  
-                    SET p.prod_stock = " . $prod_stock_new . ", p.prod_amount_sold = " . $prod_amount_sold_new . ", 
+                    SET p.prod_stock = " . $prod_stock_new . ", p.prod_sold = " . $prod_sold_new . ", 
                     c.amount_sold = " . $category_amount_sold_new . " WHERE p.prod_id = " . $products[$i] . " AND c.c_id = p.c_id";
         $res_2 = mysqli_query($con, $sql_2);
     }

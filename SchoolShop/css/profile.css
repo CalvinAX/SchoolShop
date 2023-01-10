@@ -1,6 +1,6 @@
 body {
     min-height: 100vh;
-    min-width: 100vw;
+    max-width: 100vw;
     display: flex;
     justify-content: center;
     background-image: linear-gradient(to bottom, #181a1e, #2b3a4c, #365f7f);
@@ -41,6 +41,7 @@ main {
 }
 
 .username {
+    height: 41px;
     margin: -2em 0 0 0;
     padding: 1.5em 0 0 0;
     width: 200px;
@@ -56,7 +57,7 @@ main {
 }
 
 
-.personal_information{
+.personal_information {
     width: 100%;
     padding: 1em 0;
     display: flex;
@@ -66,7 +67,7 @@ main {
     gap: 0.5em;
 }
 
-.pi_column_1{
+.pi_column_1 {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -74,7 +75,7 @@ main {
     gap: 0.5em;
 }
 
-.pi_column_2{
+.pi_column_2 {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -82,7 +83,7 @@ main {
     gap: 0.5em;
 }
 
-.pi_row{
+.pi_row {
     width: 100%;
     background: #1b1c1f99;
     padding: 0.5em 4%;
@@ -90,6 +91,33 @@ main {
     display: flex;
     justify-content: space-between;
     gap: 1em;
+}
+
+.button_edit {
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+
+.button_edit button {
+    width: 20%;
+    background: #F57914;
+    border: none;
+    border-radius: 10px;
+    height: 3em;
+    font: inherit;
+    outline: inherit;
+    cursor: pointer;
+}
+.button_edit button:active{
+    background: #F57914CD;
+}
+
+
+.button_edit button div{
+    font-weight: 700;
+    color: var(--color-white);
 }
 
 /*
@@ -159,7 +187,7 @@ main {
         font-size: 15px;
     }
 
-    .personal_information{
+    .personal_information {
         width: 100%;
         padding: 1em 0;
         display: flex;
@@ -168,19 +196,19 @@ main {
         gap: 3%;
     }
 
-    .personal_information{
+    .personal_information {
         gap: 4%;
     }
 
-    .pi_column_1{
+    .pi_column_1 {
         width: 45%;
     }
 
-    .pi_column_2{
+    .pi_column_2 {
         width: 45%;
     }
 
-    .pi_row{
+    .pi_row {
         padding: 0.5em 4%;
     }
 }
@@ -191,15 +219,15 @@ main {
         margin: 2em;
     }
 
-    .pi_column_1{
+    .pi_column_1 {
         width: 40%;
     }
 
-    .pi_column_2{
+    .pi_column_2 {
         width: 40%;
     }
 
-    .pi_row{
+    .pi_row {
         padding: 0.5em 6%;
     }
 }

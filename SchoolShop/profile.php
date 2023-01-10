@@ -37,72 +37,144 @@ if (!isset($_SESSION['login']['id'])) {
     <!-- Main Content -->
 
     <main>
-        <div class="div-image">
-            <a href="image.png">
-                <img class="image" src="image.png">
-            </a>
-        </div>
-        <div class="username">
-            GUSTAVO
-        </div>
-        <div class="personal_information">
-            <div class="pi_column_1">
-                <div class="pi_row">
-                    <div class="pi_content">FIRST NAME</div>
-                    <div class="pi_content">Peter</div>
+
+    <?php if (isset($_SESSION["login"]["id"])) {
+
+        echo "
+            <div class='div-image'>
+                <a href='" . $_SESSION["login"]["profile_picture"] . "'>
+                    <img class='image' src='" . $_SESSION["login"]["profile_picture"] . "'>
+                </a>
+            </div>
+            <div class='username'>
+                " . $_SESSION["login"]["username"] . "
+            </div>
+            <div class='personal_information'>
+                <div class='pi_column_1'>
+                    <div class='pi_row'>
+                        <div class='pi_content'>FIRST NAME</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["name"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>LAST NAME:</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["lastname"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>GENDER</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["gender"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>STREET</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["address"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>HOUSE NUMBER</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["house_nr"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>POSTAL CODE</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["zip_code"] . "</div>
+                    </div>
                 </div>
-                <div class="pi_row">
-                    <div class="pi_content">LAST NAME:</div>
-                    <div class="pi_content">Griffin</div>
+                <div class='pi_column_2'>
+                    <div class='pi_row'>
+                        <div class='pi_content'>CITY:</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["city"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>COUNTRY</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["country"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>E-MAIL</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["email"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>PHONE NUMBER</div>
+                        <div class='pi_content'>" . $_SESSION["login"]["phone_nr"] . "</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>PASSWORD</div>
+                        <div class='pi_content'>***</div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>FIRST NAME:</div>
+                        <div class='pi_content'>Peter</div>
+                    </div>
                 </div>
-                <div class="pi_row">
-                    <div class="pi_content">GENDER</div>
-                    <div class="pi_content">Other</div>
+            </div>";
+
+    } else {   ?>
+
+            <div class='div-image'>
+                <a href='image.png'>
+                    <img class='image' src='default_profile_picture.png'>
+                </a>
+            </div>
+            <div class='username'>
+            </div>
+            <div class='personal_information'>
+                <div class='pi_column_1'>
+                    <div class='pi_row'>
+                        <div class='pi_content'>FIRST NAME</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>LAST NAME:</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>GENDER</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>STREET</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>HOUSE NUMBER</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>POSTAL CODE</div>
+                        <div class='pi_content'></div>
+                    </div>
                 </div>
-                <div class="pi_row">
-                    <div class="pi_content">STREET</div>
-                    <div class="pi_content">Spooner Street</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">HOUSE NUMBER</div>
-                    <div class="pi_content">31</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">ZIP CODE</div>
-                    <div class="pi_content">02949</div>
+                <div class='pi_column_2'>
+                    <div class='pi_row'>
+                        <div class='pi_content'>CITY:</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>COUNTRY</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>E-MAIL</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>PHONE NUMBER</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>PASSWORD</div>
+                        <div class='pi_content'></div>
+                    </div>
+                    <div class='pi_row'>
+                        <div class='pi_content'>???</div>
+                        <div class='pi_content'></div>
+                    </div>
                 </div>
             </div>
-            <div class="pi_column_2">
-                <div class="pi_row">
-                    <div class="pi_content">COUNTRY</div>
-                    <div class="pi_content">United States of America (USA)</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">E-MAIL</div>
-                    <div class="pi_content">peter.griffin@gmail.com</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">PHONE NUMBER</div>
-                    <div class="pi_content">901-922-5231</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">PASSWORD</div>
-                    <div class="pi_content">***</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">FIRST NAME:</div>
-                    <div class="pi_content">Peter</div>
-                </div>
-                <div class="pi_row">
-                    <div class="pi_content">FIRST NAME:</div>
-                    <div class="pi_content">Peter</div>
-                </div>
-            </div>
-        </div>
+    <?php } ?>
+
+    <a class="button_edit" href="<?php if (!empty($_SESSION["login"]))
+        echo "profile_edit.php"; else echo "login.php" ?>">
+        <button><div>EDIT</div></button>
+    </a>
 
     </main>
-
-
 </body>
 
 </html>
