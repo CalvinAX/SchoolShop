@@ -3,7 +3,6 @@
 session_start();
 include '../connections/root_connection.php';
 
-
 ?>
 
 <html>

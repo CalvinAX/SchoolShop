@@ -7,6 +7,7 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 
+include '../connections/root_connection.php';
 
 ?>
 
@@ -60,10 +61,6 @@ if (!isset($_SESSION['id'])) {
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -80,187 +77,84 @@ if (!isset($_SESSION['id'])) {
                 <div class="container-fluid">
 
                     <!-- 1st Row Infos -->
-                    <div class="row ml-3 mr-3">
+                    <div class="row ml-3 mr-3 mt-3">
                         <div class="col-md">
-                            <h2 class="text-white ml-3 mt-4">Products</h2>
-                            <hr class="bg-secondary" />
-                        </div>
-                    </div>
-                    <!-- 1st Row Infos -->
-                    <div class="row ml-3">
-                        <div class="col-md">
-                            <p class="text-white ml-3"><strong>Filters</strong></p>
-                            <div class="filters d-flex justify-content-start">
-                                <form class="form" method="get">
-                                    <div class="form-group">
-                                        <label for="filter_stock" class="text-white ml-3">Stock:</label>
-                                        <select class="form-select" name="filter_stock">
-                                            <option selected disabled>Sort by Stock</option>
-                                            <option value="stock_in">In Stock</option>
-                                            <option value="stock_out">Out of Stock</option>
-                                            <option value="stock_reserve">Reserve</option>
-                                        </select>
-                                        <label for="filter_vendor" class="text-white ml-3">Vendor:</label>
-                                        <select class="form-select" name="filter_vendor">
-                                            <option selected disabled>Sort by Vendor</option>
-                                            <option value="vendor_amazon">Amazon</option>
-                                            <option value="vendor_ebay">Ebay</option>
-                                            <option value="vendor_alibaba">Ali Baba</option>
-                                        </select>
-                                        <label for="filter_category" class="text-white ml-3">Category:</label>
-                                        <select class="form-select" name="filter_category">
-                                            <option selected disabled>Sort by Category</option>
-                                            <option value="category_fruit">Fruit</option>
-                                            <option value="category_tech">Tech</option>
-                                            <option value="category_jewelry">Jewelry</option>
-                                        </select>
-                                    </div>
-                                    <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
+                            <div class="panel-card p-4 mb-2 mt-2">
+                                <h3 class="text-white">Products</h3>
+                                <form class="form-inline mt-3" action="products.php" method="get">
+                                    <input class="form-control" type="search" placeholder="Search" name="search"
+                                        id="search">
+                                    <button class="btn button-submit" type="submit">Search</button>
                                 </form>
-                            </div>
-                            <h3 class="text-white">Vtl. noch eine Searchbar (?)</h3>
-                        </div>
-                    </div>
-
-                    <div class="row ml-3 mr-3">
-                        <div class="col-md">
-                            <div class="panel-card p-3 mb-2">
+                                <hr class="bg-secondary" />
                                 <table>
                                     <thead>
                                         <tr>
+                                            <!-- profile_picture, name, lastname, gender, country, city, zip_code, address, username, email, password, orders, role, loggedIn -->
                                             <th class="p-2">#</th>
+                                            <th>Picture</th>
                                             <th>Name</th>
-                                            <th>Price</th>
+                                            <th>Category</th>
                                             <th>Description</th>
-                                            <th>Categories</th>
+                                            <th>Price</th>
                                             <th>Vendor</th>
                                             <th>Stock</th>
-                                            <th>Total Sold</th>
+                                            <th>Discount</th>
+                                            <th>Sold</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>123</td>
-                                            <td>Gaming Mango</td>
-                                            <td>19,99 €</td>
-                                            <td>LED RGB XQC HD Gaming Mango</td>
-                                            <td>Fruit, Gaming, Electronics</td>
-                                            <td>Fruit Shop</td>
-                                            <td>15400</td>
-                                            <td>1334566</td>
-                                            <td class="p-2"><a href="#">Edit Product</a></td>
-                                        </tr>
+                                        <?php
+
+                                        if (!empty($_GET['search'])) {
+                                            $searchstring = $_GET['search'];
+                                            $sql = "SELECT * FROM products WHERE prod_name LIKE '%$searchstring%'";
+                                        } else {
+                                            $sql = "SELECT * FROM products";
+                                        }
+
+                                        $results = $conn->query($sql);
+
+                                        if ($results->num_rows > 0) {
+                                            while ($row = $results->fetch_assoc()) {
+
+                                                $c_id = $row['c_id'];
+                                                $c_sql = "SELECT * FROM category WHERE c_id='$c_id'";
+                                                $c_result = $conn->query($c_sql);
+
+                                                $d_id = $row['d_id'];
+                                                $d_sql = "SELECT * FROM discount WHERE d_id='$d_id'";
+                                                $d_result = $conn->query($d_sql);
+
+                                                if($c_result->num_rows > 0) {
+                                                    while ($c_row = $c_result->fetch_assoc()) {
+                                                        $category = $c_row['category_name'];
+                                                    }
+                                                }
+
+                                                if($d_result->num_rows > 0) {
+                                                    while ($d_row = $d_result->fetch_assoc()) {
+                                                        $discount = $d_row['value'];
+                                                    }
+                                                }
+
+                                                echo "<tr class='border-bottom border-dark'>
+                                                <td class='p-2'>" . $row['prod_id'] . "</td>
+                                                <td>" . $row['prod_picture'] . "</td>
+                                                <td>" . $row['prod_name'] . "</td>
+                                                <td>" . $category . "</td>
+                                                <td>" . substr($row['prod_description'], 0, 30) . "...</td>
+                                                <td>$" . $row['prod_price'] . "</td>
+                                                <td>" . $row['prod_vendor'] . "</td>
+                                                <td>" . $row['prod_stock'] . "</td>
+                                                <td>" . $discount . " %</td>
+                                                <td>" . $row['prod_sold'] . "</td>
+                                                <td><a href='edit-product.php?id=" . $row['prod_id'] . "'>Edit User</a></td>
+                                                </tr>";
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

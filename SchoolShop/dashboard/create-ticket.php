@@ -94,10 +94,6 @@ if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout

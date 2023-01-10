@@ -66,10 +66,6 @@ include '../connections/root_connection.php';
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -84,48 +80,26 @@ include '../connections/root_connection.php';
             <main>
 
                 <div class="container-fluid">
-                    <div class="row ml-3 mr-3">
-                        <div class="col-md">
-                            <h2 class="text-white ml-3 mt-4">Ticket</h2>
-                            <hr class="bg-secondary" />
-                        </div>
-                    </div>
                     <!--Filter-->
-                    <div class="row ml-3">
+                    <div class="row ml-3 mt-3">
                         <div class="col-md">
                             <div class="panel-card p-3 mb-2">
-                                <p class="text-white ml-3"><strong>Filter</strong></p>
+                            <h3 class="text-white mt-2 ml-2">Ticket</h3>
+                            <hr class="bg-secondary" />
+                                <p class="text-white ml-2"><strong>Filter</strong></p>
                                 <div class="filters d-flex justify-content-start">
-                                    <form class="form" method="get">
+                                    <form class="form ml-2" method="get">
                                         <div class="form-row">
-                                            <div class="form-group">
-                                                <label for="filter_show" class="text-white ml-3">Show:</label>
+                                            <div class="form-group ml-2">
+                                                <label for="filter_show" class="text-white">Show:</label>
                                                 <select class="form-select" name="filter_show">
                                                     <option selected disabled>----</option>
                                                     <option value="all">All tickets</option>
                                                     <option value="assigned_me">Assigned to me</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="filter_priority" class="text-white ml-3">Priority:</label>
-                                                <select class="form-select" name="filter_priority">
-                                                    <option selected>Any Priority</option>
-                                                    <option disabled>----------------</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="high">High</option>
-                                                    <option value="immediate">Immediate</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="filter_created_by" class="text-white ml-3">Created
-                                                    By:</label>
-                                                <select class="form-select" name="filter_created_by">
-                                                    <option selected>Anyone</option>
-                                                    <option>1</option>
-                                                </select>
-                                            </div>
                                         </div>
-                                        <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
+                                        <input type="submit" class="btn btn-sm button-submit" value="Search">
                                     </form>
 
                                 </div>

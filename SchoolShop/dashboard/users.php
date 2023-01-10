@@ -61,10 +61,6 @@ include '../connections/root_connection.php';
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -158,9 +154,8 @@ include '../connections/root_connection.php';
                                     <tbody>
                                         <?php
 
-                                        $searchstring = $_GET['search'];
-
-                                        if (!empty($searchstring)) {
+                                        if (!empty($_GET['search'])) {
+                                            $searchstring = $_GET['search'];
                                             $sql = "SELECT * FROM accounts WHERE name LIKE '%$searchstring%' OR lastname LIKE '%$searchstring%' OR username LIKE '%$searchstring%'";
                                         } else {
                                             $sql = "SELECT * FROM accounts";

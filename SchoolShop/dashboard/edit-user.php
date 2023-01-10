@@ -84,10 +84,6 @@ if ($results->num_rows > 0) {
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -102,12 +98,10 @@ if ($results->num_rows > 0) {
             <main>
                 <div class="container-fluid">
                     <h3 class="text-white ml-5 mt-3">Users</h3>
+                    <hr class="bg-secondary mr-4 ml-4" />
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
                             <div class="panel-card p-3 mb-2">
-                                <h3 class="text-white">Personal</h3>
-                                <hr class="bg-secondary" />
-
                                 <form method="post" action="validate-edit-user.php">
                                     <div class="form-row">
                                         <div class="form-group col-md">
