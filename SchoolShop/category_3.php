@@ -61,10 +61,10 @@ if (!isset($_SESSION['login']['id'])) {
 
 
         <nav id="nav">
+            <a href="home.php" class="nav-item">ALL PRODUCTS</a>
             <a href="#" class="nav-item active">SALE</a>
             <a href="category_1.php" class="nav-item">FRUITS</a>
             <a href="category_2.php" class="nav-item">VEGETABLES</a>
-            <a href="#" class="nav-item">KATEGORIE 3</a>
         </nav>
 
 
@@ -107,20 +107,26 @@ if (!isset($_SESSION['login']['id'])) {
                     class="fa-solid fa-user"></i></a>
             <!-- <i class="fa-solid fa-gear"></i> -->
             <div class="popover-large">
-                <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <?php if (!isset($_SESSION['login']['id'])) { echo '
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-                <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                '; } else { echo '
+                <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                '; } ?>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
         <div id="popover-small" class="popover-small">
-            <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <?php if (!isset($_SESSION['login']['id'])) { echo '
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-            <a class="popover-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            '; } else { echo '
+            <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            '; } ?>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
@@ -129,13 +135,16 @@ if (!isset($_SESSION['login']['id'])) {
 
 
     <!-- Main Content -->
-
+    <div class="main-outer">
     <main>
 
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $sql = "SELECT products.*, discount.value FROM products 
-        INNER JOIN discount ON products.d_id = discount.d_id WHERE discount.value > 0 ORDER BY prod_stock DESC";
+        $sql = "SELECT products.*, discount.value, discount.value 
+                FROM products 
+                INNER JOIN discount ON products.d_id = discount.d_id 
+                WHERE discount.value > 0 
+                ORDER BY prod_stock DESC";
         $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
 
@@ -143,7 +152,9 @@ if (!isset($_SESSION['login']['id'])) {
                 echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
                 echo "<article>";
-                echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "' alt=''>";
+                echo "<div class='prod-pic-outer'>";
+                echo "<img class='prod-pic' src='products/pictures/" . $dsatz["prod_picture"] . "' alt=''>";
+                echo "</div>";
                 echo "<div class='prod-body'>";
                 echo "<h1>" . $dsatz["prod_name"] . "</h1>";
                 echo "<div class='prod-bottom'>";
@@ -159,20 +170,35 @@ if (!isset($_SESSION['login']['id'])) {
                 }
 
                 echo "</div>";
-                echo "<div class='price'>" . number_format($dsatz["prod_price"], 2, ".", ",") . " &euro;</div>";
+
+                $total = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100);
+
+                echo "<div class='price'>";
+
+                if ($dsatz["value"] > 0){
+
+                echo "<div class='price_original'>
+                    &#36; " . number_format($dsatz["prod_price"], 2, ".", ",") . "
+                    </div>";
+                }
+
+                echo "<div class='price_actual'>
+                    &#36; " . number_format($total, 2, ".", ",") . "
+                    </div>
+                </div>";
                 echo "</div>";
                 echo "</div>";
                 echo "</article>";
                 echo "</div>";
                 echo "</div>";
                 echo "</a>";
-                echo "</div>";
         }
         
         mysqli_close($con);
         ?>
 
     </main>
+    </div>
     <!--
     <div class="pagination">
         <a href="" class="pagination-start"><i class="fa-solid fa-angles-left"></i></a>

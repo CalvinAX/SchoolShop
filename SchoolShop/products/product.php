@@ -127,22 +127,28 @@ print_r($_SESSION);
                     class="fa-solid fa-user"></i></a>
             <!-- <i class="fa-solid fa-gear"></i> -->
             <div class="popover-large">
-                <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
-                <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
-                <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-                <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-                <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+                <a class="popover-item" href="../profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <?php if (!isset($_SESSION['login']['id'])) { echo '
+                <a class="popover-item" href="../login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
+                <a class="popover-item" href="../signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+                '; } else { echo '
+                <a class="popover-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                '; } ?>
+                <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
         <div id="popover-small" class="popover-small">
-            <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
-            <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
-            <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
-            <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
-            <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
+            <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <?php if (!isset($_SESSION['login']['id'])) { echo '
+            <a class="popover-item" href="../login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
+            <a class="popover-item" href="../signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+            '; } else { echo '
+            <a class="popover-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            '; } ?>
+            <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+            <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
@@ -189,8 +195,8 @@ print_r($_SESSION);
 
                     if ($dsatz["value"] > 0) {
 
-                    echo "<div class='original-price'>"
-                    . number_format($dsatz["prod_price"], 2, ".", ",") . " &#36;
+                    echo "<div class='original-price'>
+                    &#36; " . number_format($dsatz["prod_price"], 2, ".", ",") . "
                     </div>
 
                     <div class='discount'>
@@ -199,8 +205,8 @@ print_r($_SESSION);
                     }
 
                     echo
-                    "<div class='prod-price'>"
-                    . number_format($total, 2, ".", ",") . " &#36;
+                    "<div class='prod-price'>
+                    &#36; " . number_format($total, 2, ".", ",") . "
                 </div>";
                 }
 
@@ -284,7 +290,7 @@ print_r($_SESSION);
                 </div>
 
                 <div class='middle-content-right'>
-                bewertung und andere wichtige infos
+                
                 </div>
 
                 </div>
@@ -373,7 +379,6 @@ print_r($_SESSION);
 
 
         <div id="prod_quantity">
-        Warenkorb-Menge des Produkts:
             <?php
                 /* Menge eines einzelnen Produktes im Warenkorb */
                 /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden

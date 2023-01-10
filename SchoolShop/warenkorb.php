@@ -60,10 +60,10 @@ if (!isset($_SESSION['login']['id'])) {
 
 
         <nav id="nav">
-            <a href="#" class="nav-item">KATEGORIEN</a>
-            <a href="#" class="nav-item">KATEGORIE 1</a>
-            <a href="#" class="nav-item">KATEGORIE 2</a>
-            <a href="#" class="nav-item">KATEGORIE 3</a>
+            <a href="#" class="nav-item">ALL PRODUCTS</a>
+            <a href="category_3.php" class="nav-item">SALE</a>
+            <a href="category_1.php" class="nav-item">FRUITS</a>
+            <a href="category_2.php" class="nav-item">VEGETABLES</a>
         </nav>
 
 
@@ -74,20 +74,26 @@ if (!isset($_SESSION['login']['id'])) {
                     class="fa-solid fa-user"></i></a>
             <!-- <i class="fa-solid fa-gear"></i> -->
             <div class="popover-large">
-                <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <?php if (!isset($_SESSION['login']['id'])) { echo '
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+                '; } else { echo '
                 <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                '; } ?>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
         <div id="popover-small" class="popover-small">
-            <a class="popover-item" href="#"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <?php if (!isset($_SESSION['login']['id'])) { echo '
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+            '; } else { echo '
             <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            '; } ?>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
@@ -126,7 +132,7 @@ if (!isset($_SESSION['login']['id'])) {
                                     echo "<div class='product'>";
 
                                     echo "<a class='prod-pic-anchor' href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
-                                    echo "<img class='prod-pic' src='pictures/" . $dsatz["prod_picture"] . "'>";
+                                    echo "<img class='prod-pic' src='products/pictures/" . $dsatz["prod_picture"] . "'>";
                                     echo "</a>";
 
                                     echo "<div class='title_price'>";

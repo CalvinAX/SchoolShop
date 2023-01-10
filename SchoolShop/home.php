@@ -103,7 +103,7 @@ if (!isset($_SESSION['login']['id'])) {
 
 
         <nav id="nav">
-            <a href="#" class="nav-item">ALL PRODUCTS</a>
+            <a href="#" class="nav-item active">ALL PRODUCTS</a>
             <a href="category_3.php" class="nav-item">SALE</a>
             <a href="category_1.php" class="nav-item">FRUITS</a>
             <a href="category_2.php" class="nav-item">VEGETABLES</a>
@@ -149,9 +149,12 @@ if (!isset($_SESSION['login']['id'])) {
             <!-- <i class="fa-solid fa-gear"></i> -->
             <div class="popover-large">
                 <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+                <?php if (!isset($_SESSION['login']['id'])) { echo '
                 <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
                 <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+                '; } else { echo '
                 <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+                '; } ?>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
                 <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
@@ -159,9 +162,12 @@ if (!isset($_SESSION['login']['id'])) {
 
         <div id="popover-small" class="popover-small">
             <a class="popover-item" href="profile.php"><i class="fa-solid fa-user"></i>PROFILE</a>
+            <?php if (!isset($_SESSION['login']['id'])) { echo '
             <a class="popover-item" href="login.php"><i class="fa-solid fa-right-to-bracket"></i>LOGIN</a>
             <a class="popover-item" href="signup.php"><i class="fa-solid fa-lock-open"></i>SIGN UP</a>
+            '; } else { echo '
             <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
+            '; } ?>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
             <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
@@ -188,12 +194,15 @@ if (!isset($_SESSION['login']['id'])) {
     </script>
 
     <!-- Main Content -->
-
-    <main>
-
+<div class="main-outer">
+    <main>      
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $res = mysqli_query($con, "SELECT * FROM products ORDER BY prod_stock DESC LIMIT 12");
+        $sql = "SELECT products.*, discount.value 
+                FROM products 
+                LEFT JOIN discount ON products.d_id = discount.d_id 
+                ORDER BY prod_stock DESC LIMIT 12";
+        $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
 
             #if ($dsatz["prod_id"] <= 12) {
@@ -217,16 +226,31 @@ if (!isset($_SESSION['login']['id'])) {
 
                     echo "<div class='in_stock_false'>Sold Out</div>";
                 }
-
+                
                 echo "</div>";
-                echo "<div class='price'>" . number_format($dsatz["prod_price"], 2, ".", ",") . " &euro;</div>";
+
+                $total = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100);
+
+                echo "<div class='price'>";
+
+                if ($dsatz["value"] > 0){
+
+                echo "<div class='price_original'>
+                    &#36; " . number_format($dsatz["prod_price"], 2, ".", ",") . "
+                    </div>";
+                }
+
+                echo "<div class='price_actual'>
+                    &#36; " . number_format($total, 2, ".", ",") . "
+                    </div>
+                </div>";
                 echo "</div>";
                 echo "</div>";
                 echo "</article>";
                 echo "</div>";
                 echo "</div>";
                 echo "</a>";
-                echo "</div>";
+
             #}
         }
         
@@ -254,6 +278,8 @@ if (!isset($_SESSION['login']['id'])) {
         </div>
         -->
     </main>
+    </div>
+
     <div class="pagination">
         <a href="" class="pagination-start"><i class="fa-solid fa-angles-left"></i></a>
         <div class="pagination-number"><i class="fa-solid fa-i"></i></div>
