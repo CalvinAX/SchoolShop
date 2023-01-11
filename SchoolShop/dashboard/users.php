@@ -15,7 +15,7 @@ include '../connections/root_connection.php';
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Users - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,10 +60,6 @@ include '../connections/root_connection.php';
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
-                </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
                 </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -127,10 +123,16 @@ include '../connections/root_connection.php';
                     <!-- 1st Row Infos -->
 
                     <!-- 2nd Row Infos -->
-                    <h3 class="text-white ml-5 mt-3">Users</h3>
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
-                            <div class="panel-card p-3 mb-2">
+                            <div class="panel-card p-3 mb-2 mt-2">
+                                <h3 class="text-white">Users</h3>
+                                <form class="form-inline mt-3" action="users.php" method="get">
+                                    <input class="form-control" type="search" placeholder="Search" name="search"
+                                        id="search">
+                                    <button class="btn button-submit" type="submit">Search</button>
+                                </form>
+                                <hr class="bg-secondary" />
                                 <table>
                                     <thead>
                                         <tr>
@@ -142,15 +144,23 @@ include '../connections/root_connection.php';
                                             <th>Role</th>
                                             <th>Orders</th>
                                             <th>Country</th>
+                                            <th>City</th>
                                             <th>Zip Code</th>
                                             <th>Address</th>
                                             <th>Logged In</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
 
-                                        $sql = "SELECT * FROM accounts";
+                                        if (!empty($_GET['search'])) {
+                                            $searchstring = $_GET['search'];
+                                            $sql = "SELECT * FROM accounts WHERE name LIKE '%$searchstring%' OR lastname LIKE '%$searchstring%' OR username LIKE '%$searchstring%'";
+                                        } else {
+                                            $sql = "SELECT * FROM accounts";
+                                        }
+
                                         $results = $conn->query($sql);
 
                                         if ($results->num_rows > 0) {
@@ -171,14 +181,17 @@ include '../connections/root_connection.php';
 
                                                 echo "<td>" . $row['orders'] . "</td>
                                                 <td>" . $row['country'] . "</td>
+                                                <td>" . $row['city'] . "</td>
                                                 <td>" . $row['zip_code'] . "</td>
                                                 <td>" . $row['address'] . "</td>";
 
                                                 if ($row['logged_in'] == 1) {
-                                                    echo "<td class='text-color-success'>Yes</td></tr>";
+                                                    echo "<td class='text-color-success'>Yes</td>";
                                                 } else {
-                                                    echo "<td class='text-color-danger'>No</td></tr>";
+                                                    echo "<td class='text-color-danger'>No</td>";
                                                 }
+
+                                                echo "<td><a href='edit-user.php?id=" . $row['id'] . "'>Edit User</a></td></tr>";
                                             }
                                         }
                                         ?>

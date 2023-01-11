@@ -15,7 +15,7 @@ include '../connections/root_connection.php';
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Tickets - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,10 +66,6 @@ include '../connections/root_connection.php';
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -84,65 +80,31 @@ include '../connections/root_connection.php';
             <main>
 
                 <div class="container-fluid">
-                    <div class="row ml-3 mr-3">
-                        <div class="col-md">
-                            <h2 class="text-white ml-3 mt-4">Ticket</h2>
-                            <hr class="bg-secondary" />
-                        </div>
-                    </div>
                     <!--Filter-->
-                    <div class="row ml-3">
-                        <div class="col-md">
-                            <p class="text-white ml-3"><strong>Filter</strong></p>
-                            <div class="filters d-flex justify-content-start">
-                                <form class="form" method="get">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="filter_date" class="text-white ml-3">Sort:</label>
-                                            <select class="form-select" name="filter_date">
-                                                <option selected disabled>Sort tickets by:</option>
-                                                <option value="duedate">Due Date</option>
-                                                <option value="id">ID</option>
-                                                <option value="lastupdate">Last Update</option>
-                                                <option value="assignedtoself">Assigned to me</option>
-                                                <option disabled>----------------</option>
-                                                <option value="3">Show all tickets</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="filter_priority" class="text-white ml-3">Priority:</label>
-                                            <select class="form-select" name="filter_priority">
-                                                <option selected>Any Priority</option>
-                                                <option disabled>----------------</option>
-                                                <option value="low">Low</option>
-                                                <option value="high">High</option>
-                                                <option value="immediate">Immediate</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="filter_created_by" class="text-white ml-3">Created By:</label>
-                                            <select class="form-select" name="filter_created_by">
-                                                <option selected>Anyone</option>
-                                                <option disabled>----------------</option>
-                                                <option value="peter">Peter</option>
-                                                <option value="lois">Lois</option>
-                                                <option value="joe">Joe</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="btn btn-sm ml-3 button-submit" value="Search">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Tickets-->
-                <div class="container-fluid">
-
-                    <div class="row ml-3 mr-3">
+                    <div class="row ml-3 mt-3">
                         <div class="col-md">
                             <div class="panel-card p-3 mb-2">
+                            <h3 class="text-white mt-2 ml-2">Ticket</h3>
+                            <hr class="bg-secondary" />
+                                <p class="text-white ml-2"><strong>Filter</strong></p>
+                                <div class="filters d-flex justify-content-start">
+                                    <form class="form ml-2" method="get">
+                                        <div class="form-row">
+                                            <div class="form-group ml-2">
+                                                <label for="filter_show" class="text-white">Show:</label>
+                                                <select class="form-select" name="filter_show">
+                                                    <option selected disabled>----</option>
+                                                    <option value="all">All tickets</option>
+                                                    <option value="assigned_me">Assigned to me</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="btn btn-sm button-submit" value="Search">
+                                    </form>
+
+                                </div>
+                                <hr class="bg-secondary" />
+
                                 <a href="create-ticket.php"><button class="btn button-submit text-white"><i
                                             class="fa-solid fa-plus mr-1"></i>Create</button></a>
                                 <table>
@@ -156,6 +118,7 @@ include '../connections/root_connection.php';
                                             <th>Assigned To</th>
                                             <th>Due Date</th>
                                             <th>Last Updated</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,40 +127,89 @@ include '../connections/root_connection.php';
 
                                         $ses_fullname = $_SESSION['name'] . " " . $_SESSION['lastname'];
 
-                                        $sql = "SELECT * FROM tickets WHERE assigned_to='$ses_fullname'";
+                                        //FILTERS
+                                        
+                                        if (empty($_GET['filter_show'])) {
+                                            $filterShow = "";
+                                        } else {
+                                            $filterShow = $_GET['filter_show'];
+                                        }
+
+                                        $show_query = "";
+
+                                        if ($filterShow == "all") {
+                                            $show_query = "WHERE done='0'";
+                                        } elseif ($filterShow == "assigned_me") {
+                                            $show_query = "WHERE assigned_to='$ses_fullname' AND done='0'";
+                                        } else {
+                                            $show_query = "WHERE assigned_to='$ses_fullname' AND done='0'";
+                                        }
+
+                                        $sql = "SELECT * FROM tickets $show_query";
                                         $results = $conn->query($sql);
 
                                         if ($results->num_rows > 0) {
                                             while ($row = $results->fetch_assoc()) {
 
 
+                                                if ($row['creator'] == $ses_fullname) {
 
-
-                                                echo "<tr class='border-bottom border-dark'>
+                                                    echo "<tr class='border-bottom border-dark'>
                                                         <td>" . $row['id'] . "</td>
                                                         <td>" . $row['type'] . "</td>
                                                         <td>" . $row['title'] . "</td>";
 
-                                                if ($row['priority'] == 'HIGH') {
-                                                    echo "<td class='text-color-warning p-2'>" . $row['priority'] . "</td>";
-                                                } elseif ($row['priority'] == 'IMMEDIATE') {
-                                                    echo "<td class='text-color-danger p-2'>" . $row['priority'] . "</td>";
-                                                } else {
-                                                    echo "<td class='text-color-success p-2'>" . $row['priority'] . "</td>";
-                                                }
+                                                    if ($row['priority'] == 'HIGH') {
+                                                        echo "<td class='text-color-warning p-2'>" . $row['priority'] . "</td>";
+                                                    } elseif ($row['priority'] == 'IMMEDIATE') {
+                                                        echo "<td class='text-color-danger p-2'>" . $row['priority'] . "</td>";
+                                                    } else {
+                                                        echo "<td class='text-color-success p-2'>" . $row['priority'] . "</td>";
+                                                    }
 
-                                                if (strlen($row['description']) > 50) {
-                                                    echo "<td>" . substr($row['description'], 0, 50) . "...</td>";
-                                                } else {
-                                                    echo "<td>" . $row['description'] . "</td>";
-                                                }
+                                                    if (strlen($row['description']) > 50) {
+                                                        echo "<td>" . substr($row['description'], 0, 50) . "...</td>";
+                                                    } else {
+                                                        echo "<td>" . $row['description'] . "</td>";
+                                                    }
 
 
 
-                                                echo "<td>" . $row['assigned_to'] . "</td>
+                                                    echo "<td>" . $row['assigned_to'] . "</td>
                                                         <td><strong>" . $row['due_date'] . "</strong></td>
                                                         <td>" . $row['last_edited'] . "</td>
+                                                        <td><a href='edit-ticket.php?id=" . $row['id'] . "'>Edit Ticket</a></td>
                                                     </tr>";
+
+                                                } else {
+
+                                                    echo "<tr class='border-bottom border-dark'>
+                                                        <td>" . $row['id'] . "</td>
+                                                        <td>" . $row['type'] . "</td>
+                                                        <td>" . $row['title'] . "</td>";
+
+                                                    if ($row['priority'] == 'HIGH') {
+                                                        echo "<td class='text-color-warning p-2'>" . $row['priority'] . "</td>";
+                                                    } elseif ($row['priority'] == 'IMMEDIATE') {
+                                                        echo "<td class='text-color-danger p-2'>" . $row['priority'] . "</td>";
+                                                    } else {
+                                                        echo "<td class='text-color-success p-2'>" . $row['priority'] . "</td>";
+                                                    }
+
+                                                    if (strlen($row['description']) > 50) {
+                                                        echo "<td>" . substr($row['description'], 0, 50) . "...</td>";
+                                                    } else {
+                                                        echo "<td>" . $row['description'] . "</td>";
+                                                    }
+
+
+
+                                                    echo "<td>" . $row['assigned_to'] . "</td>
+                                                        <td><strong>" . $row['due_date'] . "</strong></td>
+                                                        <td>" . $row['last_edited'] . "</td>
+                                                        <td></td>
+                                                    </tr>";
+                                                }
                                             }
                                         }
 
@@ -216,6 +228,8 @@ include '../connections/root_connection.php';
 
                                 ?>
                             </div>
+                        </div>
+                    </div>
             </main>
         </div>
 
