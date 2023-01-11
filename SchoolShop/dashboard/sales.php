@@ -13,7 +13,7 @@ if (!isset($_SESSION['id'])) {
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Sales - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,10 +60,6 @@ if (!isset($_SESSION['id'])) {
                 <a href="tickets.php" class="ml-4">
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
-                </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
                 </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>

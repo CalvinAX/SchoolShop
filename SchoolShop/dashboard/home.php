@@ -7,13 +7,15 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 
+include '../connections/root_connection.php';
+
 ?>
 
 <html>
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>Home - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -59,10 +61,6 @@ if (!isset($_SESSION['id'])) {
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -87,11 +85,17 @@ if (!isset($_SESSION['id'])) {
                             <div class="animation-panel-wrapper">
                                 <div class="panel-card p-3 mb-2">
                                     <div class="panel-1">
-                                        <h3 class="m-3"><i class="fa-solid fa-list mr-2"></i> To-Do</h3>
+                                        <h3 class="m-3"><i class="fa-solid fa-user mr-2"></i>Users</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">You currently have <span>7</span> to-do's!
-                                        </p>
-                                        <p class="ml-3"><a href="#">Click here</a> to see all</p>
+                                        <p class="ml-3 mb-4">There are currently <span>
+                                                <?php $sql_currently_on = "SELECT * FROM accounts";
+
+                                                $result_currently_on = $conn->query($sql_currently_on);
+
+                                                echo mysqli_num_rows($result_currently_on);
+
+                                                ?>
+                                            </span> Users registered!</p>
                                     </div>
                                 </div>
                             </div>
@@ -101,11 +105,17 @@ if (!isset($_SESSION['id'])) {
                             <div class="animation-panel-wrapper">
                                 <div class="panel-card p-3 mb-2">
                                     <div class="panel-2">
-                                        <h3 class="m-3"><i class="fa-solid fa-bug mr-2"></i> Reports</h3>
+                                        <h3 class="m-3"><i class="fa-solid fa-box-open mr-2"></i>Products</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">There are currently <span>3</span> unattended reports!
-                                        </p>
-                                        <p class="ml-3"><a href="#">Click here</a> to see all</p>
+                                        <p class="ml-3 mb-4">There are currently <span>
+                                                <?php $sql_currently_on = "SELECT * FROM products";
+
+                                                $result_currently_on = $conn->query($sql_currently_on);
+
+                                                echo mysqli_num_rows($result_currently_on);
+
+                                                ?>
+                                            </span> Products in the shop!</p>
                                     </div>
                                 </div>
                             </div>
@@ -115,11 +125,17 @@ if (!isset($_SESSION['id'])) {
                             <div class="animation-panel-wrapper">
                                 <div class="panel-card p-3 mb-2">
                                     <div class="panel-3">
-                                        <h3 class="m-3"><i class="fa-solid fa-ticket mr-2"></i> Tickets</h3>
+                                        <h3 class="m-3"><i class="fa-solid fa-ticket mr-2"></i>Tickets</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">There is a total of <span>13</span> tickets open!
-                                        </p>
-                                        <p class="ml-3"><a href="tickets.php">Click here</a> to see all</p>
+                                        <p class="ml-3 mb-4">There are currently <span>
+                                                <?php $sql_currently_on = "SELECT * FROM tickets WHERE done='0'";
+
+                                                $result_currently_on = $conn->query($sql_currently_on);
+
+                                                echo mysqli_num_rows($result_currently_on);
+
+                                                ?>
+                                            </span> Tickets not done!</p>
                                     </div>
                                 </div>
                             </div>

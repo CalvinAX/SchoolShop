@@ -13,7 +13,7 @@ if (!isset($_SESSION['id'])) {
 
 <head>
 
-    <title>Dashboard - Profile</title>
+    <title>API - Dashboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,10 +61,6 @@ if (!isset($_SESSION['id'])) {
                     <i class="fa-solid fa-ticket"></i>
                     Tickets
                 </a>
-                <a href="settings.php" class="ml-4">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
                 <a href="logout.php" class="ml-4">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
@@ -93,9 +89,9 @@ if (!isset($_SESSION['id'])) {
                     <div class="row ml-3 mr-3 mb-2">
                         <div class="col-md">
                             <div class="panel-card p-2">
-                                <a href="#" target="_blank" class="ml-2 api-link">
+                                <a href="api/products-sold.php" target="_blank" class="ml-2 api-link">
                                     <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
-                                    Endpoint 1
+                                    Endpoint - Products Sold
                                 </a>
                             </div>
                         </div>
@@ -103,9 +99,9 @@ if (!isset($_SESSION['id'])) {
                     <div class="row ml-3 mr-3 mb-2">
                         <div class="col-md">
                             <div class="panel-card p-2">
-                                <a href="#" target="_blank" class="ml-2 api-link">
+                                <a href="api/category-sold.php" target="_blank" class="ml-2 api-link">
                                     <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
-                                    Endpoint 2
+                                    Endpoint - Category Sold
                                 </a>
                             </div>
                         </div>
@@ -113,9 +109,9 @@ if (!isset($_SESSION['id'])) {
                     <div class="row ml-3 mr-3 mb-2">
                         <div class="col-md">
                             <div class="panel-card p-2">
-                                <a href="#" target="_blank" class="ml-2 api-link">
+                                <a href="api/recent-orders.php" target="_blank" class="ml-2 api-link">
                                     <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
-                                    Endpoint 3
+                                    Endpoint - Recent Orders
                                 </a>
                             </div>
                         </div>
