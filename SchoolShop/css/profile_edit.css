@@ -1,0 +1,177 @@
+body{
+    height: 100%;
+}
+
+main {
+    margin: 4em 0 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    gap: 2em;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    gap: 20px;
+}
+
+
+
+.form-outer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.heading{
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.form {
+    /*background: var(--color-panel-bg);
+    border-radius: 18px;*/
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.form-section{
+    width: 100%;
+    display: flex;
+    gap: 0.5em;
+}
+
+.form-content{
+    background: var(--color-panel-bg);
+    /*box-shadow: 0px 0px 10px 5px var(--color-bg);*/
+    padding: 0.4em 0.5em;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-content-width-25{
+
+    width: 25%;
+}
+
+.form-content-width-33{
+
+    width: 33.33%;
+}
+
+.form-content-width-50{
+    width: 50%;
+}
+
+.form-content-width-100{
+    width: 100%;
+}
+
+lable{
+    font-size: 0.8em;
+    color: #ffffffED;
+}
+
+.input{
+    /*color: #999a9c;*/
+    background: inherit;
+    color: #fff;
+    border: none;
+    font: inherit;
+    outline: inherit;
+}
+
+.input::placeholder{
+    color: #ffffff99;
+}
+
+.country{
+    border-style: none;
+}
+
+.country-option{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.button_edit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button_edit button {
+    width: 270px; /*20%*/
+    background: #F57914;
+    border: none;
+    border-radius: 10px;
+    height: 3em;
+    font: inherit;
+    outline: inherit;
+    cursor: pointer;
+}
+.button_edit button:active{
+    background: #F57914CD;
+}
+
+
+.button_edit button div{
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+@media (min-width: 375px) {}
+
+
+@media (min-width: 650px) {}
+
+@media (min-width: 768px) {
+
+    body {
+        font-size: 17px;
+    }
+
+    main {
+        margin: 4em 0 4em 0;
+    }
+
+    .main-content {
+        flex-direction: row;
+        max-width: 1214px;
+        gap: 40px;
+    }
+
+    /*Auflistung der Produkte*/
+
+    .form-outer {
+        width: 700px; /* 43em / 57.5%*/
+    }
+
+}
+
+
+@media (min-width: 1200px) {
+
+
+    body {
+        font-size: 1em;
+    }
+
+    main {
+        margin: 6em 0 6em 0;
+        font-size: 1em;
+    }
+
+    .main-content {
+        gap: 60px;
+    }
+
+}
+
+@media (min-width: 1280px) {}

@@ -4,6 +4,19 @@ body {
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     /*font-weight: 700;*/
+
+}
+
+#header-left {
+    justify-content: flex-start;
+}
+
+.nav-item {
+    display: none;
+}
+
+#burger {
+    display: none;
 }
 
 main {
@@ -11,14 +24,20 @@ main {
     border-radius: 18px;
     margin: 1em 1em 1em 1em;
     padding: 1em;*/
-    margin: 6em 0 6em 0;
+    margin: 1em 0 2em 0;
     display: flex;
     justify-content: center;
+    font-size: 0.8em;
 }
 
-.prod-pic-anchor{
-    width: 33%;
-    height: auto;
+
+.prod-pic-anchor {
+    display: flex;
+    align-items: center;
+    max-width: 33%;
+    max-height: auto;
+    /*min-content*/
+    padding: 0.3em;
 }
 
 .prod-pic {
@@ -28,13 +47,247 @@ main {
     overflow: hidden;
 }
 
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    gap: 20px;
+}
 
+
+/*Auflistung der Produkte*/
+
+.products {
+    width: 100%;
+}
+
+.products-inner {
+    background: var(--color-panel-bg);
+    border-radius: 18px;
+}
+
+.product {
+    display: flex;
+    padding: 1em;
+    gap: 1em;
+    /*height: 10.9em;*/
+}
+
+.title_price {
+    display: flex;
+    width: 67%;
+}
+
+.prod-title {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+.quantity {
+    display: flex;
+    /*gap: 1.5em;*/
+    width: 100%;
+}
+
+.trash-can {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+.quantity-right {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+
+.quantity-right-inner {
+    background: #3d6e94;
+    padding: 0.3em 0.5em;
+    border-radius: 10px;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.fa-trash-can {
+    color: #ffffff99;
+}
+
+.fa-plus {
+    color: #ffffffBB;
+}
+
+.fa-minus {
+    color: #ffffffBB;
+}
+
+.quantity-value {
+    color: #ffffffBB;
+}
+
+.button-trash-can {
+    background: inherit;
+    color: inherit;
+    border: none;
+    font: inherit;
+    outline: inherit;
+    cursor: pointer;
+}
+
+.button-trash-can:active .fa-plus {
+    color: #ffffff55;
+}
+
+.button-trash-can:active .fa-minus {
+    color: #ffffff55;
+}
+
+.form-quantity {
+    width: 30%;
+}
+
+.form-quantity-input {
+    width: 60%;
+}
+
+.prod-price {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.horizontal-line-1 {
+    color: #34363a;
+    margin: 0 5% 0 5%;
+}
+
+.empty-cart {
+    height: 22em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Gesamtpreis*/
+
+.total {
+    width: 100%;
+    position: sticky;
+    bottom: 1em;
+}
+
+.total-inner {
+    background: var(--color-panel-bg);
+    padding: 0.7em 1em;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px 5px var(--color-bg);
+}
+
+.original-price {
+    margin: 0.5em 0.5em 0 0.5em;
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff99;
+}
+
+.discount {
+    margin: 0 0.5em 0.5em 0.5em;
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff99;
+}
+
+.total-price {
+    margin: 0 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.total-price-price {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.button-buy-anchor {
+    margin: 1.5em 0.5em 0.5em 0.5em;
+    color: inherit;
+}
+
+.button-buy {
+    width: 100%;
+    background: #F57914;
+    color: inherit;
+    border: none;
+    border-radius: 10px;
+    height: 3em;
+    font: inherit;
+    outline: inherit;
+    cursor: pointer;
+}
+
+.button-buy:active {
+    background: #F57914CD;
+}
+
+.button-text {
+    font-weight: 700;
+}
+
+.horizontal-line-2 {
+    color: #ffffff22;
+    margin: 0.8em 0.5em 0.5em 0.5em;
+}
+
+.continue-shopping {
+    margin: 0.3em 0.5em 0.5em 0.5em;
+    color: #ffffff99;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.continue-shopping:hover {
+    color: #ffffff66;
+}
+
+@media (min-width: 768px) {
+
+    body {
+        font-size: 17px;
+    }
+
+    main {
+        margin: 4em 0 4em 0;
+    }
+
+    .prod-pic-anchor {
+        width: 33%;
+        height: auto;
+        padding: 0;
+    }
+
+    .prod-pic {
+        border-radius: 10px;
+        width: 150px;
+        height: auto;
+    }
 
     .main-content {
-        display: flex;
-        justify-content: center;
-        width: 90%;
-        gap: 5%;
+        flex-direction: row;
+        max-width: 1214px;
+        gap: 40px;
     }
 
 
@@ -44,57 +297,73 @@ main {
         width: 57.5%;
     }
 
-    .products-inner {
-        background: var(--color-panel-bg);
-        border-radius: 18px;
+    .product {
+        padding: 1.5em;
+        height: auto;
     }
+
+    /*Gesamtpreis*/
+
+    .total {
+        width: 37.5%;
+        position: relative;
+        bottom: 0;
+    }
+
+    .total-inner {
+        padding: 1em 1em;
+        gap: 0.2em;
+        position: sticky;
+        top: 11.0625em;
+        box-shadow: none;
+        height: 18em;
+    }
+
+    .total-price {
+        margin: 0.5em 0.5em 0.5em 0.5em;
+    }
+
+}
+
+
+@media (min-width: 1200px) {
+
+
+    body {
+        font-size: 1em;
+    }
+
+    .nav-item {
+        /*opacity: 0;*/
+        /*visibility: hidden;*/
+        display: none;
+    }
+
+    main {
+        margin: 6em 0 6em 0;
+        font-size: 1em;
+    }
+
+    .prod-pic-anchor {
+        max-width: 204px;
+        width: 204px;
+    }
+
+    .prod-pic {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-content {
+        gap: 60px;
+    }
+
+
+    /*Auflistung der Produkte*/
 
     .product {
-        display: flex;
         padding: 2em;
-        gap: 1em;
         height: 10.9em;
-    }
-
-    .title_price {
-        display: flex;
-        width: 67%;
-    }
-
-    .prod-title {
-        width: 70%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 2em;
-    }
-
-    .fa-trash-can {
-        color: #ffffff99;
-    }
-
-    .button-trash-can {
-        background: inherit;
-        color: inherit;
-        border: none;
-        font: inherit;
-        outline: inherit;
-        cursor: pointer;
-    }
-
-    .form-quantity {
-        width: 30%;
-    }
-
-    .form-quantity-input {
-        width: 60%;
-    }
-
-    .prod-price {
-        width: 30%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
     }
 
     .horizontal-line-1 {
@@ -102,94 +371,14 @@ main {
         margin: 0 5% 0 5%;
     }
 
-    .empty-cart {
-        height: 22em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
     /*Gesamtpreis*/
 
-    .total {
-        width: 37.5%;
-    }
-
     .total-inner {
-        background: var(--color-panel-bg);
         padding: 2em;
-        border-radius: 18px;
-        display: flex;
-        flex-direction: column;
         gap: 0.5em;
-        position: sticky;
-        top: 11.0625em;
+        height: auto;
     }
 
-    .original-price {
-        margin: 0.5em 0.5em 0 0.5em;
-        display: flex;
-        justify-content: space-between;
-        color: #ffffff99;
-    }
-
-    .discount {
-        margin: 0 0.5em 0.5em 0.5em;
-        display: flex;
-        justify-content: space-between;
-        color: #ffffff99;
-    }
-
-    .total-price {
-        margin: 0.5em 0.5em 0.5em 0.5em;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-
-    .total-price-price {
-        font-size: 1.5em;
-        font-weight: 700;
-    }
-
-    .button-buy {
-        margin: 1.5em 0.5em 0.5em 0.5em;
-        background: #F57914;
-        color: inherit;
-        border: none;
-        border-radius: 10px;
-        height: 3em;
-        font: inherit;
-        outline: inherit;
-        cursor: pointer;
-    }
-
-    .button-buy:active {
-        background: #F57914CD;
-    }
-
-    .button-text {
-        font-weight: 700;
-    }
-
-    .horizontal-line-2 {
-        color: #ffffff22;
-        margin: 0.8em 0.5em 0.5em 0.5em;
-    }
-
-    .continue-shopping {
-        margin: 0.3em 0.5em 0.5em 0.5em;
-        color: #ffffff99;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1em;
-    }
-
-    .continue-shopping:hover {
-        color: #ffffff66;
-    }
-
+}
 
 @media (min-width: 1280px) {}

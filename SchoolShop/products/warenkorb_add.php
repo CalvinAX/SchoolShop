@@ -1,17 +1,25 @@
 <?php
 session_start();
 
-if (isset($_GET["add"])) {
-    $add = $_GET["add"];
+$add = $_GET["add"];
+
+
+if ($_GET["stock"] > 0 && isset($_GET["add"])) {
+
+
     if (!isset($_SESSION["warenkorb"])) {
         $_SESSION = array("warenkorb" => array($add => 0));
     }
     if (!isset($_SESSION["warenkorb"][$add])) {
         $_SESSION["warenkorb"][$add] = 0;
     }
-    $quantity = $_SESSION["warenkorb"][$add];
-    $quantity += 1;
-    $_SESSION["warenkorb"][$add] = $quantity;
+
+    if ($_SESSION["warenkorb"][$add] < $_GET["stock"]) {
+
+        $quantity = $_SESSION["warenkorb"][$add];
+        $quantity += 1;
+        $_SESSION["warenkorb"][$add] = $quantity;
+    }
 }
 /*session_destroy();
 $_SESSION = array();*/
@@ -20,29 +28,31 @@ $_SESSION = array();*/
 
 /*Gesamtmenge an Produkten im Warenkorb*/
 
-$gesamtmenge = 0;
+if (count($_SESSION["warenkorb"]) > 0) {
 
-foreach ($_SESSION["warenkorb"] as $key => $value) {
+    $gesamtmenge = 0;
 
-    $products[] = $key;
-    $menge[] = $value;
-}
+    foreach ($_SESSION["warenkorb"] as $key => $value) {
 
-for ($i = 0; $i < count($products); $i++) {
+        $products[] = $key;
+        $menge[] = $value;
+    }
 
-    $gesamtmenge = $gesamtmenge + $menge[$i];
-}
+    for ($i = 0; $i < count($products); $i++) {
 
-if (isset($_GET["buy"])) {
+        $gesamtmenge = $gesamtmenge + $menge[$i];
+    }
 
-    if ($_GET["buy"] == 1) {
+    if (isset($_GET["buy"]) && $_GET["buy"] == 1 && $_GET["stock"] > 0) {
+
         echo $gesamtmenge - 1;
         echo "<script>location.replace('../warenkorb.php');</script>";
+    } else {
+        echo $gesamtmenge;
     }
-} 
-else {
-    echo $gesamtmenge;
 }
+
+
 
 /* Idee für dynamische Warenkorb-Menge:
 1. Menge in SESSION speichern und auf seite ausgeben (neben Warenkorb-Icon)

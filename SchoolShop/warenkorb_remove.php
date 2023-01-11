@@ -5,18 +5,22 @@ if (isset($_GET["remove"])) {
     $remove = $_GET["remove"];
 
     unset($_SESSION["warenkorb"][$remove]);
-}
+} 
 
-$con = mysqli_connect("", "root", "", "schoolshop");
+
 
 if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
 
     $con = mysqli_connect("", "root", "", "schoolshop");
-    $i = 0;
+    $sql = "SELECT products.*, discount.value 
+                FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
+    $j = 0;
+    $original_price_total = 0;
+    $after_discount_total = 0;
 
     foreach ($_SESSION["warenkorb"] as $prod_id => $quantity) {
 
-        $res = mysqli_query($con, "SELECT * FROM products");
+        $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
 
             if ($dsatz["prod_id"] == $prod_id) {
@@ -31,37 +35,97 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "<div class='prod-title'>";
                 echo $dsatz["prod_name"];
 
-                echo "<form id='trash-can-". $dsatz["prod_id"] ."'>";
+                echo "<div class='quantity'>";
+
+                echo "<form id='trash-can-". $dsatz["prod_id"] ."' class='trash-can'>";
                 echo "<input type='hidden' name='remove' value='" . $dsatz["prod_id"] . "'>";
                 echo "<button class='button-trash-can'>";
                 echo "<i class='fa-regular fa-trash-can'></i>";
                 echo "</button>";
                 echo "</form>";
 
+                echo "<div class='quantity-right'>";
+                echo "<div class='quantity-right-inner'>";
+
+                echo "<form id='quantity-plus-". $dsatz["prod_id"] ."'>";
+                echo "<input type='hidden' name='add' value='" . $dsatz["prod_id"] . "'>";
+                echo "<input type='hidden' name='stock' value='" . $dsatz["prod_stock"] . "'>";
+                echo "<input type='hidden' name='price' value='" . $dsatz["prod_price"] . "'>";
+                echo "<input type='hidden' name='discount_value' value='" . $dsatz["value"] . "'>";
+                echo "<button class='button-trash-can'>";
+                echo "<i class='fa-solid fa-plus'></i>";
+                echo "</button>";
+                echo "</form>";
+
+                echo "<div id='quantity-value-" . $dsatz["prod_id"] . "' class='quantity-value'>";
+
+
+                if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
+                    $products = array();
+            
+            
+                    foreach ($_SESSION["warenkorb"] as $key => $value) {
+            
+                        $products[] = $key;
+                    }
+            
+                    for ($i = 0; $i < count($products); $i++) {
+            
+                        if ($products[$i] == $dsatz["prod_id"]) {
+            
+                        echo "<div class='prod_quantity'>"
+                            . $_SESSION["warenkorb"][$dsatz["prod_id"]]
+                            . "</div>";
+                        }
+                    }
+                }
+                
+                
                 echo "</div>";
 
-                echo "<div class='prod-price'>";
-       /*hier*/ echo "<div class='form-quantity'><form><input class='form-quantity-input' placeholder='5'></form></div>";
-                echo number_format($dsatz["prod_price"], 2, ",", ".") . " &euro;";
+                echo "<form id='quantity-minus-". $dsatz["prod_id"] ."'>";
+                echo "<input type='hidden' name='add' value='" . $dsatz["prod_id"] . "'>";
+                echo "<input type='hidden' name='stock' value='" . $dsatz["prod_stock"] . "'>";
+                echo "<input type='hidden' name='price' value='" . $dsatz["prod_price"] . "'>";
+                echo "<input type='hidden' name='discount_value' value='" . $dsatz["value"] . "'>";
+
+                echo "<button class='button-trash-can'>";
+                echo "<i class='fa-solid fa-minus'></i>";
+                echo "</button>";
+                echo "</form>";
+
+                echo "</div>";
+
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+
+                echo "<div id='prod-price-". $dsatz["prod_id"] ."' class='prod-price'>";
+
+                $original_price_total += $dsatz["prod_price"] * $quantity;
+                $after_discount = $dsatz["prod_price"] * ((100 - $dsatz["value"]) / 100) * $quantity;
+                $after_discount_total += $after_discount;
+                $discount_total = $original_price_total - $after_discount_total;
+
+                echo "&#36; " . number_format($after_discount, 2, ".", ",");
                 echo "</div>";
                 echo "</div>";
 
                 echo "</div>";
 
-                $i++;
-                if ($i < count($_SESSION["warenkorb"])){
+                $j++;
+                if ($j < count($_SESSION["warenkorb"])){
 
                     echo "<hr class='horizontal-line-1'>";
                 }
 
-                
-
 
                 /*JavaScript in PHP*/
 
+                /*trashcan*/
                 echo "<script>";
-                echo "$('#trash-can-" . $dsatz["prod_id"] . "').submit(function (event) {";
-                echo "event.preventDefault();";
+                echo "$('#trash-can-" . $dsatz["prod_id"] . "').submit(function (remove) {";
+                echo "remove.preventDefault();";
                 echo "$.ajax({";
                 echo "type: 'GET',";
                 echo "url: 'warenkorb_remove.php',";
@@ -73,10 +137,117 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "});";
                 echo "</script>";
 
+                /*plus*/
+                echo "<script>";
+                echo "$('#quantity-plus-" . $dsatz["prod_id"] . "').submit(function (add) {";
+                echo "add.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'warenkorb_add_single.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#quantity-value-" . $dsatz["prod_id"] . "').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+                /*minus*/
+                echo "<script>";
+                echo "$('#quantity-minus-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'warenkorb_minus.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#quantity-value-" . $dsatz["prod_id"] . "').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+
+                /*Gesamtpreis des Produktes aktualiesieren*/
+                echo "<script>";
+                echo "$('#quantity-plus-" . $dsatz["prod_id"] . "').submit(function (add) {";
+                echo "add.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'gesamtpreis_produkt_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#prod-price-" . $dsatz["prod_id"] . "').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+                echo "<script>";
+                echo "$('#quantity-minus-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'gesamtpreis_produkt_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#prod-price-" . $dsatz["prod_id"] . "').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+
+                /*Gesamtpreis & Rabatt aktualiesieren*/
+                echo "<script>";
+                echo "$('#quantity-plus-" . $dsatz["prod_id"] . "').submit(function (add) {";
+                echo "add.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'total_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#total').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+                echo "<script>";
+                echo "$('#quantity-minus-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'total_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#total').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
+
+                echo "<script>";
+                echo "$('#trash-can-" . $dsatz["prod_id"] . "').submit(function (minus) {";
+                echo "minus.preventDefault();";
+                echo "$.ajax({";
+                echo "type: 'GET',";
+                echo "url: 'total_ajax.php',";
+                echo "data: $(this).serialize(),";
+                echo "success: function (data) {";
+                echo "$('#total').html(data);";
+                echo "}";
+                echo "});";
+                echo "});";
+                echo "</script>";
             }
         }
     }
+
+    mysqli_close($con);
+
 } else {
     echo "<div class='empty-cart'>Your Cart is empty :(</div>";
 }
+
 ?>
