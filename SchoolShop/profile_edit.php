@@ -66,7 +66,7 @@ if (isset($_POST["saved"])){
     #if (isset($_POST["profile_picture"])) $profile_picture = htmlspecialchars($_POST["profile_picture"]);
     #if (isset($_POST["password"])) $password = htmlspecialchars($_POST["password"]);
 
-    $con = mysqli_connect("", "root", "", "schoolshop");
+    $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
     $sql = "UPDATE accounts 
     SET name = '$name', 
     lastname = '$lastname', 

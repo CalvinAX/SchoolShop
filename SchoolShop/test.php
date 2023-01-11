@@ -20,7 +20,7 @@ if (!empty($_SESSION["warenkorb"])) {
 session_destroy();
 */
 
-$con = mysqli_connect("", "root", "", "test");
+$con = mysqli_connect("", "root", "Yv44#1l6VeFe", "test");
 $sql = "SELECT * From products, category 
         WHERE products.c_id = category.c_id";
 $res = mysqli_query($con, $sql);

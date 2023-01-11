@@ -2,7 +2,7 @@
 
 session_start();
 
-$con = mysqli_connect("", "root", "", "schoolshop");
+$con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
 
 if (isset($_SESSION["warenkorb"][$_POST["prod_id"]])) {
 
