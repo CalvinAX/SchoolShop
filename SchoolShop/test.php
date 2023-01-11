@@ -20,7 +20,7 @@ if (!empty($_SESSION["warenkorb"])) {
 session_destroy();
 */
 
-$con = mysqli_connect("", "root", "Yv44#1l6VeFe", "test");
+$con = mysqli_connect("", "root", "", "test");
 $sql = "SELECT * From products, category 
         WHERE products.c_id = category.c_id";
 $res = mysqli_query($con, $sql);
@@ -28,7 +28,15 @@ $res = mysqli_query($con, $sql);
 while ($dsatz = mysqli_fetch_array($res)){
 
     echo $dsatz["name"] . "<br>";
+    echo $dsatz["picture"] . "<br>";
 }
 
+$sql2 = "SELECT * FROM products";
+$res2 = mysqli_query($con, $sql2);
+while ($dsatz2 = mysqli_fetch_array($res2)){
+
+    echo $dsatz["name"] . "<br>";
+    echo $dsatz["picture"] . "<br>";
+}
 
 ?>

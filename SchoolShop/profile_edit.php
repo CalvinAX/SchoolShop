@@ -34,78 +34,117 @@ if (!isset($_SESSION['login']['id'])) {
 
 <body>
 
-<?php
+    <?php
 
-if (isset($_POST["saved"])){
+    if (isset($_POST["saved"])) {
 
-    $name = $_SESSION['login']['name'];
-    $lastname = $_SESSION['login']['lastname'];
-    $gender = $_SESSION['login']['gender'];
-    $street = $_SESSION['login']['address'];
-    $house_nr = $_SESSION['login']['house_nr'];
-    $city = $_SESSION['login']['city'];
-    $country = $_SESSION['login']['country'];
-    $zip_code = $_SESSION['login']['zip_code'];
-    $email = $_SESSION['login']['email'];
-    $phone_nr = $_SESSION['login']['phone_nr'];
-    $username = $_SESSION["login"]['username'];
-    #$profile_picture = $_SESSION["login"]['profile_picture'];
-    #$password =
+        $name = $_SESSION['login']['name'];
+        $lastname = $_SESSION['login']['lastname'];
+        $gender = $_SESSION['login']['gender'];
+        $street = $_SESSION['login']['address'];
+        $house_nr = $_SESSION['login']['house_nr'];
+        $city = $_SESSION['login']['city'];
+        $country = $_SESSION['login']['country'];
+        $zip_code = $_SESSION['login']['zip_code'];
+        $email = $_SESSION['login']['email'];
+        $phone_nr = $_SESSION['login']['phone_nr'];
+        $username = $_SESSION["login"]['username'];
+        $profile_picture = $_SESSION["login"]['profile_picture'];
 
-    if (isset($_POST["first-name"])) $name = htmlspecialchars($_POST["first-name"]);
-    if (isset($_POST["last-name"])) $lastname = htmlspecialchars($_POST["last-name"]);
-    if (isset($_POST["gender"])) $gender = htmlspecialchars($_POST["gender"]);
-    if (isset($_POST["street"])) $street = htmlspecialchars($_POST["street"]);
-    if (isset($_POST["house_nr"])) $house_nr = htmlspecialchars($_POST["house_nr"]);
-    if (isset($_POST["city"])) $city = htmlspecialchars($_POST["city"]);
-    if (isset($_POST["country"])) $country = htmlspecialchars($_POST["country"]);
-    if (isset($_POST["postal-code"])) $zip_code = htmlspecialchars($_POST["postal-code"]);
-    if (isset($_POST["email"])) $email = htmlspecialchars($_POST["email"]);
-    if (isset($_POST["phone-number"])) $phone_nr = htmlspecialchars($_POST["phone-number"]);
-    if (isset($_POST["username"])) $username = htmlspecialchars($_POST["username"]);
-    #if (isset($_POST["profile_picture"])) $profile_picture = htmlspecialchars($_POST["profile_picture"]);
-    #if (isset($_POST["password"])) $password = htmlspecialchars($_POST["password"]);
 
-    $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
-    $sql = "UPDATE accounts 
-    SET name = '$name', 
-    lastname = '$lastname', 
-    gender = '$gender', 
-    address = '$street', 
-    house_nr = '$house_nr',
-    city = '$city', 
-    country = '$country', 
-    zip_code = '$zip_code', 
-    email = '$email', 
-    phone_nr = '$phone_nr', 
-    username = '$username'
-    WHERE id = " . $_SESSION["login"]["id"]; # password = $password
+        if (isset($_POST["first-name"]))
+            $name = htmlspecialchars($_POST["first-name"]);
+        if (isset($_POST["last-name"]))
+            $lastname = htmlspecialchars($_POST["last-name"]);
+        if (isset($_POST["gender"]))
+            $gender = htmlspecialchars($_POST["gender"]);
+        if (isset($_POST["street"]))
+            $street = htmlspecialchars($_POST["street"]);
+        if (isset($_POST["house_nr"]))
+            $house_nr = htmlspecialchars($_POST["house_nr"]);
+        if (isset($_POST["city"]))
+            $city = htmlspecialchars($_POST["city"]);
+        if (isset($_POST["country"]))
+            $country = htmlspecialchars($_POST["country"]);
+        if (isset($_POST["postal-code"]))
+            $zip_code = htmlspecialchars($_POST["postal-code"]);
+        if (isset($_POST["email"]))
+            $email = htmlspecialchars($_POST["email"]);
+        if (isset($_POST["phone-number"]))
+            $phone_nr = htmlspecialchars($_POST["phone-number"]);
+        if (isset($_POST["username"]))
+            $username = htmlspecialchars($_POST["username"]);
+        if (isset($_POST["password"]))
+            $password = htmlspecialchars($_POST["password"]);
 
-    $res = mysqli_query($con, $sql);
+        if (isset($_FILES["profile_picture"])) {
 
-    mysqli_close($con);
+            $id = $_SESSION["login"]["id"];
+            $old = $_FILES["profile_picture"]["tmp_name"];
+            if ($_FILES["profile_picture"]["type"] == "image/png") {
 
-$_SESSION['login']['name'] = $name;
-$_SESSION['login']['lastname'] = $lastname;
-$_SESSION['login']['email'] = $email;
-$_SESSION['login']['gender'] = $gender;
-$_SESSION['login']['address'] = $street;
-$_SESSION['login']['house_nr'] = $house_nr;
-$_SESSION['login']['city'] = $city;
-$_SESSION['login']['zip_code'] = $zip_code;
-$_SESSION['login']['country'] = $country;
-$_SESSION['login']['phone_nr'] = $phone_nr;
-$_SESSION["login"]['username'] = $username;
-#$_SESSION["login"]['profile_picture'] = $profile_picture;
+                $new = "profile_pictures/profile-picture-$id.png";
+                $profile_picture = "profile-picture-$id.png";
+            }
+            if ($_FILES["profile_picture"]["type"] == "image/jpeg") {
 
-header("Location: profile.php");
-}
+                $new = "profile_pictures/profile-picture-$id.jpeg";
+                $profile_picture = "profile-picture-$id.jpeg";
+            }
 
-?>
+            move_uploaded_file($old, $new);
+        }
+
+        if (isset($_POST["password"]))
+            $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+
+
+        $con = mysqli_connect("", "root", "", "schoolshop");
+        $sql = "UPDATE accounts 
+                SET name = '$name', 
+                lastname = '$lastname', 
+                gender = '$gender', 
+                address = '$street', 
+                house_nr = '$house_nr',
+                city = '$city', 
+                country = '$country', 
+                zip_code = '$zip_code', 
+                email = '$email', 
+                phone_nr = '$phone_nr', 
+                username = '$username', ";
+
+        if (isset($_POST["password"]))
+            $sql .= "password = '$password_hash', ";
+
+        $sql .= "profile_picture = '$profile_picture'
+             WHERE id = " . $_SESSION["login"]["id"]; # password = $password
+
+        $res = mysqli_query($con, $sql);
+
+        mysqli_close($con);
+
+        $_SESSION['login']['name'] = $name;
+        $_SESSION['login']['lastname'] = $lastname;
+        $_SESSION['login']['email'] = $email;
+        $_SESSION['login']['gender'] = $gender;
+        $_SESSION['login']['address'] = $street;
+        $_SESSION['login']['house_nr'] = $house_nr;
+        $_SESSION['login']['city'] = $city;
+        $_SESSION['login']['zip_code'] = $zip_code;
+        $_SESSION['login']['country'] = $country;
+        $_SESSION['login']['phone_nr'] = $phone_nr;
+        $_SESSION["login"]['username'] = $username;
+        $_SESSION["login"]['profile_picture'] = $profile_picture;
+
+        header("Location: profile.php");
+    }
+
+    ?>
 
     <!-- Main Content -->
 
-    <form action="profile_edit.php" method="post">
+    <form action="profile_edit.php" method="post" enctype="multipart/form-data">
 
         <main>
 
@@ -120,29 +159,25 @@ header("Location: profile.php");
                         <div class="form-section">
                             <div class="form-content form-content-width-33">
                                 <lable for="first-name">First name</lable>
-                                <input id="first-name" class="input" name="first-name" placeholder="Peter"
-                                    value="<?php if (isset($_SESSION["login"]["name"]))
-                                        echo $_SESSION["login"]["name"]; ?>">
+                                <input id="first-name" class="input" name="first-name" placeholder="Peter" value="<?php if (isset($_SESSION["login"]["name"]))
+                                    echo $_SESSION["login"]["name"]; ?>">
                             </div>
                             <div class="form-content form-content-width-33">
                                 <lable for="last-name">Last name</lable>
-                                <input id="last-name" class="input" name="last-name" placeholder="Griffin"
-                                    value="<?php if (isset($_SESSION["login"]["lastname"]))
-                                        echo $_SESSION["login"]["lastname"]; ?>">
+                                <input id="last-name" class="input" name="last-name" placeholder="Griffin" value="<?php if (isset($_SESSION["login"]["lastname"]))
+                                    echo $_SESSION["login"]["lastname"]; ?>">
                             </div>
                             <div class="form-content form-content-width-33">
                                 <lable for="gender">Gender</lable>
-                                <input id="gender" class="input" name="gender" placeholder=""
-                                    value="<?php if (isset($_SESSION["login"]["gender"]))
-                                        echo $_SESSION["login"]["gender"]; ?>">
+                                <input id="gender" class="input" name="gender" placeholder="" value="<?php if (isset($_SESSION["login"]["gender"]))
+                                    echo $_SESSION["login"]["gender"]; ?>">
                             </div>
                         </div>
                         <div class="form-section">
                             <div class="form-content form-content-width-50">
                                 <lable for="street">Street</lable>
-                                <input id="street" class="input" name="street" placeholder="Spooner Street"
-                                    value="<?php if (isset($_SESSION["login"]["address"]))
-                                        echo $_SESSION["login"]["address"]; ?>">
+                                <input id="street" class="input" name="street" placeholder="Spooner Street" value="<?php if (isset($_SESSION["login"]["address"]))
+                                    echo $_SESSION["login"]["address"]; ?>">
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="house_nr">House number</lable>
@@ -261,35 +296,31 @@ header("Location: profile.php");
                             </div>
                             <div class="form-content form-content-width-33">
                                 <lable for="city">City</lable>
-                                <input id="city" class="input" name="city" placeholder="Quahog"
-                                    value="<?php if (isset($_SESSION['login']['city']))
-                                        echo $_SESSION['login']['city']; ?>">
+                                <input id="city" class="input" name="city" placeholder="Quahog" value="<?php if (isset($_SESSION['login']['city']))
+                                    echo $_SESSION['login']['city']; ?>">
                             </div>
                             <div class="form-content form-content-width-33">
                                 <lable for="postal-code">Postal Code</lable>
-                                <input id="popstal-code" class="input" name="postal-code" placeholder="02949"
-                                    value="<?php if (isset($_SESSION['login']['zip_code']))
-                                        echo $_SESSION['login']['zip_code']; ?>">
+                                <input id="popstal-code" class="input" name="postal-code" placeholder="02949" value="<?php if (isset($_SESSION['login']['zip_code']))
+                                    echo $_SESSION['login']['zip_code']; ?>">
                             </div>
                         </div>
                         <div class="form-content form-content-width-100">
                             <lable for="email">E-Mail</lable>
-                            <input id="email" class="input" name="email" placeholder="example@example.com"
-                                value="<?php if (isset($_SESSION['login']['email']))
-                                    echo $_SESSION['login']['email']; ?>">
+                            <input id="email" class="input" name="email" placeholder="example@example.com" value="<?php if (isset($_SESSION['login']['email']))
+                                echo $_SESSION['login']['email']; ?>">
                         </div>
                         <div class="form-content form-content-width-100">
                             <lable for="phone-number">Phone Number</lable>
-                            <input id="phone-number" class="input" name="phone-number"
-                                placeholder="+00 123 44556677" value="<?php if (isset($_SESSION['login']['phone_nr']))
+                            <input id="phone-number" class="input" name="phone-number" placeholder="+00 123 44556677"
+                                value="<?php if (isset($_SESSION['login']['phone_nr']))
                                     echo $_SESSION['login']['phone_nr']; ?>"> <!--901-922-5231-->
                         </div>
                         <div class="form-section">
                             <div class="form-content form-content-width-50">
                                 <lable for="username">Username</lable>
-                                <input id="username" class="input" name="username" placeholder=""
-                                    value="<?php if (isset($_SESSION["login"]["username"]))
-                                        echo $_SESSION["login"]["username"]; ?>">
+                                <input id="username" class="input" name="username" placeholder="" value="<?php if (isset($_SESSION["login"]["username"]))
+                                    echo $_SESSION["login"]["username"]; ?>">
                             </div>
                             <div class="form-content form-content-width-50">
                                 <lable for="password">Password</lable>
@@ -298,7 +329,8 @@ header("Location: profile.php");
                         </div>
                         <div class="form-content form-content-width-100">
                             <lable for="profile_picture">Profile Picture</lable>
-                            <input type="file" id="profile_picture" class="input" name="profile_picture">
+                            <input type="file" id="profile_picture" class="input" name="profile_picture"
+                                accept="image/jpeg, image/png">
                         </div>
                     </div>
                     <div class="seperator"></div>
