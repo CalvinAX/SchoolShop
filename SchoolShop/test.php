@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();
 
 if (!empty($_SESSION["warenkorb"])) {
@@ -17,5 +18,17 @@ if (!empty($_SESSION["warenkorb"])) {
 }
 
 session_destroy();
+*/
+
+$con = mysqli_connect("", "root", "", "test");
+$sql = "SELECT * From products, category 
+        WHERE products.c_id = category.c_id";
+$res = mysqli_query($con, $sql);
+
+while ($dsatz = mysqli_fetch_array($res)){
+
+    echo $dsatz["name"] . "<br>";
+}
+
 
 ?>

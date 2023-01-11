@@ -107,7 +107,7 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 $after_discount_total += $after_discount;
                 $discount_total = $original_price_total - $after_discount_total;
 
-                echo number_format($after_discount, 2, ".", ",") . " &#36;";
+                echo "&#36; " . number_format($after_discount, 2, ".", ",");
                 echo "</div>";
                 echo "</div>";
 

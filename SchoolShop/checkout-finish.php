@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $con = mysqli_connect("", "root", "", "schoolshop");
@@ -21,19 +22,22 @@ if (isset($_SESSION["warenkorb"][$_POST["prod_id"]])) {
             $prod_stock_new = $dsatz["prod_stock"] - $menge[$i];
             $prod_sold_new = $dsatz["prod_sold"] + $menge[$i];
             $category_amount_sold_new = $dsatz["amount_sold"] + $menge[$i];
-            /*$prod_c_id = $dsatz["c_id"];
-            echo $prod_c_id;*/
-            //für Referat
-            #echo "prod_id: " . $products[$i] . "<br>";
-            #echo "prod_stock: " . $dsatz["prod_stock"] . "<br>";
-            #echo "prod_stock_new: " . $prod_stock_new . "<br><br>";
         }
 
         $sql_2 = "UPDATE products p, category c  
                     SET p.prod_stock = " . $prod_stock_new . ", p.prod_sold = " . $prod_sold_new . ", 
                     c.amount_sold = " . $category_amount_sold_new . " WHERE p.prod_id = " . $products[$i] . " AND c.c_id = p.c_id";
         $res_2 = mysqli_query($con, $sql_2);
+
+
+        if (isset($_SESSION["login"]["id"])) {
+
+            $sql_3 = "INSERT INTO orders (account_id, prod_id) VALUES (" . $_SESSION["login"]["id"] . ", " . $products[$i] . ")";
+            $res_3 = mysqli_query($con, $sql_3);
+        }
     }
+
+
 
     mysqli_close($con);
     $_SESSION["warenkorb"] = array();

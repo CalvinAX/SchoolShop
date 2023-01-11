@@ -7,6 +7,18 @@ body {
 
 }
 
+#header-left {
+    justify-content: flex-start;
+}
+
+.nav-item {
+    display: none;
+}
+
+#burger {
+    display: none;
+}
+
 main {
     /*background: #222428; /*var(--color-panel-bg);
     border-radius: 18px;
@@ -17,6 +29,7 @@ main {
     justify-content: center;
     font-size: 0.8em;
 }
+
 
 .prod-pic-anchor {
     display: flex;
@@ -205,7 +218,7 @@ main {
     font-weight: 700;
 }
 
-.button-buy-anchor{
+.button-buy-anchor {
     margin: 1.5em 0.5em 0.5em 0.5em;
     color: inherit;
 }
@@ -249,19 +262,10 @@ main {
     color: #ffffff66;
 }
 
-@media (min-width: 375px) {}
-
-
-@media (min-width: 650px) {}
-
 @media (min-width: 768px) {
 
     body {
         font-size: 17px;
-    }
-
-    .nav-item {
-        display: none;
     }
 
     main {

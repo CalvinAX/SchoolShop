@@ -8,5 +8,5 @@ $quantity = $_SESSION["warenkorb"][$add];
 
 $after_discount = $price * ((100 - $discount_value) / 100) * $quantity;
 
-echo number_format($after_discount, 2, ".", ",") . " &#36;";
+echo "&#36; " . number_format($after_discount, 2, ".", ",");
 ?>

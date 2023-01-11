@@ -30,6 +30,7 @@ if (!isset($_SESSION['login']['id'])) {
 </head>
 
 <body>
+    
     <form action="checkout-finish.php" method="post">
 
         <main>
@@ -227,25 +228,25 @@ if (!isset($_SESSION['login']['id'])) {
                         <div class='original-price'>
                             <div>Original Price</div>
                             <div><?php if (isset($_POST["original_price_total"]))
-                                echo number_format($_POST["original_price_total"], 2, ".", ",") . " &#36;";
+                                echo "&#36; " . number_format($_POST["original_price_total"], 2, ".", ",");
                             else
-                                echo number_format(0, 2, ".", ",") . " &#36;"; ?></div>
+                                echo "&#36; " . number_format(0, 2, ".", ","); ?></div>
 
                         </div>
                         <div class='discount'>
                             <div>Discount</div>
-                            <div>&#45; <?php if (isset($_POST["discount_total"]))
-                                echo number_format($_POST["discount_total"], 2, ".", ",") . " &#36;";
+                            <div>&#36; &#45;<?php if (isset($_POST["discount_total"]))
+                                echo number_format($_POST["discount_total"], 2, ".", ",");
                             else
-                                echo number_format(0, 2, ".", ",") . " &#36;"; ?></div>
+                                echo number_format(0, 2, ".", ","); ?></div>
                         </div>
                         <div class='total-price'>
                             <div>Total</div>
                             <div class='total-price-price'>
                                 <?php if (isset($_POST["after_discount_total"]))
-                                echo number_format($_POST["after_discount_total"], 2, ".", ",") . " &#36;";
+                                echo "&#36; " . number_format($_POST["after_discount_total"], 2, ".", ",");
                             else
-                                echo number_format(0, 2, ".", ",") . " &#36;"; ?></div>
+                                echo "&#36; " . number_format(0, 2, ".", ","); ?></div>
                         </div>
 
                         <input type='hidden' name='prod_id' value='<?php echo $_POST["prod_id"] ?>'>

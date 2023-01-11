@@ -34,16 +34,16 @@ if (!empty($_SESSION["warenkorb"])) {
 echo "
 <div class='original-price'>
     <div>Original Price</div>
-    <div>" . number_format($original_price_total, 2, ".", ",") . " &#36;</div>
+    <div>&#36; " . number_format($original_price_total, 2, ".", ",") . "</div>
     
     </div>
 <div class='discount'>
     <div>Discount</div>
-    <div>&#45; " . number_format($discount_total, 2, ".", ",") . " &#36;</div>
+    <div>&#36; &#45;" . number_format($discount_total, 2, ".", ",") . "</div>
 </div>
 <div class='total-price'>
     <div>Total</div>
-    <div class='total-price-price'>" . number_format($after_discount_total, 2, ".", ",") . " &#36;</div>
+    <div class='total-price-price'>&#36; " . number_format($after_discount_total, 2, ".", ",") . "</div>
 </div>
 <form id='checkout' action='checkout.php' method='post' class='button-buy-anchor'>
 <input type='hidden' name='original_price_total' value='$original_price_total'>

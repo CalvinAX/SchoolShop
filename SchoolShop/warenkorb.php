@@ -49,7 +49,6 @@ if (!isset($_SESSION['login']['id'])) {
 </head>
 
 <body>
-
     <!-- Header -->
 
     <header>
@@ -211,7 +210,7 @@ if (!isset($_SESSION['login']['id'])) {
                                     $after_discount_total += $after_discount;
                                     $discount_total = $original_price_total - $after_discount_total;
 
-                                    echo number_format($after_discount, 2, ".", ",") . " &#36;";
+                                    echo " &#36; " . number_format($after_discount, 2, ".", ",");
                                     echo "</div>";
                                     echo "</div>";
 
@@ -377,16 +376,16 @@ if (!isset($_SESSION['login']['id'])) {
                         <div id='total' class='total-inner'>
                             <div class='original-price'>
                                 <div>Original Price</div>
-                                <div>" . number_format($original_price_total, 2, ".", ",") . " &#36;</div>
+                                <div>&#36; " . number_format($original_price_total, 2, ".", ",") . "</div>
                                 
                                 </div>
                             <div class='discount'>
                                 <div>Discount</div>
-                                <div>&#45; " . number_format($discount_total, 2, ".", ",") . " &#36;</div>
+                                <div>&#36; &#45;" . number_format($discount_total, 2, ".", ",") . "</div>
                             </div>
                             <div class='total-price'>
                                 <div>Total</div>
-                                <div class='total-price-price'>" . number_format($after_discount_total, 2, ".", ",") . " &#36;</div>
+                                <div class='total-price-price'>&#36; " . number_format($after_discount_total, 2, ".", ",") . "</div>
                             </div>
                             <form id='checkout' action='checkout.php' method='post' class='button-buy-anchor'>
                             <input type='hidden' name='original_price_total' value='$original_price_total'>
@@ -416,16 +415,16 @@ if (!isset($_SESSION['login']['id'])) {
                         <div id='total' class='total-inner'>
                             <div class='original-price'>
                                 <div>Original Price</div>
-                                <div>" . number_format($original_price_total, 2, ".", ",") . " &#36;</div>
+                                <div>&#36; " . number_format($original_price_total, 2, ".", ",") . "</div>
                                 
                                 </div>
                             <div class='discount'>
                                 <div>Discount</div>
-                                <div>&#45; " . number_format($discount_total, 2, ".", ",") . " &#36;</div>
+                                <div>&#36; &#45;" . number_format($discount_total, 2, ".", ",") . "</div>
                             </div>
                             <div class='total-price'>
                                 <div>Total</div>
-                                <div class='total-price-price'>" . number_format($after_discount_total, 2, ".", ",") . " &#36;</div>
+                                <div class='total-price-price'>&#36; " . number_format($after_discount_total, 2, ".", ",") . "</div>
                             </div>
                             <form id='checkout' action='checkout.php' method='post' class='button-buy-anchor'>
                             <input type='hidden' name='original_price_total' value='$original_price_total'>

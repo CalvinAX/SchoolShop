@@ -157,7 +157,7 @@ print_r($_SESSION);
         <div class="content">
         <?php
         $con = mysqli_connect("", "root", "", "schoolshop");
-        $sql = "SELECT products.*, discount.value, category.category_name FROM products 
+        $sql = "SELECT products.*, discount.value, category.category_name FROM products
                     LEFT JOIN discount ON products.d_id = discount.d_id 
                     LEFT JOIN category ON products.c_id = category.c_id";
         $res = mysqli_query($con, $sql);
@@ -309,11 +309,26 @@ print_r($_SESSION);
                             <input type='radio' name='slider' id='slide1' checked=''checked>
                             <input type='radio' name='slider' id='slide2'>
                             <input type='radio' name='slider' id='slide3'>
-                            <div class='slider_inner'>
+                            <div class='slider_inner'>";
+
+                            $sql_2 = "SELECT * FROM product_pictures
+                                      WHERE prod_id = " . $dsatz["prod_id"];
+                            $res_2 = mysqli_query($con, $sql_2);
+                            while ($dsatz_2 = mysqli_fetch_array($res_2)) {
+
+                                echo "
+                                <img class='slider-content' src='pictures/" . $dsatz_2["product_picture"] . "'>";
+                                $test = 1;
+                            } 
+                            
+                            if (!isset($test)){
+                                echo "
                                 <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>
-                                <!--<img class='slider-content' src='pictures/image.png'>-->
                                 <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>
-                                <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>
+                                <img class='slider-content' src='pictures/" . $dsatz["prod_picture"] . "'>";
+                            }
+
+                            echo "
                             </div>
                             <div class='labels'>
                                 <label for='slide1'></label>
