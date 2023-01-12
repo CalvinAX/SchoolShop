@@ -11,7 +11,7 @@ if (isset($_SESSION['id'])) {
     header("location: login.php");
 } else {
     echo "<strong>No session to log out off</strong>";
-    //header("location: index.php");
+    header("location: login.php");
 }
 
 ?>

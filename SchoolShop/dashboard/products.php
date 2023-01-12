@@ -86,6 +86,8 @@ include '../connections/root_connection.php';
                                         id="search">
                                     <button class="btn button-submit" type="submit">Search</button>
                                 </form>
+                                <a href="create-product.php"><button class="btn button-submit text-white"><i
+                                            class="fa-solid fa-plus mr-1"></i>Create</button></a>
                                 <hr class="bg-secondary" />
                                 <table>
                                     <thead>
@@ -127,13 +129,13 @@ include '../connections/root_connection.php';
                                                 $d_sql = "SELECT * FROM discount WHERE d_id='$d_id'";
                                                 $d_result = $conn->query($d_sql);
 
-                                                if($c_result->num_rows > 0) {
+                                                if ($c_result->num_rows > 0) {
                                                     while ($c_row = $c_result->fetch_assoc()) {
                                                         $category = $c_row['category_name'];
                                                     }
                                                 }
 
-                                                if($d_result->num_rows > 0) {
+                                                if ($d_result->num_rows > 0) {
                                                     while ($d_row = $d_result->fetch_assoc()) {
                                                         $discount = $d_row['value'];
                                                     }

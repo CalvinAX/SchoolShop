@@ -154,53 +154,53 @@ include '../connections/root_connection.php';
                                         <tr>
                                             <th class="p-2">#</th>
                                             <th>Name</th>
+                                            <th>Buyer</th>
                                             <th>Price</th>
-                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-pending p-3">Pending</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-delivered p-3">Delivered</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-declined p-3">Declined</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-pending p-3">Pending</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-pending p-3">Pending</td>
-                                        </tr>
-                                        <tr class="border-bottom border-dark">
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-delivered p-3">Delivered</td>
-                                        </tr>
-                                        <tr>
-                                            <td>124</td>
-                                            <td>Mango - Limited Gaming Edition</td>
-                                            <td>15,00 €</td>
-                                            <td class="payment-status-pending p-3">Pending</td>
-                                        </tr>
+                                        <?php
+
+                                        $sql = "SELECT * FROM orders ORDER BY date DESC LIMIT 10";
+                                        $results = $conn->query($sql);
+
+                                        if ($results->num_rows > 0) {
+                                            while ($row = $results->fetch_assoc()) {
+
+                                                $date = $row['date'];
+                                                $order_id = $row['order_id'];
+                                                $buyer_order_id = $row['account_id'];
+                                                $prod_order_id = $row['prod_id'];
+
+                                                $sql_prod = "SELECT * FROM products";
+                                                $sql_buyer = "SELECT * FROM accounts";
+                                                $results_prod = $conn->query($sql_prod);
+                                                $results_buyer = $conn->query($sql_buyer);
+
+                                                if ($results_prod->num_rows > 0) {
+                                                    while ($row_prod = $results_prod->fetch_assoc()) {
+                                                        $prod_name = $row_prod['prod_name'];
+                                                        $prod_price = $row_prod['prod_price'];
+                                                    }
+                                                }
+
+                                                if ($results_buyer->num_rows > 0) {
+                                                    while ($row_buyer = $results_buyer->fetch_assoc()) {
+                                                        $buyer_name = $row_buyer['name'] . " " . $row_buyer['lastname'];
+                                                    }
+                                                }
+
+                                                echo "<tr class='border-bottom border-dark'>
+                                                <td class='p-3'>$order_id</td>
+                                                <td>$prod_name</td>
+                                                <td>$buyer_name</td>
+                                                <td>$ $prod_price</td></tr>";
+
+                                            }
+                                        }
+
+                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>

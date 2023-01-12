@@ -1,10 +1,27 @@
+getData();
+
+var sold = [];
+
+async function getData() {
+  const response = await fetch('http://localhost/projects/gitrepository/schoolshop/schoolshop/schoolshop/dashboard/api/category-sold.php');
+  const data = await response.json();
+
+  var length = data.length;
+  
+  for (let i = 0; i < length; i++) {
+    sold.push(data[i].amount_sold);
+  }
+  
+}
+
+
 var placeholder2 = {
-    series: [44, 54, 26, 37, 72],
+    series: sold,
     chart: {
         width: 500,
         type: 'pie',
     },
-    labels: ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'],
+    labels: ['Fruits', 'Vegetables'],
 }
 
 
