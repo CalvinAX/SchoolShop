@@ -9,27 +9,6 @@ if (!isset($_SESSION['id'])) {
 
 include '../connections/root_connection.php';
 
-$product_id = $_GET['id'];
-
-$sql = "SELECT * FROM products WHERE prod_id='$product_id'";
-
-$results = $conn->query($sql);
-
-if ($results->num_rows > 0) {
-    while ($row = $results->fetch_assoc()) {
-        $prod_id = $row['prod_id'];
-        $prod_name = $row['prod_name'];
-        $prod_description = $row['prod_description'];
-        $prod_price = $row['prod_price'];
-        $prod_vendor = $row['prod_vendor'];
-        $prod_stock = $row['prod_stock'];
-        $prod_picture = $row['prod_picture'];
-        $prod_discount = $row['d_id'];
-        $prod_category = $row['c_id'];
-        $prod_sold = $row['prod_sold'];
-    }
-}
-
 ?>
 
 <html>
@@ -111,22 +90,22 @@ if ($results->num_rows > 0) {
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
                             <div class="panel-card p-4 mb-2">
-                                <form method="post" action="validate-edit-product.php">
+                                <form method="post" action="validate-create-product.php">
                                     <div class="form-row">
                                         <div class="form-group col-md">
                                             <label for="inputProductName" class="text-white">Name</label>
                                             <input type="text" class="form-control" id="inputProductName"
-                                                name="inputProductName" value="<?php echo $prod_name; ?>">
+                                                name="inputProductName" placeholder="Banana...">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputProductPrice" class="text-white">Price</label>
                                             <input type="text" class="form-control" id="inputProductPrice"
-                                                name="inputProductPrice" value="<?php echo $prod_price; ?>">
+                                                name="inputProductPrice" placeholder="999.99">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputProductStock" class="text-white">Stock</label>
                                             <input type="text" class="form-control" id="inputProductStock"
-                                                name="inputProductStock" value="<?php echo $prod_stock; ?>">
+                                                name="inputProductStock" placeholder="5000">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -134,14 +113,7 @@ if ($results->num_rows > 0) {
                                             <label for="inputProductCategory" class="text-white">Category</label>
                                             <select id="inputProductCategory" class="form-control"
                                                 name="inputProductCategory">
-                                                <option selected value="<?php echo $prod_category; ?>">
-                                                    <?php if ($prod_category == 1) {
-                                                        echo "Fruit";
-                                                    } elseif ($prod_category == 2) {
-                                                        echo "Vegetable";
-                                                    } ?>
-                                                </option>
-                                                <option disabled>------------</option>
+                                                <option selected disabled value="1">Please Choose...</option>
                                                 <option value="1">Fruit</option>
                                                 <option value="2">Vegetable</option>
                                             </select>
@@ -149,43 +121,29 @@ if ($results->num_rows > 0) {
                                         <div class="form-group col-md">
                                             <label for="inputProductVendor" class="text-white">Vendor</label>
                                             <input type="text" class="form-control" id="inputProductVendor"
-                                                name="inputProductVendor" value="<?php echo $prod_vendor; ?>">
+                                                name="inputProductVendor" placeholder="Example Fruits GmbH">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md">
                                             <label for="inputProductSold" class="text-white">Sold</label>
                                             <input type="text" class="form-control" id="inputProductSold"
-                                                name="inputProductSold" value="<?php echo $prod_sold; ?>">
+                                                name="inputProductSold" value="0" disabled>
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputProductPicture" class="text-white">Picture</label>
-                                            <input type="text" class="form-control" id="inputProductPicture"
+                                            <input type="file" class="form-control" id="inputProductPicture"
                                                 name="inputProductPicture" value="<?php echo $prod_picture; ?>">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputProductDiscount" class="text-white">Discount</label>
                                             <select id="inputProductDiscount" class="form-control"
                                                 name="inputProductDiscount">
-                                                <option selected value="<?php echo $prod_discount; ?>">
-                                                    <?php if ($prod_discount == 1) {
-                                                        echo "10 %";
-                                                    } elseif ($prod_discount == 2) {
-                                                        echo "20 %";
-                                                    } elseif ($prod_discount == 3) {
-                                                        echo "25 %";
-                                                    } elseif ($prod_discount == 4) {
-                                                        echo "50 %";
-                                                    } elseif ($prod_discount == 5) {
-                                                        echo "0 %";
-                                                    } ?>
-                                                </option>
-                                                <option disabled>------------</option>
+                                                <option value="5">0 %</option>
                                                 <option value="1">10 %</option>
                                                 <option value="2">20 %</option>
                                                 <option value="3">25 %</option>
                                                 <option value="4">50 %</option>
-                                                <option value="5">0 %</option>
                                             </select>
                                         </div>
                                     </div>
@@ -194,14 +152,11 @@ if ($results->num_rows > 0) {
                                                 length: 5000</small></label>
                                         <textarea class="form-control" id="inputProductDescription"
                                             name="inputProductDescription" style="white-space: pre-wrap;" rows="5"
-                                            maxlength="5000"><?php echo $prod_description; ?></textarea>
+                                            maxlength="5000"></textarea>
                                     </div>
-                                    <input type="hidden" name="id" id="id" value="<?php echo $prod_id; ?>">
-                                    <button type="submit" class="btn button-submit" name="submit">Edit</button>
+                                    <button type="submit" class="btn button-submit" name="submit">Create</button>
                                     <button onclick="location.href='products.php'" type="button"
-                                        class="btn button-submit">Cancel</button>
-                                    <button onclick="location.href='delete-product.php?id=<?php echo $prod_id; ?>'" type="button"
-                                        class="btn btn-danger">Delete</button>
+                                        class="btn btn-danger">Cancel</button>
                                 </form>
 
                             </div>

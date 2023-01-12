@@ -8,14 +8,12 @@ $sql = "SELECT * FROM category";
 
 $results = $conn->query($sql);
 
-$data = mysqli_fetch_array($results);
+$data = array();
+
+while($fetchedRecords = mysqli_fetch_assoc($results) ) {
+    $data[] = $fetchedRecords;
+}
 
 echo json_encode($data);
-
-
-// [
-// {"FRUIT" : "5"},
-// {"VEGETABLE" : "3"}
-// ]
 
 ?>

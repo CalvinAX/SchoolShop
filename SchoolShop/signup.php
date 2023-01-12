@@ -24,7 +24,7 @@
 
         <div class="d-flex justify-content-center">
 
-            <div class="signup-form mt-5 p-3 border rounded">
+            <div class="signup-form mt-5 p-3">
 
                 <form action="components/authentication_signup.php" method="post">
 
@@ -67,7 +67,7 @@
 
                     <br />
 
-                    <button type="submit" class="btn btn-primary mt-2">Register</button>
+                    <button type="submit" class="btn button-submit mt-2">Register</button>
 
                 </form>
 

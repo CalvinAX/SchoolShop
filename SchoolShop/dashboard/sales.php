@@ -7,6 +7,8 @@ if (!isset($_SESSION['id'])) {
     header("location: login.php");
 }
 
+include '../connections/root_connection.php';
+
 ?>
 
 <html>
@@ -82,28 +84,6 @@ if (!isset($_SESSION['id'])) {
                             <hr class="bg-secondary" />
                         </div>
                     </div>
-                    <!-- 1st Row Infos -->
-                    <div class="row ml-3 mr-3">
-                        <div class="col-md">
-                            <div class="panel-card mb-3">
-                                <div class="d-flex justify-content-center">
-                                    <div id="chart_placeholder_1" class="chart mt-2">
-                                        <script src="js-charts/apexcharts/placeholder_chart_1.js"></script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="panel-card p-3 mb-3">
-                                <div class="d-flex justify-content-center">
-                                    <div id="chart_placeholder_2" class="chart mt-2">
-                                        <script src="js-charts/apexcharts/placeholder_chart_2.js"></script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 1st Row Infos -->
 
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
@@ -112,9 +92,16 @@ if (!isset($_SESSION['id'])) {
                                     <div class="panel-1">
                                         <h3 class="m-3">Total Sales</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">Currently sold: <span>7</span> products!
+                                        <p class="ml-3 mb-4">Currently sold: <span>
+                                                <?php $sql_sold_total = "SELECT * FROM orders";
+
+                                                $result_sold_total = $conn->query($sql_sold_total);
+
+                                                echo mysqli_num_rows($result_sold_total);
+
+                                                ?>
+                                            </span> products!
                                         </p>
-                                        <p class="ml-3">With a total generated Revenue of: <span>7,99 €</span>.</p>
                                     </div>
                                 </div>
                             </div>
@@ -124,12 +111,17 @@ if (!isset($_SESSION['id'])) {
                             <div class="animation-panel-wrapper">
                                 <div class="panel-card p-3 mb-3">
                                     <div class="panel-2">
-                                        <h3 class="m-3">Yearly Earnings</h3>
+                                        <h3 class="m-3">Yearly Sales</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">In <span>2022</span> earned money: <span>500,00
-                                                €</span>!
+                                        <p class="ml-3 mb-4">In <span>2023</span> sold Products: <span>
+                                                <?php $sql_sold_yearly = "SELECT * FROM orders WHERE date >= DATE(NOW() - INTERVAL 1 MONTH)";
+
+                                                $result_sold_yearly = $conn->query($sql_sold_yearly);
+
+                                                echo mysqli_num_rows($result_sold_yearly);
+
+                                                ?></span>
                                         </p>
-                                        <p class="ml-3">With a total of <span>500</span> sold products.</p>
                                     </div>
                                 </div>
                             </div>
@@ -139,12 +131,17 @@ if (!isset($_SESSION['id'])) {
                             <div class="animation-panel-wrapper">
                                 <div class="panel-card p-3 mb-3">
                                     <div class="panel-3">
-                                        <h3 class="m-3">Best Month</h3>
+                                        <h3 class="m-3">Monthly Sales</h3>
                                         <hr />
-                                        <p class="ml-3 mb-4">In <span>December</span> earned: <span>500,00
-                                                €</span>!
+                                        <p class="ml-3 mb-4">In <span>December</span> sold Products: <span>
+                                                <?php $sql_sold_monthly = "SELECT * FROM orders WHERE date >= DATE(NOW() - INTERVAL 1 YEAR)";
+
+                                                $result_sold_monthly = $conn->query($sql_sold_monthly);
+
+                                                echo mysqli_num_rows($result_sold_monthly);
+                                                ?>
+                                            </span>!
                                         </p>
-                                        <p class="ml-3">With a total of <span>230</span> sold products.</p>
                                     </div>
                                 </div>
                             </div>
@@ -153,9 +150,50 @@ if (!isset($_SESSION['id'])) {
 
                     <div class="row ml-3 mr-3">
                         <div class="col-md">
-                            <div class="panel-card mb-3 p-3">
-                                <div id="chart_placeholder_3" class="chart mt-2">
-                                    <script src="js-charts/apexcharts/placeholder_chart_3.js"></script>
+                            <div class="animation-panel-wrapper">
+                                <div class="panel-card p-3 mb-3">
+                                    <div class="panel-3">
+                                        <h3 class="m-3">Category Sales</h3>
+                                        <hr />
+                                        <p class="ml-3 mb-4">In the categroy <span>Fruits</span> were <span>
+                                                <?php $sql_sold_category = "SELECT * FROM category WHERE c_id='1'";
+
+                                                $results_sold_category = $conn->query($sql_sold_category);
+
+                                                if ($results_sold_category->num_rows > 0) {
+                                                    while ($row_sold_category = $results_sold_category->fetch_assoc()) {
+                                                        echo $row_sold_category['amount_sold'];
+                                                    }
+                                                }
+
+                                                ?>
+                                            </span> products sold!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="animation-panel-wrapper">
+                                <div class="panel-card p-3 mb-3">
+                                    <div class="panel-1">
+                                        <h3 class="m-3">Category Sales</h3>
+                                        <hr />
+                                        <p class="ml-3 mb-4">In the categroy <span>Vegetables</span> were <span>
+                                                <?php $sql_sold_category_2 = "SELECT * FROM category WHERE c_id='2'";
+
+                                                $results_sold_category_2 = $conn->query($sql_sold_category_2);
+
+                                                if ($results_sold_category_2->num_rows > 0) {
+                                                    while ($row_sold_category_2 = $results_sold_category_2->fetch_assoc()) {
+                                                        echo $row_sold_category_2['amount_sold'];
+                                                    }
+                                                }
+
+                                                ?>
+                                            </span> products sold!
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
