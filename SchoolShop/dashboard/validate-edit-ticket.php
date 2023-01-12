@@ -2,12 +2,12 @@
 
 include '../connections/root_connection.php';
 
-$ticketType = $_REQUEST['inputTicketType'];
-$ticketTitle = $_REQUEST['inputTicketTitle'];
-$ticketPriority = $_REQUEST['inputTicketPriority'];
-$ticketAssignedTo = $_REQUEST['inputTicketAssigned'];
-$ticketDescription = $_REQUEST['inputTicketDescription'];
-$ticketDueDate = $_REQUEST['inputTicketDueDate'];
+$ticketType = htmlspecialchars($_REQUEST['inputTicketType']);
+$ticketTitle = htmlspecialchars($_REQUEST['inputTicketTitle']);
+$ticketPriority = htmlspecialchars($_REQUEST['inputTicketPriority']);
+$ticketAssignedTo = htmlspecialchars($_REQUEST['inputTicketAssigned']);
+$ticketDescription = htmlspecialchars($_REQUEST['inputTicketDescription']);
+$ticketDueDate = htmlspecialchars($_REQUEST['inputTicketDueDate']);
 $id = $_REQUEST['id'];
 
 if (isset($_POST['submit']) && !empty($_REQUEST['inputTicketType']) && !empty($_REQUEST['inputTicketTitle']) && !empty($_REQUEST['inputTicketDescription']) && isset($_REQUEST['inputTicketPriority']) && isset($_REQUEST['inputTicketAssigned'])) {

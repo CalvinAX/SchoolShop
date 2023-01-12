@@ -2,15 +2,15 @@
 
 include '../connections/root_connection.php';
 
-$productName = $_REQUEST['inputProductName'];
-$productPrice = $_REQUEST['inputProductPrice'];
-$productStock = $_REQUEST['inputProductStock'];
-$productCategory = $_REQUEST['inputProductCategory'];
-$productVendor = $_REQUEST['inputProductVendor'];
-$productSold = $_REQUEST['inputProductSold'];
-$productPicture = $_REQUEST['inputProductPicture'];
-$productDiscount = $_REQUEST['inputProductDiscount'];
-$productDescription = $_REQUEST['inputProductDescription'];
+$productName = htmlspecialchars($_REQUEST['inputProductName']);
+$productPrice = htmlspecialchars($_REQUEST['inputProductPrice']);
+$productStock = htmlspecialchars($_REQUEST['inputProductStock']);
+$productCategory = htmlspecialchars($_REQUEST['inputProductCategory']);
+$productVendor = htmlspecialchars($_REQUEST['inputProductVendor']);
+$productSold = htmlspecialchars($_REQUEST['inputProductSold']);
+$productPicture = htmlspecialchars($_REQUEST['inputProductPicture']);
+$productDiscount = htmlspecialchars($_REQUEST['inputProductDiscount']);
+$productDescription = htmlspecialchars($_REQUEST['inputProductDescription']);
 $id = $_REQUEST['id'];
 
 if (isset($_POST['submit']) && !empty($productName) && !empty($productPrice) && !empty($productCategory) && !empty($productVendor) && !empty($productPicture) && !empty($productDiscount) && !empty($productDescription)) {

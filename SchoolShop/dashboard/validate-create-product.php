@@ -2,13 +2,13 @@
 
 include '../connections/root_connection.php';
 
-$productName = $_REQUEST['inputProductName'];
-$productPrice = $_REQUEST['inputProductPrice'];
-$productStock = $_REQUEST['inputProductStock'];
-$productCategory = $_REQUEST['inputProductCategory'];
-$productVendor = $_REQUEST['inputProductVendor'];
-$productDiscount = $_REQUEST['inputProductDiscount'];
-$productDescription = $_REQUEST['inputProductDescription'];
+$productName = htmlspecialchars($_REQUEST['inputProductName']);
+$productPrice = htmlspecialchars($_REQUEST['inputProductPrice']);
+$productStock = htmlspecialchars($_REQUEST['inputProductStock']);
+$productCategory = htmlspecialchars($_REQUEST['inputProductCategory']);
+$productVendor = htmlspecialchars($_REQUEST['inputProductVendor']);
+$productDiscount = htmlspecialchars($_REQUEST['inputProductDiscount']);
+$productDescription = htmlspecialchars($_REQUEST['inputProductDescription']);
 $productSold = "0";
 
 if (isset($_POST['submit']) && !empty($productName) && !empty($productPrice) && !empty($productCategory) && !empty($productVendor) && !empty($productDiscount) && !empty($productDescription)) {

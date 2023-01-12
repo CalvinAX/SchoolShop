@@ -2,16 +2,16 @@
 
 include '../connections/root_connection.php';
 
-$userFirstname = $_REQUEST['inputUserFirstname'];
-$userLastname = $_REQUEST['inputUserLastname'];
-$userGender = $_REQUEST['inputUserGender'];
-$userEmail = $_REQUEST['inputUserEmail'];
-$userUsername = $_REQUEST['inputUserUsername'];
-$userRole = $_REQUEST['inputUserRole'];
-$userAddress = $_REQUEST['inputUserAddress'];
-$userCountry = $_REQUEST['inputUserCountry'];
-$userCity = $_REQUEST['inputUserCity'];
-$userZip = $_REQUEST['inputUserZip'];
+$userFirstname = htmlspecialchars($_REQUEST['inputUserFirstname']);
+$userLastname = htmlspecialchars($_REQUEST['inputUserLastname']);
+$userGender = htmlspecialchars($_REQUEST['inputUserGender']);
+$userEmail = htmlspecialchars($_REQUEST['inputUserEmail']);
+$userUsername = htmlspecialchars($_REQUEST['inputUserUsername']);
+$userRole = htmlspecialchars($_REQUEST['inputUserRole']);
+$userAddress = htmlspecialchars($_REQUEST['inputUserAddress']);
+$userCountry = htmlspecialchars($_REQUEST['inputUserCountry']);
+$userCity = htmlspecialchars($_REQUEST['inputUserCity']);
+$userZip = htmlspecialchars($_REQUEST['inputUserZip']);
 $userId = $_REQUEST['id'];
 
 if (isset($_POST['submit']) && !empty($_REQUEST['inputUserZip']) && !empty($_REQUEST['inputUserCity']) && !empty($_REQUEST['inputUserCountry']) && !empty($_REQUEST['inputUserAddress']) && isset($_REQUEST['inputUserRole']) && !empty($_REQUEST['inputUserFirstname']) && !empty($_REQUEST['inputUserLastname']) && !empty($_REQUEST['inputUserGender']) && !empty($_REQUEST['inputUserUsername'])) {

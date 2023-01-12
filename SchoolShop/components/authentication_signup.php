@@ -9,11 +9,11 @@ header( "location: ../index.php" );
 
 include '../connections/root_connection.php';
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$gender = $_POST['gender'];
+$email = htmlspecialchars($_POST['email']);
+$password = htmlspecialchars($_POST['password']);
+$firstname = htmlspecialchars($_POST['firstname']);
+$lastname = htmlspecialchars($_POST['lastname']);
+$gender = htmlspecialchars($_POST['gender']);
 
 $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
