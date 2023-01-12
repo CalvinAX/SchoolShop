@@ -302,3 +302,15 @@ footer {
         display: none;
     }
 }
+
+.sources {
+    background-color: #222428;
+    margin: 32px;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.sources hr {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
