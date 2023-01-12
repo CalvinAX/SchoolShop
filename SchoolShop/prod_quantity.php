@@ -2,8 +2,6 @@
 session_start();         
     /* Menge eines einzelnen Produktes im Warenkorb */
 
-    /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden*/
-
     if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
         $products = array();
 

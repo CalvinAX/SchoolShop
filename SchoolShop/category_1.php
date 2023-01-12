@@ -3,8 +3,6 @@ session_start();
 
 if (!isset($_SESSION['login']['id'])) {
     $_SESSION['login'] = array();
-    //session_destroy();
-    //header("location: login.php");
 }
 ?>
 
@@ -56,7 +54,7 @@ if (!isset($_SESSION['login']['id'])) {
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="home.php"><img src="logo3.png" id="logo"></a>
+            <a href="home.php"><img src="logo8.png" id="logo"></a>
         </div>
 
 
@@ -115,7 +113,6 @@ if (!isset($_SESSION['login']['id'])) {
                 <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
                 '; } ?>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
@@ -128,7 +125,6 @@ if (!isset($_SESSION['login']['id'])) {
             <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
             '; } ?>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
@@ -200,15 +196,9 @@ if (!isset($_SESSION['login']['id'])) {
 
     </main>
     </div>
-    <!--
-    <div class="pagination">
-        <a href="" class="pagination-start"><i class="fa-solid fa-angles-left"></i></a>
-        <div class="pagination-number"><i class="fa-solid fa-i"></i></div>
-        <a href="home2.php"><i class="fa-solid fa-angles-right"></i></a>
-    </div>
-    -->
+
     <footer>
-        Footer
+    <a href="sources.html" class="footer-anchor">Text und Bildquellen</a>
     </footer>
 
 </body>

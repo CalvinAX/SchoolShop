@@ -3,8 +3,6 @@ session_start();
 
 if (!isset($_SESSION['login']['id'])) {
     $_SESSION['login'] = array();
-    //session_destroy();
-    //header("location: login.php");
 }
 ?>
 
@@ -54,7 +52,7 @@ if (!isset($_SESSION['login']['id'])) {
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="home.php"><img src="logo3.png" id="logo"></a>
+            <a href="home.php"><img src="logo8.png" id="logo"></a>
         </div>
 
 
@@ -81,7 +79,6 @@ if (!isset($_SESSION['login']['id'])) {
                 <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
                 '; } ?>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
@@ -94,7 +91,6 @@ if (!isset($_SESSION['login']['id'])) {
             <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
             '; } ?>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
@@ -344,24 +340,6 @@ if (!isset($_SESSION['login']['id'])) {
                                     echo "});";
                                     echo "</script>";
 
-/*
-
-
-
-                                    $('#shopping_cart').submit(function (event) {
-                                        event.preventDefault();
-                                        $.ajax({
-                                            type: 'GET',
-                                            url: 'warenkorb_add.php',
-                                            data: $(this).serialize(),
-                                            success: function (data) {
-                                                $("#result").html(data);
-                                            }
-                                        });
-                        
-                                    });
-                                    */
-
                                 }
                             }
                         }
@@ -451,62 +429,13 @@ if (!isset($_SESSION['login']['id'])) {
                             }
                 }
 
-                    /*$original_price_total
-                    $discount_total
-                    $after_discount_total*/
                     ?>
 
-            <!--
-            <div class="total">
-                <div class="total-inner">
-                    <div class="original-price">
-                        <div>Original Price</div>
-                        <div>15 €</div>
-                    </div>
-                    <div class="discount">
-                        <div>Discount</div>
-                        <div>- 2 €</div>
-                    </div>
-                    <div class="total-price">
-                        <div>Total</div>
-                        <div class="total-price-price">13 €</div>
-                    </div>
-                    <button class="button-buy">
-                        <div class="button-text">BUY</div>
-                    </button>
-                    <hr class="horizontal-line-2">
-                    <a class="continue-shopping" href="home.php"><i class="fa-solid fa-backward"></i>Continue
-                        Shopping</a>
-                </div>
-            </div>
-                -->
         </div>
     </main>
 
-    <!--
-    <script> /*remove Pordukt von Warenkorb (in PHP)*/
-
-        $('#trash-can').submit(function (event) {
-            event.preventDefault();
-            $.ajax({
-                type: 'GET',
-                url: 'warenkorb_remove.php',
-                data: $(this).serialize(),
-                success: function (data) {
-                    $("#result").html(data);
-                }
-            });
-        });
-
-
-    </script>
-    -->
-
-
-
-
     <footer>
-        Footer
+    <a href="sources.html" class="footer-anchor">Text und Bildquellen</a>
     </footer>
 
 </body>

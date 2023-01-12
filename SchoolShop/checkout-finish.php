@@ -114,7 +114,7 @@ if (isset($_SESSION["warenkorb"][$_POST["prod_id"]])) {
     <main>
         <div class="main-content">
             <div class='main-content-inner'>
-                <div class="message">Thanks for your purchase, <?php echo $_POST["first-name"] ?> :)</div>
+                <div class="message">Thanks for your purchase, <?php echo htmlspecialchars($_POST["first-name"]) ?> :)</div>
                 <hr class='horizontal-line'>
                 <a class='continue-shopping' href='home.php'><i class='fa-solid fa-backward'></i>Continue
                     Shopping</a>

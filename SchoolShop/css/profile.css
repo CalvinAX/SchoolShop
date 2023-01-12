@@ -26,6 +26,18 @@ main {
 
 }
 
+.back{
+    margin: 1em 0 0 2em;
+    position: absolute;
+    left: 4em;
+    text-decoration: none;
+    color: inherit;
+}
+
+.back:hover{
+    color: var(--color-info-light)
+}
+
 .div-image {
     background: #1b1c1f99;
     padding: 2em 0 0 0;

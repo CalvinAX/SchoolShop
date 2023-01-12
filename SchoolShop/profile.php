@@ -3,8 +3,6 @@ session_start();
 
 if (!isset($_SESSION['login']['id'])) {
     $_SESSION['login'] = array();
-    //session_destroy();
-    //header("location: login.php");
 }
 ?>
 
@@ -40,6 +38,7 @@ if (!isset($_SESSION['login']['id'])) {
 
     <?php if (isset($_SESSION["login"]["id"])) {
         echo "
+        <a href='home.php' class='back'>HOME</a>
             <div class='div-image'>
                 <a href='" . $_SESSION["login"]["profile_picture"] . "'>
                     <img class='image' src='profile_pictures/" . $_SESSION["login"]["profile_picture"] . "'>
@@ -95,10 +94,6 @@ if (!isset($_SESSION['login']['id'])) {
                     <div class='pi_row'>
                         <div class='pi_content'>PASSWORD</div>
                         <div class='pi_content'>***</div>
-                    </div>
-                    <div class='pi_row'>
-                        <div class='pi_content'>FIRST NAME:</div>
-                        <div class='pi_content'>Peter</div>
                     </div>
                 </div>
             </div>";
@@ -160,7 +155,7 @@ if (!isset($_SESSION['login']['id'])) {
                         <div class='pi_content'>PASSWORD</div>
                         <div class='pi_content'></div>
                     </div>
-                    <div class='pi_row'>
+                    <div class='pi_row' style="visibility: hidden;">
                         <div class='pi_content'>???</div>
                         <div class='pi_content'></div>
                     </div>
@@ -177,9 +172,3 @@ if (!isset($_SESSION['login']['id'])) {
 </body>
 
 </html>
-
-
-
-
-
-<!-- <i class="fa-solid fa-backward"></i> -->
