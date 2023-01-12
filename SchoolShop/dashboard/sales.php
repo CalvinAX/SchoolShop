@@ -87,8 +87,8 @@ if (!isset($_SESSION['id'])) {
                         <div class="col-md">
                             <div class="panel-card mb-3">
                                 <div class="d-flex justify-content-center">
-                                    <div id="chart_placeholder_1" class="chart mt-2">
-                                        <script src="js-charts/apexcharts/placeholder_chart_1.js"></script>
+                                    <div id="recent-orders-chart" class="chart mt-2">
+                                        <script src="js-charts/apexcharts/recent-orders-chart.js"></script>
                                     </div>
                                 </div>
                             </div>
