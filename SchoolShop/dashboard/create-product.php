@@ -133,12 +133,7 @@ include '../connections/root_connection.php';
                                         <div class="form-group col-md">
                                             <label for="inputProductPicture" class="text-white">Picture</label>
                                             <input type="file" class="form-control" id="inputProductPicture"
-                                                name="inputProductPicture" accept="image/jpeg, image/png">
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <lable for="profile_picture">Profile Picture</lable>
-                                            <input type="file" id="profile_picture" class="input" name="profile_picture"
-                                                accept="image/jpeg, image/png">
+                                                name="inputProductPicture" value="<?php echo $prod_picture; ?>">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="inputProductDiscount" class="text-white">Discount</label>

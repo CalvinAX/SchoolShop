@@ -152,7 +152,7 @@ include '../connections/root_connection.php';
                                                 <td>" . $row['prod_stock'] . "</td>
                                                 <td>" . $discount . " %</td>
                                                 <td>" . $row['prod_sold'] . "</td>
-                                                <td><a href='edit-product.php?id=" . $row['prod_id'] . "'>Edit User</a></td>
+                                                <td><a href='edit-product.php?id=" . $row['prod_id'] . "'>Edit Product</a></td>
                                                 </tr>";
                                             }
                                         }

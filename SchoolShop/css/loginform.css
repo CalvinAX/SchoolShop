@@ -1,3 +1,30 @@
 .signup-form {
 	width: 600px;
 }
+
+body {
+	background-color: #181a1e !important;
+	color: white !important;
+}
+
+.signup-form {
+	background-color: #222428;
+	border-radius: 15px;
+	border-color: #222428;
+}
+
+.button-submit {
+    background-color: #7380ec !important;
+    border-color: #6c77d8 !important;
+    color: white;
+}
+
+.button-submit:focus, .search-submit:active {
+    border-radius: 4px !important;
+    border-color: #6c77d8 !important;
+}
+
+
+.button-submit:hover {
+    background-color: #6c77d8 !important;
+}

@@ -199,7 +199,9 @@ if ($results->num_rows > 0) {
                                     <input type="hidden" name="id" id="id" value="<?php echo $prod_id; ?>">
                                     <button type="submit" class="btn button-submit" name="submit">Edit</button>
                                     <button onclick="location.href='products.php'" type="button"
-                                        class="btn btn-danger">Cancel</button>
+                                        class="btn button-submit">Cancel</button>
+                                    <button onclick="location.href='delete-product.php?id=<?php echo $prod_id; ?>'" type="button"
+                                        class="btn btn-danger">Delete</button>
                                 </form>
 
                             </div>
