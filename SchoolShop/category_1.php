@@ -135,7 +135,7 @@ if (!isset($_SESSION['login']['id'])) {
     <main>
 
         <?php
-        $con = mysqli_connect("", "root", "", "schoolshop");
+        $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
         $sql = "SELECT products.*, category.category_name, discount.value 
                 FROM products 
                 LEFT JOIN category ON products.c_id = category.c_id 

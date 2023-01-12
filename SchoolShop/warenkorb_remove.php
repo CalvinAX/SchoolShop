@@ -11,7 +11,7 @@ if (isset($_GET["remove"])) {
 
 if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
 
-    $con = mysqli_connect("", "root", "", "schoolshop");
+    $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
     $sql = "SELECT products.*, discount.value 
                 FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
     $j = 0;

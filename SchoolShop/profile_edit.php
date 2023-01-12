@@ -99,7 +99,7 @@ if (!isset($_SESSION['login']['id'])) {
 
 
 
-        $con = mysqli_connect("", "root", "", "schoolshop");
+        $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
         $sql = "UPDATE accounts 
                 SET name = '$name', 
                 lastname = '$lastname', 
