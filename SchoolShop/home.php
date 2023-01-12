@@ -98,7 +98,7 @@ if (!isset($_SESSION['login']['id'])) {
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="home.php"><img src="logo3.png" id="logo"></a>
+            <a href="home.php"><img src="logo8.png" id="logo"></a>
         </div>
 
 
@@ -197,7 +197,7 @@ if (!isset($_SESSION['login']['id'])) {
 <div class="main-outer">
     <main>      
         <?php
-        $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
+        $con = mysqli_connect("", "root", "", "schoolshop");
         $sql = "SELECT products.*, discount.value 
                 FROM products 
                 LEFT JOIN discount ON products.d_id = discount.d_id 

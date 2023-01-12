@@ -7,7 +7,7 @@ $after_discount_total = 0;
 
 if (!empty($_SESSION["warenkorb"])) {
 
-    $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
+    $con = mysqli_connect("", "root", "", "schoolshop");
     $sql = "SELECT products.*, discount.value 
             FROM products LEFT JOIN discount ON products.d_id = discount.d_id";
 

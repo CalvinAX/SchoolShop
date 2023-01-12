@@ -139,7 +139,7 @@ if (!isset($_SESSION['login']['id'])) {
     <main>
 
         <?php
-        $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
+        $con = mysqli_connect("", "root", "", "schoolshop");
         $sql = "SELECT products.*, discount.value, discount.value 
                 FROM products 
                 INNER JOIN discount ON products.d_id = discount.d_id 

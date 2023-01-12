@@ -39,11 +39,10 @@ if (!isset($_SESSION['login']['id'])) {
     <main>
 
     <?php if (isset($_SESSION["login"]["id"])) {
-
         echo "
             <div class='div-image'>
                 <a href='" . $_SESSION["login"]["profile_picture"] . "'>
-                    <img class='image' src='" . $_SESSION["login"]["profile_picture"] . "'>
+                    <img class='image' src='profile_pictures/" . $_SESSION["login"]["profile_picture"] . "'>
                 </a>
             </div>
             <div class='username'>
