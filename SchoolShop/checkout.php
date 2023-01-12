@@ -3,8 +3,7 @@ session_start();
 
 if (!isset($_SESSION['login']['id'])) {
     $_SESSION['login'] = array();
-    //session_destroy();
-    //header("location: login.php");
+    header("location: login.php");
 }
 ?>
 
@@ -263,65 +262,6 @@ if (!isset($_SESSION['login']['id'])) {
 
         </main>
     </form>
-    <!--
-    <div class="main-content">
-
-
-<div class='form-outer'>
-
-    <div class="heading">Personal Information</div>
-
-
-    <form>
-        <div class="form-section">
-            <input class="input-1" name="first-name" placeholder="First name">
-            <input class="input-1" name="last-name" placeholder="Last name">
-        </div>
-        <div class="form-section">
-            <input class="input-1" name="street" placeholder="Street">
-            <input class="input-1" name="number" placeholder="House number">
-        </div>
-        <div class="form-section">
-            <input class="input-1" name="country" placeholder="Country">
-            <input class="input-1" name="postal-code" placeholder="Postal Code">
-        </div>
-        <input class="input-2" name="email" placeholder="E-Mail">
-
-    </form>
-
-
-
-
-
-</div>
-<div class='total'>
-    <div id='total' class='total-inner'>
-        <div class='original-price'>
-            <div>Original Price</div>
-            <div>&#36;</div>
-
-        </div>
-        <div class='discount'>
-            <div>Discount</div>
-            <div>&#45; &#36;</div>
-        </div>
-        <div class='total-price'>
-            <div>Total</div>
-            <div class='total-price-price'>&#36;</div>
-        </div>
-        <a href='checkout.php' class='button-buy-anchor'>
-            <button class='button-buy'>
-                <div class='button-text'>PAY</div>
-            </button>
-        </a>
-        <hr class='horizontal-line-2'>
-        <a class='continue-shopping' href='home.php'><i class='fa-solid fa-backward'></i>Continue
-            Shopping</a>
-    </div>
-</div>
-</div>
-
--->
 
 </body>
 

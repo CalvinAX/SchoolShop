@@ -3,7 +3,6 @@ session_start();
 
 if (!isset($_SESSION['login']['id'])) {
     $_SESSION['login'] = array();
-    //session_destroy();
     header("location: login.php");
 }
 ?>

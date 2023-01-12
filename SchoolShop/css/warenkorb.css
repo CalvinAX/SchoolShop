@@ -262,6 +262,10 @@ main {
     color: #ffffff66;
 }
 
+.footer-anchor{
+    text-decoration: none;
+}
+
 @media (min-width: 768px) {
 
     body {

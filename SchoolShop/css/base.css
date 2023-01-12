@@ -179,10 +179,23 @@ header a {
 /* Footer */
 
 footer {
+    height: 7em;
     padding: 0.6em;
     border-radius: 18px;
     margin: 0 1em 1em 1em;
     background: var(--color-panel-bg);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-anchor{
+    color: inherit;
+}
+
+.footer-anchor:hover{
+    color: var(--color-info-light)
 }
 
 @media (min-width: 768px) {

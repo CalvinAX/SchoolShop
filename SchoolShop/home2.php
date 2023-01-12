@@ -3,9 +3,6 @@ session_start();
 
 if (!isset($_SESSION['login']['id'])) {
     $_SESSION['login'] = array();
-
-    //session_destroy();
-    //header("location: login.php");
 } 
 ?>
 
@@ -29,21 +26,6 @@ if (!isset($_SESSION['login']['id'])) {
     <script src="https://kit.fontawesome.com/e7a056b5ad.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        /*
-                function toggle(id) {
-                    var e = document.getElementById(id);
-                    if (e.style.display == "none") {
-        
-                        e.style.display = "";
-                        /*e.classList.toggle("nav2");
-                    }
-                    else {
-        
-                        e.style.display = "none";
-                        /*e.classList.toggle("nav2");
-                    }
-                }
-        */
 
         /* kann zu einer funktion angepasst werden */
 
@@ -59,34 +41,6 @@ if (!isset($_SESSION['login']['id'])) {
 
         }
 
-
-
-        /*
-                var e = document.getElementById(nav);
-        
-                e.addEventListener("click", function () {
-                    var e2 = document.getElementById("nav");
-                    el2.classList.add('nav1');
-                })
-        */
-    </script>
-    <script>
-        /*
-        setTimeout(function () {
-
-            var e = document.getElementById(id);
-            if (e.style.display == "none") {
-                e.classList.toggle("nav2");
-            }
-            else {
-
-                e.classList.toggle("nav2");
-
-                alert('Hello World!');
-            }
-
-        }, 2000);
-*/
     </script>
 
 </head>
@@ -98,7 +52,7 @@ if (!isset($_SESSION['login']['id'])) {
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="home.php"><img src="logo3.png" id="logo"></a>
+            <a href="home.php"><img src="logo8.png" id="logo"></a>
         </div>
 
 
@@ -156,7 +110,6 @@ if (!isset($_SESSION['login']['id'])) {
                 <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
                 '; } ?>
                 <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
@@ -169,29 +122,9 @@ if (!isset($_SESSION['login']['id'])) {
             <a class="popover-item" href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
             '; } ?>
             <a class="popover-item" href="warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
-    <!--
-    <div id="nav1" class="nav2">
-        <a href="#" class="nav-link">KATEGORIEN</a>
-        <a href="#" class="nav-link">KATEGORIE 1</a>
-        <a href="#" class="nav-link">KATEGORIE 2</a>
-        <a href="#" class="nav-link">KATEGORIE 3</a>
-    </div>
-    -->
-
-    <script>
-        /*
-                if (window.innerWidth > 900) {
-                    document.getElementById("nav").style.display = "";
-                } else {
-        
-                    document.getElementById("nav").style.display = "none"
-                }
-        */
-    </script>
 
     <!-- Main Content -->
     <div class="main-outer">
@@ -206,7 +139,6 @@ if (!isset($_SESSION['login']['id'])) {
         $res = mysqli_query($con, $sql);
         while ($dsatz = mysqli_fetch_array($res)) {
 
-            #if ($dsatz["prod_id"] > 12 && $dsatz["prod_id"] <= 24) {
                 echo "<div class='article2'>";
                 echo "<a href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
                 echo "<div class='article'>";
@@ -251,32 +183,12 @@ if (!isset($_SESSION['login']['id'])) {
                 echo "</div>";
                 echo "</div>";
                 echo "</a>";
-            #}
+            
         }
 
         mysqli_close($con);
         ?>
 
-        <!--
-        <div class="article2">
-            <div class="article">
-                <article>
-                    <img class="prod-pic" src="default.png" alt="">
-                    <div class="prod-body">
-                        <h1>sus</h1>
-                        <div class="prod-bottom">
-                            <div class="availability">
-                                <div class="in_stock_false">In Stock</div>
-                                <div class="dot">•</div>
-                                <div class="quantity_false">0</div>
-                            </div>
-                            <div class="price">14,99 €</div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-        -->
     </main>
     </div>
 
@@ -286,18 +198,8 @@ if (!isset($_SESSION['login']['id'])) {
         <a href="home3.php"><i class="fa-solid fa-angles-right"></i></a>
     </div>
 
-
-    <!--
-    <form name="pagination" class="pagination" action="home.php" method="post">
-
-        <a href="javascript:document.pagination.submit()"><i class="fa-solid fa-angles-left"></i></a>
-        <i class="fa-solid fa-i"></i>
-        <i class="fa-solid fa-angles-right"></i>
-    </form>
-    -->
-
     <footer>
-        Footer
+    <a href="sources.html" class="footer-anchor">Text und Bildquellen</a>
     </footer>
 
 </body>

@@ -21,9 +21,6 @@ if ($_GET["stock"] > 0 && isset($_GET["add"])) {
         $_SESSION["warenkorb"][$add] = $quantity;
     }
 }
-/*session_destroy();
-$_SESSION = array();*/
-
 
 
 /*Gesamtmenge an Produkten im Warenkorb*/
@@ -51,16 +48,4 @@ if (count($_SESSION["warenkorb"]) > 0) {
         echo $gesamtmenge;
     }
 }
-
-
-
-/* Idee für dynamische Warenkorb-Menge:
-1. Menge in SESSION speichern und auf seite ausgeben (neben Warenkorb-Icon)
-Problem: da Seite nicht neugeladen wird, wird die Warenkorbmenge nicht dynamisch angepass und behält daher den alten
-Wert
-2. Nach dem Aufruf der warenkorb_add.php (this), wird das div, in dem sich der Code für das Ausgeben der Warenkorb-Menge
-befindet,
-durch den Rückgabewert (aktuallisiertes SESSION-Array) überschrieben
-Problem: Beim Erstaufruf der Seite gibt die warenkorb_add.php Datei keinen Rückgabewert, daher muss 1. existieren
-*/
 ?>

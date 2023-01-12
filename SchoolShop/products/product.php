@@ -74,7 +74,7 @@ print_r($_SESSION);
     <header>
         <div id="header-left">
             <a href="javascript:toggle('nav')" id="burger"><i class="fa-solid fa-bars"></i></a>
-            <a href="../home.php"><img src="../logo3.png" id="logo"></a>
+            <a href="../home.php"><img src="../logo8.png" id="logo"></a>
         </div>
 
 
@@ -135,7 +135,6 @@ print_r($_SESSION);
                 <a class="popover-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
                 '; } ?>
                 <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-                <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
             </div>
         </div>
 
@@ -148,7 +147,6 @@ print_r($_SESSION);
             <a class="popover-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</a>
             '; } ?>
             <a class="popover-item" href="../warenkorb.php"><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
-            <a class="popover-item" href="../settings.php"><i class="fa-solid fa-gear"></i>SETTINGS</a>
         </div>
 
     </header>
@@ -378,13 +376,6 @@ print_r($_SESSION);
 
                 </div>
                 </div>";
-                
-                /*echo "<form action='product.php?prod_id=" . $dsatz["prod_id"] . "' method='post'>";
-                <!--<a class="shopping_cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                </a>-->
-                echo "<input type='submit' value='In den Warenkorb'>";*/
-
             }
 
         }
@@ -394,27 +385,6 @@ print_r($_SESSION);
 
 
         <div id="prod_quantity">
-            <?php
-                /* Menge eines einzelnen Produktes im Warenkorb */
-                /*Array müssen zurückgesetzt werden, da sonst die Werte von oben übernommen werden würden
-                if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
-                    $products = array();
-
-
-                    foreach ($_SESSION["warenkorb"] as $key => $value) {
-
-                        $products[] = $key;
-                    }
-
-                    for ($i = 0; $i < count($products); $i++) {
-
-                        if ($products[$i] == $_GET["prod_id"]) {
-
-                            echo $_SESSION["warenkorb"][$_GET["prod_id"]];
-                        }
-                    }
-                }*/
-            ?>
 
             </div>
         
@@ -468,7 +438,7 @@ print_r($_SESSION);
     </main>
 
     <footer>
-        Footer
+    <a href="sources.html" class="footer-anchor">Text und Bildquellen</a>
     </footer>
 
 </body>

@@ -53,8 +53,8 @@ include 'connections/root_connection.php';
                 <?php
 
                 if (isset($_POST['login'])) {
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
+                    $email = htmlspecialchars($_POST['email']);
+                    $password = htmlspecialchars($_POST['password']);
 
                     $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
