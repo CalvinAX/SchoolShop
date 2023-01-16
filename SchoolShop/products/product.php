@@ -154,7 +154,7 @@ print_r($_SESSION);
     <main>
         <div class="content">
         <?php
-        $con = mysqli_connect("", "root", "Yv44#1l6VeFe", "schoolshop");
+        $con = mysqli_connect("", "root", "", "schoolshop");
         $sql = "SELECT products.*, discount.value, category.category_name FROM products
                     LEFT JOIN discount ON products.d_id = discount.d_id 
                     LEFT JOIN category ON products.c_id = category.c_id";
