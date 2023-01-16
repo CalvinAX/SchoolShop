@@ -55,9 +55,9 @@ include 'connections/root_connection.php';
                 if (isset($_POST['login'])) {
                     $email = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
-                    echo $password;
+
                     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-                    echo $password_hash;
+
                     $sql = mysqli_query($conn, "SELECT * FROM accounts WHERE email = '$email'");
                     $row = mysqli_fetch_array($sql);
 
@@ -106,7 +106,7 @@ include 'connections/root_connection.php';
                 
                 //If logged in -> send to index.php
                 if (isset($_SESSION['login']['name'])) {
-                    #header("Location: home.php");
+                    header("Location: home.php");
                 }
 
                 ?>
