@@ -28,7 +28,7 @@ if (isset($_SESSION["warenkorb"]) && count($_SESSION["warenkorb"]) <> 0) {
                 echo "<div class='product'>";
 
                 echo "<a class='prod-pic-anchor' href='products/product.php?prod_id=" . $dsatz["prod_id"] . "'>";
-                echo "<img class='prod-pic' src='" . $dsatz["prod_picture"] . "'>";
+                echo "<img class='prod-pic' src='products/pictures/" . $dsatz["prod_picture"] . "'>";
                 echo "</a>";
 
                 echo "<div class='title_price'>";

@@ -43,17 +43,17 @@ include '../connections/root_connection.php';
                         <input type="password" class="form-control" id="password" name="password"
                             placeholder="Password">
                     </div>
-                    <input type="submit" class="btn button-submit" name="login" value="Login">
+                    <input type="submit" class="btn button-submit" name="login_dashboard" value="Login">
                 </form>
 
                 <?php
 
-                if (isset($_POST['login'])) {
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
-
+                if (isset($_POST['login_dashboard'])) {
+                    $email = htmlspecialchars($_POST['email']);
+                    $password = htmlspecialchars($_POST['password']);
+                        echo $password;
                     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-
+                        echo $password_hash;
                     $sql = mysqli_query($conn, "SELECT * FROM accounts WHERE email = '$email'");
                     $row = mysqli_fetch_array($sql);
 
@@ -85,6 +85,7 @@ include '../connections/root_connection.php';
                                 //Wrong User, Password or no Account -> Error
                                 echo "<p class='text-danger'>Wrong Username or Password!</p>";
                                 session_destroy();
+                                echo $password_hash;
                             }
 
                         } else {
