@@ -36,9 +36,10 @@ if (!isset($_SESSION['login']['id'])) {
 
     <main>
 
+    <a href='home.php' class='back'>HOME</a>
+
     <?php if (isset($_SESSION["login"]["id"])) {
         echo "
-        <a href='home.php' class='back'>HOME</a>
             <div class='div-image'>
                 <a href='" . $_SESSION["login"]["profile_picture"] . "'>
                     <img class='image' src='profile_pictures/" . $_SESSION["login"]["profile_picture"] . "'>
@@ -54,7 +55,7 @@ if (!isset($_SESSION['login']['id'])) {
                         <div class='pi_content'>" . $_SESSION["login"]["name"] . "</div>
                     </div>
                     <div class='pi_row'>
-                        <div class='pi_content'>LAST NAME:</div>
+                        <div class='pi_content'>LAST NAME</div>
                         <div class='pi_content'>" . $_SESSION["login"]["lastname"] . "</div>
                     </div>
                     <div class='pi_row'>
@@ -76,7 +77,7 @@ if (!isset($_SESSION['login']['id'])) {
                 </div>
                 <div class='pi_column_2'>
                     <div class='pi_row'>
-                        <div class='pi_content'>CITY:</div>
+                        <div class='pi_content'>CITY</div>
                         <div class='pi_content'>" . $_SESSION["login"]["city"] . "</div>
                     </div>
                     <div class='pi_row'>
@@ -114,7 +115,7 @@ if (!isset($_SESSION['login']['id'])) {
                         <div class='pi_content'></div>
                     </div>
                     <div class='pi_row'>
-                        <div class='pi_content'>LAST NAME:</div>
+                        <div class='pi_content'>LAST NAME</div>
                         <div class='pi_content'></div>
                     </div>
                     <div class='pi_row'>
@@ -136,7 +137,7 @@ if (!isset($_SESSION['login']['id'])) {
                 </div>
                 <div class='pi_column_2'>
                     <div class='pi_row'>
-                        <div class='pi_content'>CITY:</div>
+                        <div class='pi_content'>CITY</div>
                         <div class='pi_content'></div>
                     </div>
                     <div class='pi_row'>

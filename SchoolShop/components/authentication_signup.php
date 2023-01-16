@@ -5,8 +5,6 @@
 //ini_set('display_errors', 'on');
 //error_reporting(E_ALL);
 
-/*header( "location: ../index.php" );*/
-
 include '../connections/root_connection.php';
 
 $email = htmlspecialchars($_POST['email']);
@@ -17,7 +15,7 @@ $gender = htmlspecialchars($_POST['gender']);
 
 $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
-$sql = "INSERT INTO Accounts (profile_picture, name, lastname, gender, country, city, zip_code, address, username, email, password, orders, role, logged_in) VALUES ('default_profile_picture.png', '$firstname', '$lastname', '$gender', '0', '0', '0', '0', '0', '$email', '$password_hash', '0', 'customer', '0')";
+$sql = "INSERT INTO Accounts (name, lastname, gender, email, password,  role, logged_in) VALUES ('$firstname', '$lastname', '$gender', '$email', '$password_hash', '0', '0')";
 
 if ($conn->query($sql) === TRUE) {
 
