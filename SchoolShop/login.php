@@ -67,7 +67,7 @@ include 'connections/root_connection.php';
                             if (password_verify($password, $row['password'])) {
                                 //If credentials right -> create session variables
                 
-                                $_SESSION = array('login');
+                                $_SESSION[] = array('login');
 
                                 $_SESSION['login']['name'] = $row['name'];
                                 $_SESSION['login']['lastname'] = $row['lastname'];
